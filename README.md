@@ -17,3 +17,36 @@
         \*\* Note: you must use REACT_APP
 
 - Firebase hosting url = https://language-tutor-a1bdd.firebaseapp.com/
+
+#### Gavin's Notes
+
+* Firebase Database User Objects...
+* Admin user
+
+  * { UID
+    Full Name
+    Age
+    Username
+    Email
+    TimeZone
+    English Proficiency
+    Native Proficiency
+    Student ID's?
+    Past Teaching Sessions
+    }
+
+  * Student User
+
+    * { UID
+      Full Name
+      Age
+      Username
+      Email
+      TimeZone
+      Language To Learn
+      NativeLanguage
+      Past Teaching Sessions
+      Past Flashcard Tests
+      Overall Ranking?
+
+      }
