@@ -21,6 +21,7 @@
 #### Gavin's Notes
 
 * Firebase Database User Objects...
+  * We will need to keep track of certain items we wouldn't normally need to with Firebase just in case we decide to go the NODE/MONGO route.
 * Teacher user
 
   * { UID \
