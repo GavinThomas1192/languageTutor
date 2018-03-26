@@ -21,13 +21,14 @@
 #### Gavin's Notes
 
 * Firebase Database User Objects...
-* Admin user
+* Teacher user
 
   * { UID
     Full Name
     Age
     Username
     Email
+    Passwords == NEEDS ENCRYPT
     TimeZone
     English Proficiency
     Native Proficiency
@@ -42,6 +43,7 @@
       Age
       Username
       Email
+      Passwords == NEEDS ENCRYPT
       TimeZone
       Language To Learn
       NativeLanguage
@@ -49,4 +51,14 @@
       Past Flashcard Tests
       Overall Ranking?
 
+      }
+
+  * Admin User
+    * { UID
+      Full Name
+      Age
+      Username
+      Email
+      Passwords == NEEDS ENCRYPT
+      TimeZone
       }
