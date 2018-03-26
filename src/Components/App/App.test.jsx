@@ -21,4 +21,9 @@ describe('APP TESTS ...', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find('p').props().children).toBe('Hello group!');
   });
+
+  it('Renders a h4', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('h4').props().children).toBe('Welcome Staging Branch!');
+  });
 });
