@@ -19,6 +19,7 @@ const App = () => (
       <h1 className="App-title">Welcome</h1>
     </header>
     <p className="App-intro">Hello group!</p>
+    <h4>Welcome Staging Branch!</h4>
   </div>
 );
 
