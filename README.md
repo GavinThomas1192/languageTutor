@@ -35,6 +35,7 @@
     Native Proficiency \
     Student ID's? \
     Past Teaching Sessions \
+    IsAdminApproved \
     }
 
   * Student User
