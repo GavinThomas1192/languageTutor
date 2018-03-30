@@ -11,6 +11,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import Signup from '../../Components/Signup/Signup';
 import About from '../../Components/About/About';
 import Contact from '../../Components/Contact/Contact';
+import Login from '../../Components/Login/Login';
 
 import appCreateStore from '../../Lib/app-create-store';
 
@@ -48,6 +49,7 @@ const App = () => (
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/teacherSignup" component={Signup} />
             <Route exact path="/Signup" component={Signup} />
+            <Route exact path="/Login" component={Login} />
             <Route exact path="/About" component={About} />
             <Route exact path="/Contact" component={Contact} />
 

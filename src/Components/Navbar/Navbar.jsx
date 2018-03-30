@@ -23,6 +23,14 @@ const Nav = () => (
           Contact Us
         </NavLink>
       </aside>
+      <aside>
+        <NavLink to="/Signup" className="btn">
+          Sign up
+        </NavLink>
+        <NavLink to="/Login" className="btn">
+          Login
+        </NavLink>
+      </aside>
     </section>
   </nav>
 );
