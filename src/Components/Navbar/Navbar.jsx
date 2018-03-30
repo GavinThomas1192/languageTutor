@@ -6,12 +6,21 @@ import './Navbar.css';
 const Nav = () => (
   <nav>
     <section>
-      <aside>
-        <NavLink style={{ margin: '5em' }} to="/" exact className="btn">
-          LandingPage
+      <aside className="NavAside">
+        <NavLink to="/signup" exact className="btn">
+          Find A Mentor
         </NavLink>
-        <NavLink to="/Dashboard" className="btn">
-          Dashboard
+        <NavLink to="/teacherSignup" className="btn">
+          Become A Mentor
+        </NavLink>
+        <NavLink to="/Signup" className="btn">
+          Our Lessons
+        </NavLink>
+        <NavLink to="/About" className="btn">
+          About
+        </NavLink>
+        <NavLink to="/Contact" className="btn">
+          Contact Us
         </NavLink>
       </aside>
     </section>
