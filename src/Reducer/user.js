@@ -1,13 +1,13 @@
 export default (state = [], action) => {
   const { type, payload } = action;
   switch (type) {
-    case 'SESSION_SET':
+    case 'USER_SET':
       return payload;
-    case 'SESSION_CREATE':
+    case 'USER_CREATE':
       return [payload, ...state];
-    case 'SESSION_UPDATE':
+    case 'USER_UPDATE':
       return state.map(item => (item.id === payload.id ? payload : item));
-    case 'SESSION_DELETE':
+    case 'USER_DELETE':
       return state.filter(item => item.id !== payload.id);
     default:
       return state;

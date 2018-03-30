@@ -8,10 +8,9 @@ import './App.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import LandingPage from '../LandingPage/LandingPage';
 import Dashboard from '../Dashboard/Dashboard';
-import Signup from '../../Components/Signup/Signup';
+import AuthContainer from '../../Containers/AuthContainer/AuthContainer';
 import About from '../../Components/About/About';
 import Contact from '../../Components/Contact/Contact';
-import Login from '../../Components/Login/Login';
 
 import appCreateStore from '../../Lib/app-create-store';
 
@@ -47,9 +46,9 @@ const App = () => (
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/teacherSignup" component={Signup} />
-            <Route exact path="/Signup" component={Signup} />
-            <Route exact path="/Login" component={Login} />
+            <Route exact path="/teacherSignup" component={AuthContainer} />
+            <Route exact path="/Signup" component={AuthContainer} />
+            <Route exact path="/Login" component={AuthContainer} />
             <Route exact path="/About" component={About} />
             <Route exact path="/Contact" component={Contact} />
 
