@@ -8,6 +8,9 @@ import './App.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import LandingPage from '../LandingPage/LandingPage';
 import Dashboard from '../Dashboard/Dashboard';
+import Signup from '../../Components/Signup/Signup';
+import About from '../../Components/About/About';
+import Contact from '../../Components/Contact/Contact';
 
 import appCreateStore from '../../Lib/app-create-store';
 
@@ -43,6 +46,10 @@ const App = () => (
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/teacherSignup" component={Signup} />
+            <Route exact path="/Signup" component={Signup} />
+            <Route exact path="/About" component={About} />
+            <Route exact path="/Contact" component={Contact} />
 
             <Route component={PageNotFound} />
           </Switch>
