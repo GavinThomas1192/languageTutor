@@ -1,3 +1,30 @@
-.btn {
-  margin: 2em;
+nav {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 4em;
+  padding: 0em 1em 0em 1em;
+}
+
+nav .btn {
+  font-family: Helvetica, sans-serif;
+  font-size: .8em;
+  margin-right: 1em;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main-nav h1 {
+  font-family: Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  margin-right: 2em;
 }
