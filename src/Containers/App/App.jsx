@@ -11,6 +11,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import AuthContainer from '../../Containers/AuthContainer/AuthContainer';
 import About from '../../Components/About/About';
 import Contact from '../../Components/Contact/Contact';
+import Footer from '../../Components/Footer/Footer';
 
 import appCreateStore from '../../Lib/app-create-store';
 
@@ -54,6 +55,7 @@ const App = () => (
 
             <Route component={PageNotFound} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     </div>
