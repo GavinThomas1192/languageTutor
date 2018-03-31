@@ -1,0 +1,109 @@
+.hero {
+  position: relative;
+  background: url('../../img/hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 60em;
+}
+
+.hero-text {
+  position: absolute;
+  top: 3em;
+  left: 5em;
+  float:left;
+  font-family: Helvetica, sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  text-align: left;
+  width: 27%;
+}
+
+.hero-text button {
+  font-size: .4em;
+  font-weight: 200;
+  letter-spacing: .07em;
+}
+
+/*******
+LEARN SECTION
+*******/
+.info {
+  background-color: #008751;
+  color: white;
+}
+
+.info h4 {
+  font-family: Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: .7em;
+}
+
+.online,
+.mentors {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 3em;
+  text-align: left;
+}
+
+.online-courses {
+  margin-right: 5em;
+}
+
+.live-mentorships {
+  margin-left: 5em;
+}
+
+.mentors {
+  flex-direction: row-reverse;
+}
+
+
+/*****
+MENTORS SECTION
+*****/
+
+.our-mentors {
+  /* background-color: red; */
+  padding: 3em;
+}
+
+.our-mentors h4 {
+  font-family: Helvetica, sans-serif;
+  font-size: 2em;
+  color: #008751;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 3em;
+}
+
+.our-mentors img {
+  border: .3em solid #008751;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 2em;
+}
+
+.mentor-info h5 {
+  font-family: Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  color: #008751;
+  text-transform: uppercase;
+}
+
+.mentor-info p {
+  font-family: Helvetica, sans-serif;
+  font-size: .9em;
+}
+
+button {
+  margin-bottom: 3em;
+}

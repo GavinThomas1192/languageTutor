@@ -1,0 +1,43 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+  background-color: black;
+  color: white;
+}
+
+.foot-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.foot-info {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.foot-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.legal-stuff,
+.foot-social {
+  display: flex;
+  flex-direction: row;
+}
+
+.foot-social {
+  margin-left: 50px;
+}
+
+.foot-social p,
+.legal-stuff .btn {
+  margin-right: 1em;
+}

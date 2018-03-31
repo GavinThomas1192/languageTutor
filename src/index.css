@@ -56,3 +56,11 @@ a:link, a:visited {
 a:hover, a:active {
   color: #008751;
 }
+
+button {
+	background-color: #008751;
+	color: white;
+	height: 3em;
+	border: none;
+	border-radius: .17em;
+}
