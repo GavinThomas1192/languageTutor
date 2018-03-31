@@ -52,7 +52,10 @@ const LandingPage = () => (
           <img src={mentor1} />
           <div className="mentor-info">
             <h5>Mentor Name</h5>
-            <p>A local native who loves to teach. She’s got a passion for learning and showing that by helping others.</p>
+            <p>
+              A local native who loves to teach. She’s got a passion for
+              learning and showing that by helping others.
+            </p>
           </div>
         </li>
       </ul>
