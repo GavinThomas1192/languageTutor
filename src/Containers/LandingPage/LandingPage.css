@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  background: url('../../img/hero.jpg');
+  background: url("../../img/hero.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 60em;
@@ -10,7 +10,7 @@
   position: absolute;
   top: 3em;
   left: 5em;
-  float:left;
+  float: left;
   font-family: Helvetica, sans-serif;
   font-size: 3em;
   font-weight: bold;
@@ -22,9 +22,9 @@
 }
 
 .hero-text button {
-  font-size: .4em;
+  font-size: 0.4em;
   font-weight: 200;
-  letter-spacing: .07em;
+  letter-spacing: 0.07em;
 }
 
 /*******
@@ -35,12 +35,18 @@ LEARN SECTION
   color: white;
 }
 
+.info h2 {
+  font-family: Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+}
+
 .info h4 {
   font-family: Helvetica, sans-serif;
   font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: .7em;
+  margin-bottom: 0.7em;
 }
 
 .online,
@@ -64,7 +70,6 @@ LEARN SECTION
   flex-direction: row-reverse;
 }
 
-
 /*****
 MENTORS SECTION
 *****/
@@ -84,7 +89,7 @@ MENTORS SECTION
 }
 
 .our-mentors img {
-  border: .3em solid #008751;
+  border: 0.3em solid #008751;
   border-radius: 100%;
   width: 100px;
   height: 100px;
@@ -101,7 +106,7 @@ MENTORS SECTION
 
 .mentor-info p {
   font-family: Helvetica, sans-serif;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 button {
