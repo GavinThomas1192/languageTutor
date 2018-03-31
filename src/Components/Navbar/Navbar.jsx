@@ -6,7 +6,7 @@ import './Navbar.css';
 const Nav = () => (
   <nav>
     <div className="main-nav">
-      <h1>COMPANYLOGO</h1>
+      <NavLink to="/" ><h1>COMPANYLOGO</h1></NavLink>
       <NavLink to="/signup" exact className="btn">
         Find A Mentor
       </NavLink>
