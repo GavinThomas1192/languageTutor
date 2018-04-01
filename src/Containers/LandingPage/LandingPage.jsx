@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import './LandingPage.css';
 
 import mentor1 from '../../img/mentor-1.jpg';
@@ -11,7 +13,7 @@ const LandingPage = () => (
     <div className="hero">
       <div className="hero-text">
         <h3>Learn Your Native Tongue From A Mentor</h3>
-        <button>Sign Up Today!</button>
+        <NavLink to="Signup"><button>Sign Up Today!</button></NavLink>
       </div>
     </div>
 
