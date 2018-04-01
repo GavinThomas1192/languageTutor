@@ -18,6 +18,7 @@ class Signup extends React.Component {
       timeZone: '',
       location: '',
       nativeLanguage: '',
+      isTeacher: false,
       // ERRORRS
       errors: false,
       nameError: '',
@@ -43,6 +44,10 @@ class Signup extends React.Component {
   onSubmit = (e) => {
     e.preventDefault()
     !this.state.errors ? this.props.handleStudentSignup(this.state) : undefined 
+  }
+
+  handleCheckBoxToggle = () => {
+    this.setState({isTeacher: !this.state.isTeacher})
   }
 
   handleChange = name => event => {
@@ -82,7 +87,7 @@ class Signup extends React.Component {
     if(name === 'email') {
       !emailReg.test(event.target.value) ? 
       this.setState({
-        emailError: 'Whoops that\'s not a valid email', errors: true
+        emailError: "Whoops that's not a valid email", errors: true
       }) :  this.setState({
         emailError: '', errors: false
       })
@@ -98,7 +103,7 @@ class Signup extends React.Component {
     if(name === 'nativeLanguage') {
       !nameReg.test(event.target.value) ? 
       this.setState({
-        ageError: 'Whoops you\'re too old', errors: true
+        ageError: "Whoops you're too old", errors: true
       }) :  this.setState({
         ageError: '', errors: false
       })
@@ -125,7 +130,15 @@ class Signup extends React.Component {
     <h1>Teacher specific signup form goes here!</h1>
   ) : (
     <div className="Modal">
-    <form onChange={this.handleChange} onSubmit={this.onSubmit} className="ModalForm">
+    <form onSubmit={this.onSubmit} className="ModalForm">
+    <label>
+          I want to signup as a teacher:
+          <input
+            name="isTeacher"
+            type="checkbox"
+            checked={this.state.isTeacher}
+            onChange={this.handleCheckBoxToggle} />
+        </label>
         <input onChange={this.handleChange('name')} id="name" type="text" placeholder="Full Name" value={this.state.name} />
         <input onChange={this.handleChange('username')} id="username" type="text" placeholder="Username" />
         <input onChange={this.handleChange('password')} id="password" type="password" placeholder="Password" />
