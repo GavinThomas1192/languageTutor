@@ -153,7 +153,7 @@ class Signup extends React.Component {
           </select>
         </label>
         {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
-        <input onChange={this.handleChange('location')} id="location" type="text" pattern="[0-9]*" placeholder="location" />
+        <input onChange={this.handleChange('location')} id="location" type="text" pattern="[0-9]*" placeholder="zipcode" />
         <label>
           Native Language
           <select value={this.state.nativeLanguage} onChange={this.handleChange('nativeLanguage')}>
@@ -162,7 +162,7 @@ class Signup extends React.Component {
           </select>
         </label>
         {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
-        <button>Log in <i className="fa fa-fw fa-chevron-right"></i></button>
+        <button>Signup <i className="fa fa-fw fa-chevron-right"></i></button>
     </form>
     {this.state.errors ? <h4>Whoops something went wrong</h4> : undefined}
 </div>
