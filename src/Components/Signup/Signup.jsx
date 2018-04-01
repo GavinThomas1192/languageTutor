@@ -17,7 +17,8 @@ class Signup extends React.Component {
       email: '',
       timeZone: '',
       location: '',
-      nativeLanguage: '',
+      nativeLanguage: 'English',
+      isTeacher: false,
       // ERRORRS
       errors: false,
       nameError: '',
@@ -42,7 +43,11 @@ class Signup extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    !this.state.errors ? this.props.handleStudentSignup(this.state) : undefined 
+    this.state.name === '' ||  this.state.username === '' ||  this.state.password === '' ||  this.state.age === '' ||  this.state.email === '' ||  this.state.timeZone === '' ||  this.state.locaiton === '' ||  this.state.nativeLanguage === '' ? this.setState({errors: true}) : !this.state.errors ? this.props.handleStudentSignup(this.state) : console.log('Whoops theres errors') 
+  }
+
+  handleCheckBoxToggle = () => {
+    this.setState({isTeacher: !this.state.isTeacher})
   }
 
   handleChange = name => event => {
@@ -82,7 +87,7 @@ class Signup extends React.Component {
     if(name === 'email') {
       !emailReg.test(event.target.value) ? 
       this.setState({
-        emailError: 'Whoops that\'s not a valid email', errors: true
+        emailError: "Whoops that's not a valid email", errors: true
       }) :  this.setState({
         emailError: '', errors: false
       })
@@ -98,7 +103,7 @@ class Signup extends React.Component {
     if(name === 'nativeLanguage') {
       !nameReg.test(event.target.value) ? 
       this.setState({
-        ageError: 'Whoops you\'re too old', errors: true
+        ageError: "Whoops you're too old", errors: true
       }) :  this.setState({
         ageError: '', errors: false
       })
@@ -125,7 +130,15 @@ class Signup extends React.Component {
     <h1>Teacher specific signup form goes here!</h1>
   ) : (
     <div className="Modal">
-    <form onChange={this.handleChange} onSubmit={this.onSubmit} className="ModalForm">
+    <form onSubmit={this.onSubmit} className="ModalForm">
+    <label>
+          I want to signup as a teacher:
+          <input
+            name="isTeacher"
+            type="checkbox"
+            checked={this.state.isTeacher}
+            onChange={this.handleCheckBoxToggle} />
+        </label>
         <input onChange={this.handleChange('name')} id="name" type="text" placeholder="Full Name" value={this.state.name} />
         <input onChange={this.handleChange('username')} id="username" type="text" placeholder="Username" />
         <input onChange={this.handleChange('password')} id="password" type="password" placeholder="Password" />
@@ -140,7 +153,7 @@ class Signup extends React.Component {
           </select>
         </label>
         {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
-        <input onChange={this.handleChange('location')} id="location" type="text" pattern="[0-9]*" placeholder="location" />
+        <input onChange={this.handleChange('location')} id="location" type="text" pattern="[0-9]*" placeholder="zipcode" />
         <label>
           Native Language
           <select value={this.state.nativeLanguage} onChange={this.handleChange('nativeLanguage')}>
@@ -149,7 +162,7 @@ class Signup extends React.Component {
           </select>
         </label>
         {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
-        <button>Log in <i className="fa fa-fw fa-chevron-right"></i></button>
+        <button>Signup <i className="fa fa-fw fa-chevron-right"></i></button>
     </form>
     {this.state.errors ? <h4>Whoops something went wrong</h4> : undefined}
 </div>
