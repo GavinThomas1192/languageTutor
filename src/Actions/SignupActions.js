@@ -1,5 +1,4 @@
 import firebase from 'firebase'
-import {loginRequest} from './LoginActions'
 export const handleStudentSignup = (student) => dispatch => {
     console.log('INSIDE SIGNUP ACTIONS, INCOMING STUDENT FOR SINGUP', student)
     // ******** The signup actions only trigger for first time users, no need to check database ********
