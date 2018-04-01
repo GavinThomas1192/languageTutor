@@ -17,7 +17,7 @@ class Signup extends React.Component {
       email: '',
       timeZone: '',
       location: '',
-      nativeLanguage: '',
+      nativeLanguage: 'English',
       isTeacher: false,
       // ERRORRS
       errors: false,
@@ -43,7 +43,7 @@ class Signup extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    !this.state.errors ? this.props.handleStudentSignup(this.state) : undefined 
+    this.state.name === '' ||  this.state.username === '' ||  this.state.password === '' ||  this.state.age === '' ||  this.state.email === '' ||  this.state.timeZone === '' ||  this.state.locaiton === '' ||  this.state.nativeLanguage === '' ? this.setState({errors: true}) : !this.state.errors ? this.props.handleStudentSignup(this.state) : console.log('Whoops theres errors') 
   }
 
   handleCheckBoxToggle = () => {
