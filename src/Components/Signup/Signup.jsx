@@ -165,6 +165,7 @@ class Signup extends React.Component {
         <button>Signup <i className="fa fa-fw fa-chevron-right"></i></button>
     </form>
     {this.state.errors ? <h4>Whoops something went wrong</h4> : undefined}
+   
 </div>
 
     )
