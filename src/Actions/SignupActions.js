@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-export const handleStudentSignup = (student) => dispatch => {
+export const handleStudentSignup = (student, history) => dispatch => {
     console.log('INSIDE SIGNUP ACTIONS, INCOMING STUDENT FOR SINGUP', student)
     // ******** The signup actions only trigger for first time users, no need to check database ********
     firebase.auth().createUserWithEmailAndPassword(student.email, student.password)
@@ -18,14 +18,13 @@ export const handleStudentSignup = (student) => dispatch => {
                 account.isTeacher = student.isTeacher
     
        
-                student.isTeacher ? 
-                firebase.database().ref('teachers/' + authData.uid).set({
+                
+                firebase.database().ref('users/' + authData.uid).set({
                     account
+                }, () => {
+                    history.push('/dashboard')
                 })
-                : 
-                firebase.database().ref('students/' + authData.uid).set({
-                    account
-                })
+               
               });
            
         }).catch((err) => console.log(err));
