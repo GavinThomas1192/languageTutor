@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import { browserHistory } from 'react-router-dom'
+import history from '../Lib/browserHistory'
 export const userSet = user => ({
     type: 'USER_SET',
     payload: user,
@@ -17,19 +18,25 @@ export const userUpdate = user => ({
 
 
 export const setFirebaseUserToRedux = (user) => dispatch => {
+    return new Promise((resolve, reject) => {
     firebase.database().ref('users/' + user.uid).once('value').then(function (snapshot) {
         // this will either be null or populated with vehicles. 
-        let user = snapshot.val();
-        dispatch(userSet(user))
+        let userProfile = snapshot.val();
+        console.log(userProfile)
+        resolve(dispatch(userSet(userProfile)))
+    }).then(() => {
+        history.push('/dashboard')
     })
+  })
 }
 
 
+
 export const handleStudentLogin = (student, router) => dispatch => {
-console.log('action props', this.props)
+console.log('action props', router)
     firebase.auth().signInWithEmailAndPassword(student.email, student.password).then((signupData) => {
         console.log('signed in from LOGIN actions' , signupData)
-        router.history.push('/dashboard')
+        router.push('/dashboard')
     }).catch((err) => console.log(err));
 }
 
