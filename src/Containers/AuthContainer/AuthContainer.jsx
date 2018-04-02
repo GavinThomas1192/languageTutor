@@ -6,7 +6,6 @@ import Login from '../../Components/Login/Login';
 import Signup from '../../Components/Signup/Signup';
 
 const AuthContainer = (props) => {
-  console.log(props);
   return props.location.pathname === '/Login' ? (
     <Modal
     isOpen={true}                  //{/* pass isOpen bool to open modal */}

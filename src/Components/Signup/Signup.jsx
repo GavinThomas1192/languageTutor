@@ -38,7 +38,6 @@ class Signup extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('Signup Updated', this.state)
   }
 
   onSubmit = (e) => {

@@ -31,3 +31,14 @@ export const handleStudentLogin = (student) => dispatch => {
 
     }).catch((err) => console.log(err));
 }
+
+export const handleLogout = (student) => (dispatch) => {
+    return new Promise((resolve, reject) => {
+    firebase.auth().signOut().then(() => {
+            resolve(dispatch(userSet([])))
+            console.log('Logged user out!')
+          });
+        }, (error) => {
+        console.log('Logout error', error)
+    })
+}

@@ -5,7 +5,6 @@ export const handleStudentSignup = (student) => dispatch => {
     firebase.auth().createUserWithEmailAndPassword(student.email, student.password)
         .then((authData) => {
             firebase.auth().signInWithEmailAndPassword(student.email, student.password).then((signupData) => {
-                console.log('signed in' , signupData)
             
                 let account = {}
                 account.uid = authData.uid
@@ -18,7 +17,6 @@ export const handleStudentSignup = (student) => dispatch => {
                 account.location = student.location
                 account.isTeacher = student.isTeacher
     
-                console.log(authData, account)
        
                 student.isTeacher ? 
                 firebase.database().ref('teachers/' + authData.uid).set({
