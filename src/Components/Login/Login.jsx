@@ -12,9 +12,6 @@ class Login extends React.Component {
     this.state = {
       password: '',
       email: '',
-
-      // ERRORRS
-
       passwordError: '',
       emailError: '',
     };
@@ -24,11 +21,17 @@ class Login extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.state.password === '' || this.state.email === ''
-      ? this.setState({ errors: true })
-      : !this.state.errors
-        ? this.props.handleStudentLogin(this.state, this.props.history)
-        : console.log('Whoops theres errors');
+    if (this.state.password === '' || this.state.email === '') {
+      this.setState({ errors: true });
+    } else if (!this.state.errors) {
+      this.props.handleStudentLogin(this.state, this.props.history);
+    } else {
+      console.log('Whoops theres errors');
+    }
+    //  }      ? this.setState({ errors: true })
+    //       : !this.state.errors
+    //         ? this.props.handleStudentLogin(this.state, this.props.history)
+    //         : console.log('Whoops theres errors');
   };
 
   handleChange = name => (event) => {
@@ -39,7 +42,7 @@ class Login extends React.Component {
     });
 
     if (name === 'password') {
-      !passwordReg.test(event.target.value)
+      return !passwordReg.test(event.target.value)
         ? this.setState({
           passwordError:
               'Password be at least 8 characters, two uppercase letter, two numbers, one special character',
@@ -51,7 +54,7 @@ class Login extends React.Component {
         });
     }
     if (name === 'email') {
-      !emailReg.test(event.target.value)
+      return !emailReg.test(event.target.value)
         ? this.setState({
           emailError: "Whoops that's not a valid email",
           errors: true,
@@ -65,21 +68,28 @@ class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} className="ModalForm">
-        <input
-          onChange={this.handleChange('email')}
-          id="email"
-          type="email"
-          placeholder="Email"
-        />
-        <input
-          onChange={this.handleChange('password')}
-          id="password"
-          type="password"
-          placeholder="Password"
-        />
-        <button>Login</button>
-      </form>
+      <div>
+        <form onSubmit={this.onSubmit} className="ModalForm">
+          <input
+            onChange={this.handleChange('email')}
+            id="email"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            onChange={this.handleChange('password')}
+            id="password"
+            type="password"
+            placeholder="Password"
+          />
+          <button>Login</button>
+        </form>
+        {this.state.passwordError !== '' || this.state.emailError !== '' ? (
+          <h4>errors</h4>
+        ) : (
+          undefined
+        )}
+      </div>
     );
   }
 }

@@ -1,12 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
-import {connect} from 'react-redux'
-import history from '../../Lib/browserHistory'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import { connect } from 'react-redux';
+import history from '../../Lib/browserHistory';
 // import { createBrowserHistory } from 'history';
 import firebase from 'firebase';
 import './App.css';
 
-import {setFirebaseUserToRedux} from '../../Actions/LoginActions'
+import { setFirebaseUserToRedux } from '../../Actions/LoginActions';
 
 import Navbar from '../../Components/Navbar/Navbar';
 import LandingPage from '../LandingPage/LandingPage';
@@ -15,7 +20,6 @@ import AuthContainer from '../../Containers/AuthContainer/AuthContainer';
 import About from '../../Components/About/About';
 import Contact from '../../Components/Contact/Contact';
 import Footer from '../../Components/Footer/Footer';
-
 
 // createBrowserHistory();
 // export const history;
@@ -37,54 +41,56 @@ const PageNotFound = () => (
   </div>
 );
 
-
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       // ********* If a user is logged in firebase will return the user object. THEY ARE NOT LOGGED IN THOUGH *********
       if (user) {
-        console.log('onAuthStateChanged', user)
+        console.log('onAuthStateChanged', user);
         // ********* Then we call an official Firebase login function through actions *********
-        this.props.setFirebaseUserToRedux(user) 
-        
+        this.props.setFirebaseUserToRedux(user);
       } else {
-        console.log('No user signed in')
+        console.log('No user signed in');
       }
     });
-
-   
   }
 
   componentDidUpdate() {
-    console.log('APP UPDATED (this.state, this.props)', this.state, this.props)
+    console.log('APP UPDATED (this.state, this.props)', this.state, this.props);
   }
   render() {
-    return(
+    return (
       <div className="App">
         {/*eslint-disable */}
         <Router history={history}>
           {/* eslint-enable */}
           <div>
-            <Navbar/>
+            <Navbar />
             <Switch>
-              <Route exact path="/" component={() => this.props.user.length < 1 ? <LandingPage /> : <Redirect to="/dashboard" />} /> />
+              <Route
+                exact
+                path="/"
+                component={() =>
+                  this.props.user.length < 1 ? (
+                    <LandingPage />
+                  ) : (
+                    <Redirect to="/dashboard" />
+                  )
+                }
+              />{' '}
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/teacherSignup" component={AuthContainer} />
               <Route exact path="/Signup" component={AuthContainer} />
               <Route exact path="/Login" component={AuthContainer} />
               <Route exact path="/About" component={About} />
               <Route exact path="/Contact" component={Contact} />
-  
               <Route component={PageNotFound} />
             </Switch>
             <Footer />
           </div>
         </Router>
       </div>
-    )
+    );
   }
 }
 
@@ -93,8 +99,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setFirebaseUserToRedux: user => dispatch(setFirebaseUserToRedux(user))
-
+  setFirebaseUserToRedux: user => dispatch(setFirebaseUserToRedux(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
