@@ -68,7 +68,7 @@ class App extends React.Component {
           <div>
             <Navbar/>
             <Switch>
-              <Route exact path="/" component={() => !this.props.user.uid ? <LandingPage /> : <Redirect to="/dashboard" />} /> />
+              <Route exact path="/" component={() => !this.props.user.account ? <LandingPage /> : <Redirect to="/dashboard" />} /> />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/teacherSignup" component={AuthContainer} />
               <Route exact path="/Signup" component={AuthContainer} />

@@ -2,51 +2,57 @@ import React from 'react';
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // USE THIS LATER FOR ANIMATIONS
 import './Modal.css';
 
-const clostBtn = () => {
-  this.props.showClose ? <button onClick={this.props.close}> Close </button> : ''
-}
-
-class Modal extends React.Component {
-
-  //Clicking on background will close the modal via props.close
-  bgClick = e => {
-    if(e.target === e.currentTarget){
-      return this.props.close;
-    }
+export default class Modal extends React.Component {
+  constructor(props) {
+    super(props)
   }
-
-  render(){
-    const closeBtn = this.props.showClose ? <button onClick={this.props.close}> Close </button> : '';
-    // const deleteBtn = this.props.showDelete ?
-    //     <div>
-    //       <button onClick={this.props.close}>Cancel</button>
-    //       <button onClick={()=>{this.props.close(); this.props.deleteFunc(this.props.deleteId)}}>Delete</button>
-    //     </div>
-    //   : '';
-    const continueBtn = this.props.showContinue ?
-        <div className="modal-btn-group">
-          <button onClick={()=>{this.props.close(); console.log('continue clicked')}}>Continue</button>
-          <button onClick={this.props.close}>Cancel</button>
-
+  bgClick = (e) => {
+    e.preventDefault()
+    e.target === e.currentTarget || e.keyCode === 27 ? this.props.close() : undefined
+  }
+  componentDidMount(){
+    document.addEventListener("keydown", this.bgClick, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.bgClick, false);
+  }
+  render() {
+    return (
+    this.props.isOpen ? 
+  <div className="modal-bg" onClick={(e) => this.bgClick(e)}>
+        <div className="modal-main">
+          {this.props.children}
+         { this.props.showClose ? <button onClick={this.props.close}> Close </button> : ''}
+         { this.props.showContine ? 
+          <button onClick={()=>{this.props.close(); console.log('continue clicked')}} >Continue</button>
+          : undefined}
+         { this.props.showCancel ? <button onClick={this.props.close}>Cancel</button> : undefined}
         </div>
-      : '';
-
-
-    //If modal is open, show the children
-    if(this.props.isOpen === true) {
-      return (
-        <div className="modal-bg" onClick={this.bgClick.bind(this)}>
-          <div className="modal-main">
-            {this.props.children}
-            {closeBtn}
-            {continueBtn}
-          </div>
-        </div>
-      )
-    } else {
-      return ''
-    }
+      </div>
+  : ''
+    )
   }
 }
 
-export default Modal;
+
+//  PURE COMP WITHOUT THE ABILITY TO USE ESC KEY!
+// const Modal = (props) => {
+
+  
+  
+//   return props.isOpen ? 
+//   <div className="modal-bg" onClick={(e) => bgClick(e, props.close)}>
+//  { document.addEventListener("keydown", (e) => bgClick(e, props.close), false)}
+//         <div className="modal-main">
+//           {props.children}
+//          { props.showClose ? <button onClick={props.close}> Close </button> : ''}
+//          { props.showContine ? 
+//           <button onClick={()=>{props.close(); console.log('continue clicked')}} >Continue</button>
+//           : undefined}
+//          { props.showCancel ? <button onClick={props.close}>Cancel</button> : undefined}
+//         </div>
+//       </div>
+//   : ''
+// }
+
+// export default Modal;

@@ -1,6 +1,5 @@
 import firebase from 'firebase'
-
-
+import { browserHistory } from 'react-router-dom'
 export const userSet = user => ({
     type: 'USER_SET',
     payload: user,
@@ -18,17 +17,19 @@ export const userUpdate = user => ({
 
 
 export const setFirebaseUserToRedux = (user) => dispatch => {
-    dispatch(userSet(user))
+    firebase.database().ref('users/' + user.uid).once('value').then(function (snapshot) {
+        // this will either be null or populated with vehicles. 
+        let user = snapshot.val();
+        dispatch(userSet(user))
+    })
 }
 
 
-export const handleStudentLogin = (student) => dispatch => {
-
+export const handleStudentLogin = (student, router) => dispatch => {
+console.log('action props', this.props)
     firebase.auth().signInWithEmailAndPassword(student.email, student.password).then((signupData) => {
         console.log('signed in from LOGIN actions' , signupData)
-
-    
-
+        router.history.push('/dashboard')
     }).catch((err) => console.log(err));
 }
 

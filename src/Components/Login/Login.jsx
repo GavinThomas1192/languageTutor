@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect } from 'react-redux'
 import PropTypes from 'prop-types';
-
+import {withRouter} from 'react-router-dom'
 import './Login.css';
 
 import {handleStudentLogin} from '../../Actions/LoginActions'
@@ -29,7 +29,7 @@ class Login extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-      this.state.password === '' ||  this.state.email === '' ? this.setState({errors: true}) : !this.state.errors ? this.props.handleStudentLogin(this.state) : console.log('Whoops theres errors') 
+      this.state.password === '' ||  this.state.email === '' ? this.setState({errors: true}) : !this.state.errors ? this.props.handleStudentLogin(this.state, this.props.history) : console.log('Whoops theres errors') 
   }
 
  
@@ -83,11 +83,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleStudentLogin: student => dispatch(handleStudentLogin(student))
+  handleStudentLogin: (student, history) => dispatch(handleStudentLogin(student, history))
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
   
 
 
