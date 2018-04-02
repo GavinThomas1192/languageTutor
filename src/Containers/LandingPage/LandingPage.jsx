@@ -85,15 +85,6 @@ export default class LandingPage extends React.Component {
       </div>
       <button>hi buddy</button>
   
-      <Modal
-        isOpen={false}                  //{/* pass isOpen bool to open modal */}
-        close={()=>{return false}}     //{/* pass close function to close modal */}
-        showClose={false}              //{/* pass showClose bool to show close button or not */}
-        showContinue={true}            //{/* pass showContinue bool to show continue button or not */}
-      >
-        <p>Here is some children text</p>
-        <p>Would you like to continue?</p>
-      </Modal>
     </div>
     )
   }
