@@ -1,14 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Modal from '../../Components/Modal/Modal';
 import Signup from '../../Components/Signup/Signup';
 import Login from '../../Components/Login/Login';
 import './LandingPage.css';
 
 import mentor1 from '../../img/mentor-1.jpg';
-import mentor2 from '../../img/mentor-2.jpg';
-import mentor3 from '../../img/mentor-3.jpg';
-import mentor4 from '../../img/mentor-4.jpg';
+// import mentor2 from '../../img/mentor-2.jpg';
+// import mentor3 from '../../img/mentor-3.jpg';
+// import mentor4 from '../../img/mentor-4.jpg';
 
 export default class LandingPage extends React.Component {
   constructor(props) {
@@ -52,7 +50,7 @@ export default class LandingPage extends React.Component {
               </ul>
             </div>
 
-            <img src="http://placehold.it/450x300" />
+            <img src="http://placehold.it/450x300" alt="placeholder" />
           </div>
 
           <div className="mentors">
@@ -65,7 +63,7 @@ export default class LandingPage extends React.Component {
               </ul>
             </div>
 
-            <img src="http://placehold.it/450x300" />
+            <img src="http://placehold.it/450x300" alt="placeholder" />
           </div>
         </div>
 
@@ -74,7 +72,7 @@ export default class LandingPage extends React.Component {
 
           <ul>
             <li>
-              <img src={mentor1} />
+              <img src={mentor1} alt="mentor" />
               <div className="mentor-info">
                 <h5>Mentor Name</h5>
                 <p>

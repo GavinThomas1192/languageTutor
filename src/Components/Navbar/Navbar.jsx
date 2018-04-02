@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Redirect, withRouter } from 'react-router-dom';
-import firebase from 'firebase';
+import { NavLink, withRouter } from 'react-router-dom';
 import './Navbar.css';
 
 import { handleLogout } from '../../Actions/LoginActions';
