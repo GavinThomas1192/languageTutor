@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect } from 'react-redux'
 import PropTypes from 'prop-types';
-
+import {withRouter} from 'react-router-dom'
 import './Signup.css';
 
 import {handleStudentSignup} from '../../Actions/SignupActions'
@@ -42,7 +42,7 @@ class Signup extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    this.state.name === '' ||  this.state.username === '' ||  this.state.password === '' ||  this.state.age === '' ||  this.state.email === '' ||  this.state.timeZone === '' ||  this.state.locaiton === '' ||  this.state.nativeLanguage === '' ? this.setState({errors: true}) : !this.state.errors ? this.props.handleStudentSignup(this.state) : console.log('Whoops theres errors') 
+    this.state.name === '' ||  this.state.username === '' ||  this.state.password === '' ||  this.state.age === '' ||  this.state.email === '' ||  this.state.timeZone === '' ||  this.state.locaiton === '' ||  this.state.nativeLanguage === '' ? this.setState({errors: true}) : !this.state.errors ? this.props.handleStudentSignup(this.state, this.props.history) : console.log('Whoops theres errors') 
   }
 
   handleCheckBoxToggle = () => {
@@ -177,11 +177,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleStudentSignup: student => dispatch(handleStudentSignup(student))
+  handleStudentSignup: (student, history) => dispatch(handleStudentSignup(student, history))
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
   
 
 
