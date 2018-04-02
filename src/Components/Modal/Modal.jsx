@@ -2,6 +2,10 @@ import React from 'react';
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // USE THIS LATER FOR ANIMATIONS
 import './Modal.css';
 
+const clostBtn = () => {
+  this.props.showClose ? <button onClick={this.props.close}> Close </button> : ''
+}
+
 class Modal extends React.Component {
 
   //Clicking on background will close the modal via props.close
