@@ -60,14 +60,13 @@ class App extends React.Component {
     console.log('APP UPDATED (this.state, this.props)', this.state, this.props)
   }
   render() {
-    console.log('prps inside app', this.props)
     return(
       <div className="App">
         {/*eslint-disable */}
         <Router history={history}>
           {/* eslint-enable */}
           <div>
-            <Navbar />
+            <Navbar/>
             <Switch>
               <Route exact path="/" component={() => !this.props.user.uid ? <LandingPage /> : <Redirect to="/dashboard" />} /> />
               <Route exact path="/dashboard" component={Dashboard} />
