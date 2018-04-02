@@ -25,7 +25,6 @@ class Login extends React.Component {
 
 
   componentDidUpdate() {
-    console.log('Login Updated', this.state)
   }
 
   onSubmit = (e) => {
@@ -62,7 +61,7 @@ class Login extends React.Component {
     
   }
 
-  
+
 
 
   

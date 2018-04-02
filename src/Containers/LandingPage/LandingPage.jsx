@@ -19,10 +19,8 @@ export default class LandingPage extends React.Component {
   }
 
   componentDidUpdate () {
-    console.log(this.state)
   }
   handleLoginSignup = () => {
-    console.log('yolo')
    this.setState({showHomePageSignup: !this.state.showHomePageSignup})
   }
   render() {
