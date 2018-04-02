@@ -16,7 +16,7 @@ export const handleStudentSignup = (student) => dispatch => {
                 account.age = student.age
                 account.timeZone = student.timeZone
                 account.location = student.location
-                account.isteacher = student.isteacher
+                account.isTeacher = student.isTeacher
     
                 console.log(authData, account)
        
