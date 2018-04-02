@@ -1,13 +1,14 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // USE THIS LATER FOR ANIMATIONS
 import './Modal.css';
 
-export default class Modal extends React.Component {
+class Modal extends React.Component {
   constructor(props) {
     super(props)
   }
   bgClick = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     e.target === e.currentTarget || e.keyCode === 27 ? this.props.close() : undefined
   }
   componentDidMount(){
@@ -33,7 +34,7 @@ export default class Modal extends React.Component {
     )
   }
 }
-
+ export default withRouter(Modal)
 
 //  PURE COMP WITHOUT THE ABILITY TO USE ESC KEY!
 // const Modal = (props) => {

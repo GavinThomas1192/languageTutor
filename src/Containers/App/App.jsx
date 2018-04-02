@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect  } from 'react-router-dom';
 import {connect} from 'react-redux'
-import { createBrowserHistory } from 'history';
+import history from '../../Lib/browserHistory'
+// import { createBrowserHistory } from 'history';
 import firebase from 'firebase';
 import './App.css';
 
@@ -16,8 +17,8 @@ import Contact from '../../Components/Contact/Contact';
 import Footer from '../../Components/Footer/Footer';
 
 
-createBrowserHistory();
-
+// createBrowserHistory();
+// export const history;
 const config = {
   apiKey: 'AIzaSyCYPz3TccePYGO17K_a3S7rsVbYyS2Shiw',
   authDomain: 'language-tutor-a1bdd.firebaseapp.com',
@@ -47,7 +48,8 @@ class App extends React.Component {
       if (user) {
         console.log('onAuthStateChanged', user)
         // ********* Then we call an official Firebase login function through actions *********
-        this.props.setFirebaseUserToRedux(user);
+        this.props.setFirebaseUserToRedux(user) 
+        
       } else {
         console.log('No user signed in')
       }
@@ -68,7 +70,7 @@ class App extends React.Component {
           <div>
             <Navbar/>
             <Switch>
-              <Route exact path="/" component={() => !this.props.user.account ? <LandingPage /> : <Redirect to="/dashboard" />} /> />
+              <Route exact path="/" component={() => this.props.user.length < 1 ? <LandingPage /> : <Redirect to="/dashboard" />} /> />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/teacherSignup" component={AuthContainer} />
               <Route exact path="/Signup" component={AuthContainer} />
