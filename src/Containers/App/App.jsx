@@ -11,7 +11,7 @@ import {setFirebaseUserToRedux} from "../../Actions/LoginActions";
 import Navbar from "../../Components/Navbar/Navbar";
 import LandingPage from "../LandingPage/LandingPage";
 import Dashboard from "../Dashboard/Dashboard";
-import VideoChat from '../VideoChat/VideoChat'
+import VideoChat from '../VideoChat2/VideoChat'
 import AuthContainer from "../../Containers/AuthContainer/AuthContainer";
 import About from "../../Components/About/About";
 import Contact from "../../Components/Contact/Contact";
