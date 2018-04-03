@@ -3,10 +3,8 @@ import Signup from '../../Components/Signup/Signup';
 import Login from '../../Components/Login/Login';
 import './LandingPage.css';
 
-import mentor1 from '../../img/mentor-1.jpg';
-// import mentor2 from '../../img/mentor-2.jpg';
-// import mentor3 from '../../img/mentor-3.jpg';
-// import mentor4 from '../../img/mentor-4.jpg';
+import CoursePreview from '../../Assets/Images/Learn-Preview-Right.png';
+import MentorshipsPreview from '../../Assets/Images/Learn-Preview-Left.png';
 
 export default class LandingPage extends React.Component {
   constructor(props) {
@@ -24,11 +22,11 @@ export default class LandingPage extends React.Component {
     return (
       <div>
         <div className="hero">
-          <div className="hero-text">
-            <h3>Learn Your Native Tongue From A Mentor</h3>
+          <div>
+            <h1>Learn Your Native Tongue From A Mentor</h1>
             {/* <NavLink to="Signup"><button>Sign Up Today!</button></NavLink> */}
           </div>
-          <div>
+          <div className="signup-modal">
             {this.state.showHomePageSignup ? <Signup /> : <Login />}
             <button onClick={this.handleLoginSignup}>
               {this.state.showHomePageSignup
@@ -38,41 +36,41 @@ export default class LandingPage extends React.Component {
           </div>
         </div>
 
-        <div className="info">
+        <div className="info container">
           <h2>Learn The Igbo Language</h2>
           <div className="online">
             <div className="online-courses">
               <h4>Online Courses</h4>
               <ul>
-                <li>video tutorials teaching igbo</li>
-                <li>track your progress</li>
-                <li>get achievments for your success</li>
+                <li><i className="icon-video"></i>video tutorials teaching igbo</li>
+                <li><i className="icon-statistics"></i>track your progress</li>
+                <li><i className="icon-rewards"></i>get achievments for your success</li>
               </ul>
             </div>
 
-            <img src="http://placehold.it/450x300" alt="placeholder" />
+            <img src={MentorshipsPreview} alt="Live Mentorships" />
           </div>
 
-          <div className="mentors">
+          <div className="platform container">
             <div className="live-mentorships">
               <h4>Live Mentorships</h4>
               <ul>
-                <li>one-on-one guidance</li>
-                <li>get help with assingments</li>
-                <li>learn your native tongue</li>
+                <li><i className="icon-mentorship"></i>one-on-one guidance</li>
+                <li><i className="icon-online-chat"></i>get help with assingments</li>
+                <li><i className="icon-language"></i>learn your native tongue</li>
               </ul>
             </div>
 
-            <img src="http://placehold.it/450x300" alt="placeholder" />
+            <img src={CoursePreview} alt="Online Course" />
           </div>
         </div>
 
-        <div className="our-mentors">
-          <h4>Meet Our Mentors</h4>
+        <div className="our-mentors container">
+          <h2>Meet Our Mentors</h2>
 
           <ul>
             <li>
-              <img src={mentor1} alt="mentor" />
+              <img src="http://placehold.it/300x300" alt="mentor" />
               <div className="mentor-info">
                 <h5>Mentor Name</h5>
                 <p>
@@ -83,7 +81,6 @@ export default class LandingPage extends React.Component {
             </li>
           </ul>
         </div>
-        <button>hi buddy</button>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 footer {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 3em;
   background-color: black;
