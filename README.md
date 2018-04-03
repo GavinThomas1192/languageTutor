@@ -64,3 +64,7 @@
       Passwords == NEEDS ENCRYPT \
       TimeZone \
       }
+
+#### Adrian's Notes
+
+  ![alt text](https://i.imgur.com/1gIn1Ji.jpg)
