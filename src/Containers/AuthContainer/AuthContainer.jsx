@@ -1,5 +1,5 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Modal from '../../Components/Modal/Modal';
@@ -21,6 +21,15 @@ class AuthContainer extends React.Component {
       this.props.history.push('/');
     });
   };
+
+  componentWillReceiveProps(nextProps){
+    console.log('componentWillReceiveProps');
+    if(nextProps.user !== null){
+      this.setState({showModal: false}, ()=>{
+        this.props.history.push('/dashboard');
+      })
+    }
+  }
   render() {
     return (
       <Modal
@@ -38,8 +47,17 @@ class AuthContainer extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  user: state.user
+}
 
-export default withRouter(AuthContainer);
+const mapDispatchToProps = dispatch => ({
+  // handleStudentSignup: (student, history) => dispatch(handleStudentSignup(student, history))
+
+});
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthContainer));
+
+
 
 AuthContainer.propTypes = {
   location: PropTypes.shape({

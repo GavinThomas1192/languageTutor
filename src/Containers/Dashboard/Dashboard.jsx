@@ -1,14 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
+import {NavLink} from 'react-router-dom'
+import DashboardSideBar from '../../Components/DashboardSideBar/DashboardSideBar';
 import "./Dashboard.css";
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    console.log(
-      "DASHBOARD MOUNTED ===> (this.props, this.state)",
-      this.props,
-      this.state
-    );
+    console.log("DASHBOARD MOUNTED ===> (this.props, this.state)", this.props, this.state);
   }
   componentDidUpdate() {
     console.log("DASHBOARD UPDATED ===> (this.props)", this.props);
@@ -18,30 +16,18 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h1>Hello from the dashboard</h1>
-        {this.props.user !== null ? (
-          <div>
-            <h5>{this.props.user.account.name}</h5>
-            <h5>{this.props.user.account.username}</h5>
-            <h5>{this.props.user.account.email}</h5>
-            <h5>{this.props.user.account.age}</h5>
-            <h5>{this.props.user.account.timeZone}</h5>
-            <h5>{this.props.user.account.nativeLanguage}</h5>
-            <h5>
-              {this.props.user.account.isTeacher
-                ? "Im a teacher"
-                : "Im a student"}
-            </h5>
-          </div>
-        ) : (
-          undefined
-        )}
+
+        {this.props.user !== null
+          ? <DashboardSideBar/>
+          : undefined
+}
+
+        <NavLink to='/videochat'>Need a teacher?</NavLink>
       </div>
     );
   }
 }
-const mapStateToProps = state => ({
-  user: state.user
-});
+const mapStateToProps = state => ({user: state.user});
 
 const mapDispatchToProps = dispatch => ({});
 

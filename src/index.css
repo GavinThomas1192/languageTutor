@@ -1,7 +1,8 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+
+
+/* =========================
+// CSS RESET
+// ====================== */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -47,20 +48,139 @@ table {
 	border-spacing: 0;
 }
 
+
+
+/* =========================
+// GLOBAL STYLES
+// ====================== */
+
+body {
+	font-family: 'Poppins', sans-serif;
+	line-height: 1.3em;
+	letter-spacing: .3em;
+}
+
 a:link, a:visited {
-  color: #000000;
+  color: #44A789;
   text-decoration: none;
-	transition: ease-in-out 1ms;
+	transition: ease-in-out .3s;
 }
 
 a:hover, a:active {
-  color: #008751;
+  color: #F18909;
+}
+
+img {
+	width: 100%;
+}
+
+nav {
+	position: absolute;
+	top: 0;
 }
 
 button {
-	background-color: #008751;
+	background-color: #402318;
 	color: white;
-	height: 3em;
 	border: none;
 	border-radius: .17em;
+	height: 3em;
+}
+
+h1,
+h2 {
+	font-family: 'Poppins-Bold', sans-serif;
+	line-height: 1.3em;
+}
+
+h1 {
+	color: white;
+	font-size: 3em;
+}
+
+h2 {
+	color: #44a789;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	margin-bottom: 30px;
+}
+
+.container {
+	padding: 30px 20px;
+}
+
+
+/* =========================
+// TYPOGRAPHY
+// ====================== */
+
+/* TEXT FONTS */
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/Assets/Fonts/Poppins-Regular.WOFF") format("woff")
+}
+
+@font-face {
+  font-family: "Poppins-Thin";
+  src: url("/Assets/Fonts/Poppins-Thin.WOFF") format("woff")
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/Assets/Fonts/Poppins-Bold.WOFF") format("woff")
+}
+
+@font-face {
+  font-family: "Poppins-Black";
+  src: url("/Assets/Fonts/Poppins-Black.WOFF") format("woff")
+}
+
+
+
+/* ICON FONTS */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('Assets/Icons/icomoon.eot?wpnb0e');
+  src:  url('Assets/Icons/icomoon.eot?wpnb0e#iefix') format('embedded-opentype'),
+    url('Assets/Icons/icomoon.ttf?wpnb0e') format('truetype'),
+    url('Assets/Icons/icomoon.woff?wpnb0e') format('woff'),
+    url('Assets/Icons/icomoon.svg?wpnb0e#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-language:before {
+  content: "\e900";
+}
+.icon-mentorship:before {
+  content: "\e901";
+}
+.icon-online-chat:before {
+  content: "\e902";
+}
+.icon-rewards:before {
+  content: "\e903";
+}
+.icon-statistics:before {
+  content: "\e904";
+}
+.icon-video:before {
+  content: "\e905";
 }
