@@ -43,6 +43,7 @@ const PageNotFound = () => (
 
 class App extends React.Component {
   componentDidMount() {
+    console.log('app did mount {this.prop}', this.props);
     firebase.auth().onAuthStateChanged(user => {
       // ********* If a user is logged in firebase will return the user object. THEY ARE NOT LOGGED IN THOUGH *********
       if (user) {
@@ -78,7 +79,17 @@ class App extends React.Component {
                   )
                 }
               />{" "}
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/dashboard" component={
+
+
+                () =>
+                  this.props.user !== null ? (
+                    <Dashboard />
+                  ) : (
+                    <Redirect to="/Login" />
+                  )
+
+                  } />
               <Route exact path="/teacherSignup" component={AuthContainer} />
               <Route exact path="/Signup" component={AuthContainer} />
               <Route exact path="/Login" component={AuthContainer} />
