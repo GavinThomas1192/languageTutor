@@ -18,6 +18,13 @@
 
 - Firebase hosting url = https://language-tutor-a1bdd.firebaseapp.com/
 
+#### env setup
+  * In the root directory...
+  * ``` touch .env ```
+  REACT_APP_TWILIO_ACCOUNT_SID=
+  REACT_APP_TWILIO_API_KEY=
+  REACT_APP_TWILIO_API_SECRET=
+
 #### Gavin's Notes
 
 * Firebase Database User Objects...
