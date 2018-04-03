@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {OTSession, OTPublisher, OTStreams, OTSubscriber} from 'opentok-react';
 
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
