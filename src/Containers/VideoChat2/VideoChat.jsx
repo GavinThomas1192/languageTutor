@@ -8,7 +8,7 @@ import {withRouter} from 'react-router-dom'
 export default class VideoChat extends React.Component {
 
     componentDidMount() {
-        console.log(`${process.env.apiKey}`)
+        console.log(`${process.env.REACT_APP_API_KEY}`)
     }
     render() {
 
@@ -19,7 +19,7 @@ export default class VideoChat extends React.Component {
                 marginTop: '20em'
             }}>
                 <OTSession
-                    apiKey={`${process.env.apiKey}`}
+                    apiKey={`${process.env.REACT_APP_API_KEY}`}
                     sessionId="your-session-id"
                     token="your-session-token">
                     <OTPublisher/>
