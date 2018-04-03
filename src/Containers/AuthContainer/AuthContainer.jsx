@@ -50,7 +50,12 @@ class AuthContainer extends React.Component {
 const mapStateToProps = state => {
   user: state.user
 }
-export default withRouter(connect(mapStateToProps, {})(AuthContainer));
+
+const mapDispatchToProps = dispatch => ({
+  // handleStudentSignup: (student, history) => dispatch(handleStudentSignup(student, history))
+
+});
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthContainer));
 
 
 

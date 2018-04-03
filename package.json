@@ -8,6 +8,7 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "firebase": "^4.12.1",
+    "freeice": "^2.2.0",
     "history": "^4.7.2",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
@@ -15,7 +16,10 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "redux": "^3.7.2"
+    "react-simplewebrtc": "0.0.18",
+    "redux": "^3.7.2",
+    "simplewebrtc": "^3.0.1",
+    "socket.io": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
