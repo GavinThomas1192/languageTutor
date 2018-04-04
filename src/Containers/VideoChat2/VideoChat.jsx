@@ -30,6 +30,10 @@ class VideoChat extends React.Component {
     this
       .sessionHelper
       .disconnect();
+    firebase
+      .database()
+      .ref('onlineUsers/' + this.props.user.account.uid)
+      .remove()
   }
 
   componentDidUpdate() {
