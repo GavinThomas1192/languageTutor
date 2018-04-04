@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
           ? <DashboardSideBar/>
           : undefined
 }
-
+        <p>Need one on one Help?</p>
         <NavLink to='/videochat'>Need a teacher?</NavLink>
       </div>
     );
