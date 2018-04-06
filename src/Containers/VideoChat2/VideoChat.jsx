@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
   OTSession,
   OTPublisher,
   OTStreams,
   OTSubscriber,
-  createSession,
-} from 'opentok-react';
-import firebase from 'firebase';
-import { connect } from 'react-redux';
+  createSession
+} from "opentok-react";
+import firebase from "firebase";
+import { connect } from "react-redux";
+import axios from "axios";
 // import {getAllActiveTeachers} from '../../Actions/VideoActions'
 
 class VideoChat extends React.Component {
@@ -15,9 +16,9 @@ class VideoChat extends React.Component {
     super(props);
     this.state = {
       streams: [],
-      requestingTeacher: '',
+      requestingTeacher: "",
       allUsers: [],
-      onlineUsers: [],
+      onlineUsers: []
     };
   }
 
@@ -26,35 +27,35 @@ class VideoChat extends React.Component {
       apiKey: `${process.env.REACT_APP_API_KEY}`,
       sessionId: `${process.env.REACT_APP_sessionId}`,
       token: `${process.env.REACT_APP_token}`,
-      onStreamsUpdated: (streams) => {
+      onStreamsUpdated: streams => {
         this.setState({ streams });
-      },
+      }
     });
   }
 
   componentDidMount() {
-    console.log('video chat mounted', this.props);
+    console.log("video chat mounted", this.props);
     firebase
       .database()
-      .ref('onlineUsers')
-      .once('value')
-      .then((snapshot) => {
+      .ref("onlineUsers")
+      .once("value")
+      .then(snapshot => {
         const allUsers = snapshot.val();
 
-        console.log('ALLUSERS FROM DATABASE', allUsers);
-        Object.values(allUsers).map((ele) => {
+        console.log("ALLUSERS FROM DATABASE", allUsers);
+        Object.values(allUsers).map(ele => {
           ele.isTeacher
             ? this.setState(
-              {
-                onlineUsers: [...this.state.onlineUsers, ele],
-              },
-              () => {
-                console.log(
-                  'FINISHED PULLING FULL USER PROFILES',
-                  this.state,
-                );
-              },
-            )
+                {
+                  onlineUsers: [...this.state.onlineUsers, ele]
+                },
+                () => {
+                  console.log(
+                    "FINISHED PULLING FULL USER PROFILES",
+                    this.state
+                  );
+                }
+              )
             : undefined;
         });
       });
@@ -66,46 +67,59 @@ class VideoChat extends React.Component {
     this.sessionHelper.disconnect();
     firebase
       .database()
-      .ref('onlineUsers/' + this.props.user.account.uid)
+      .ref("onlineUsers/" + this.props.user.account.uid)
       .remove();
   }
 
-  handleTeacherHelpRequest = (ele) => {
+  handleTeacherHelpRequest = ele => {
     this.setState({ requestingTeacher: ele });
-    firebase
-      .database()
-      .ref('users/' + this.props.user.account.uid + '/chatRoomKeys')
-      .set({
-        apiKey: `${process.env.REACT_APP_API_KEY}`,
-        sessionId: `${process.env.REACT_APP_sessionId}`,
-        token: `${process.env.REACT_APP_token}`,
-      })
-      .then(() => {
-        firebase
-          .database()
-          .ref('onlineUsers/' + this.state.requestingTeacher.uid + '/chatRoomKeys',)
-          .set({
-            apiKey: `${process.env.REACT_APP_API_KEY}`,
-            sessionId: `${process.env.REACT_APP_sessionId}`,
-            token: `${process.env.REACT_APP_token}`,
-          });
-      });
+
+    axios.get("http://localhost:3001/api/getTokens").then(data => {
+      console.log(
+        "GOT DATA FROM OUR BACKEND",
+        data,
+        data.data.id,
+        data.data.token
+      );
+      firebase
+        .database()
+        .ref("users/" + this.props.user.account.uid + "/chatRoomKeys")
+        .set({
+          apiKey: `${process.env.REACT_APP_API_KEY}`,
+          sessionId: data.data.id,
+          token: data.data.token
+        })
+        .then(() => {
+          firebase
+            .database()
+            .ref(
+              "onlineUsers/" +
+                this.state.requestingTeacher.uid +
+                "/chatRoomKeys"
+            )
+            .set({
+              apiKey: `${process.env.REACT_APP_API_KEY}`,
+              sessionId: data.data.id,
+              token: data.data.token
+            });
+        });
+    });
   };
 
   render() {
     const mockTeachers = [
       {
-        name: 'omar',
-        experience: 'master',
+        name: "omar",
+        experience: "master"
       },
       {
-        name: 'isuf',
-        experience: 'novice',
+        name: "isuf",
+        experience: "novice"
       },
       {
-        name: 'john',
-        experience: 'non',
-      },
+        name: "john",
+        experience: "non"
+      }
     ];
     return (
       <div>
@@ -128,9 +142,9 @@ class VideoChat extends React.Component {
           ) : (
             <ul>No Active Teachers</ul>
           )}
-          {this.state.requestingTeacher !== '' ? (
+          {this.state.requestingTeacher !== "" ? (
             <p>
-              Awesome! We are connecting you to{' '}
+              Awesome! We are connecting you to{" "}
               {this.state.requestingTeacher.name}
             </p>
           ) : (
@@ -139,11 +153,11 @@ class VideoChat extends React.Component {
         </div>
         <div
           style={{
-            marginLeft: '30em',
-            marginTop: '30em',
+            marginLeft: "30em",
+            marginTop: "30em"
           }}
         >
-          <OTPublisher session={this.sessionHelper.session} />{' '}
+          <OTPublisher session={this.sessionHelper.session} />{" "}
           {this.state.streams.map(stream => (
             <OTSubscriber
               key={stream.id}
