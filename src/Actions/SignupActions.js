@@ -1,11 +1,10 @@
 import firebase from 'firebase';
-import {
-  userSet,
-} from '../Actions/UserActions';
+import {userSet} from '../Actions/UserActions';
 
 export const handleStudentSignup = (student, history) => (dispatch) => {
   console.log('INSIDE SIGNUP ACTIONS, INCOMING STUDENT FOR SINGUP', student);
-  // ******** The signup actions only trigger for first time users, no need to check database ********
+  // ******** The signup actions only trigger for first time users, no need to
+  // check database ********
   firebase
     .auth()
     .createUserWithEmailAndPassword(student.email, student.password)
@@ -16,7 +15,9 @@ export const handleStudentSignup = (student, history) => (dispatch) => {
         .then((signupData) => {
           const account = {};
           account.uid = authData.uid;
-          account.email = student.email.toLowerCase();
+          account.email = student
+            .email
+            .toLowerCase();
           account.name = student.name;
           account.username = student.username;
           account.nativeLanguage = student.nativeLanguage;
@@ -26,17 +27,15 @@ export const handleStudentSignup = (student, history) => (dispatch) => {
           account.isTeacher = student.isTeacher;
 
           //   return new Promise((resolve, reject) => {
-          //     resolve(dispatch(userSet(user)));
+          // resolve(dispatch(userSet(user)));
           firebase
             .database()
-            .ref(`users/${  authData.uid}`)
-            .set({
-              account,
-            })
+            .ref(`users/${authData.uid}`)
+            .set({account})
             .then(() => {
               firebase
                 .database()
-                .ref(`users/${  authData.uid}`)
+                .ref(`users/${authData.uid}`)
                 .once('value')
                 .then((snapshot) => {
                   // this will either be null or populated with vehicles.
@@ -46,8 +45,7 @@ export const handleStudentSignup = (student, history) => (dispatch) => {
                   history.push('/dashboard');
                 });
             });
-          // .then(() => {
-          // });
+          // .then(() => { });
         })
         .catch(err => console.log(err));
     });
