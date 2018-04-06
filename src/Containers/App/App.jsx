@@ -68,6 +68,8 @@ class App extends React.Component {
           {/* eslint-enable */}
           <div>
             <Navbar/>
+            <div className="main-app">
+
             <Switch>
               <Route
                 exact
@@ -91,6 +93,8 @@ class App extends React.Component {
             </Switch>
             <Footer/>
           </div>
+          </div>
+          
         </Router>
       </div>
     );

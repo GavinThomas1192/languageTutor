@@ -1,10 +1,11 @@
 nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 4em;
-  padding: 0em 1em 0em 1em;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
+  /*height: 4em;*/
+  /*padding: 0em 1em 0em 1em;*/
+  width: 100vw;
 }
 
 nav .btn {
@@ -13,12 +14,18 @@ nav .btn {
   margin-right: 1em;
   text-transform: uppercase;
   letter-spacing: .02em;
+  display: block;
+  padding: 20px;
 }
 
 .main-nav {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  /*flex-direction: row;*/
   align-items: center;
+  justify-content: space-between;
+  background: red;
+  padding: 0em 1em 0em 1em;
 }
 
 .main-nav h1 {
@@ -26,4 +33,100 @@ nav .btn {
   font-size: 1em;
   font-weight: bold;
   margin-right: 2em;
+}
+
+.main-nav .links {
+  background: pink;
+  display: none;
+}
+
+.links-is-open {
+  width: 100vw;
+  background: pink;
+  position: absolute;
+  top: 68px;
+  left: 0;
+}
+
+.auth-nav {
+  background: green;
+}
+
+/* =========================
+// HAMBURGER MENU
+// ====================== */
+
+.hamburger {
+  padding: 10px 0 10px 10px;
+  background: green;
+}
+
+.hamburger .line{
+  width: 50px;
+  height: 5px;
+  background-color: #ecf0f1;
+  display: block;
+  margin: 8px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+
+#hamburger-1.is-active .line:nth-child(2){
+  opacity: 0;
+}
+
+#hamburger-1.is-active .line:nth-child(1){
+  -webkit-transform: translateY(13px) rotate(45deg);
+  -ms-transform: translateY(13px) rotate(45deg);
+  -o-transform: translateY(13px) rotate(45deg);
+  transform: translateY(13px) rotate(45deg);
+}
+
+#hamburger-1.is-active .line:nth-child(3){
+  -webkit-transform: translateY(-13px) rotate(-45deg);
+  -ms-transform: translateY(-13px) rotate(-45deg);
+  -o-transform: translateY(-13px) rotate(-45deg);
+  transform: translateY(-13px) rotate(-45deg);
+}
+
+
+
+@media only screen and (min-width: 600px)  {
+  /*nav {*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    /*height: 4em;*/
+    /*padding: 0em 1em 0em 1em;*/
+    /*width: 100vw;
+  }*/
+
+  .main-nav {
+    display: flex;
+    background: pink;
+  }
+
+
+  .main-nav .links {
+    background: blue;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  nav .btn {
+    display: inline-block;
+  }
+
+  .hamburger {
+    display: none;
+  }
+  .main-nav .links {
+    display: flex;
+  }
+
+
+
 }

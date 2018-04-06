@@ -1,5 +1,7 @@
 import firebase from 'firebase';
-import { userSet } from '../Actions/UserActions';
+import {
+  userSet,
+} from '../Actions/UserActions';
 
 export const handleStudentSignup = (student, history) => (dispatch) => {
   console.log('INSIDE SIGNUP ACTIONS, INCOMING STUDENT FOR SINGUP', student);
@@ -27,14 +29,14 @@ export const handleStudentSignup = (student, history) => (dispatch) => {
           //     resolve(dispatch(userSet(user)));
           firebase
             .database()
-            .ref('users/' + authData.uid)
+            .ref(`users/${  authData.uid}`)
             .set({
               account,
             })
             .then(() => {
               firebase
                 .database()
-                .ref('users/' + authData.uid)
+                .ref(`users/${  authData.uid}`)
                 .once('value')
                 .then((snapshot) => {
                   // this will either be null or populated with vehicles.
