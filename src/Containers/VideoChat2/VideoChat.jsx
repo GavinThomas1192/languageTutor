@@ -18,9 +18,21 @@ class VideoChat extends React.Component {
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    firebase
+      .database()
+      .ref("onlineUsers")
+      .on("child_changed", (snapshot) => {
+        const updatedUser = snapshot.val();
+        console.log("DB UPDATED!", updatedUser);
+        updatedUser.uid === this.props.user.account.uid
+          ? this.setState({sessionId: updatedUser.chatRoomKeys.sessionId, token: updatedUser.chatRoomKeys.token})
+          : undefined
+      });
+  }
 
   componentDidMount() {
+
     console.log("video chat mounted", this.props);
     firebase
       .database()
