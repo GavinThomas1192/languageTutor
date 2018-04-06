@@ -22,9 +22,12 @@ class VideoChat extends React.Component {
     firebase
       .database()
       .ref("onlineUsers")
-      .on("child_changed", function (snapshot) {
-        var changedPost = snapshot.val();
-        console.log("DB UPDATED!", changedPost);
+      .on("child_changed", (snapshot) => {
+        const updatedUser = snapshot.val();
+        console.log("DB UPDATED!", updatedUser);
+        updatedUser.uid === this.props.user.account.uid
+          ? this.setState({sessionId: updatedUser.chatRoomKeys.sessionId, token: updatedUser.chatRoomKeys.token})
+          : undefined
       });
   }
 
