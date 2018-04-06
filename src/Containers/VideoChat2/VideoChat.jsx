@@ -78,24 +78,14 @@ class VideoChat extends React.Component {
               .set({apiKey: `${process.env.REACT_APP_API_KEY}`, sessionId: data.data.id, token: data.data.token})
               .then(() => {
                 this.setState({sessionId: data.data.id, token: data.data.token})
-                this.sessionHelper = createSession({
-                  apiKey: `${process.env.REACT_APP_API_KEY}`,
-                  sessionId: data.data.id,
-                  token: data.data.token,
-                  onStreamsUpdated: streams => {
-                    this.setState({streams});
-                  }
-                });
               })
-          });
+          })
       });
+
   };
 
   render() {
-    // this.sessionHelper = createSession({   apiKey:
-    // `${process.env.REACT_APP_API_KEY}`,   sessionId: this.state.sessionId, token:
-    // this.state.token,   onStreamsUpdated: streams => { this.setState({streams});
-    // } });
+
     return (
       <div>
         <div>
@@ -135,14 +125,31 @@ class VideoChat extends React.Component {
 
           {this.state.token !== ''
             ? <div>
-
-                <OTPublisher session={this.sessionHelper.session}/> {this
+                {/* LEAVE THIS HERE FOR NOW!!!!! */}
+                {/* {this.sessionHelper = createSession({
+                  apiKey: `${process.env.REACT_APP_API_KEY}`,
+                  sessionId: this.state.sessionId,
+                  token: this.state.token,
+                  onStreamsUpdated: streams => {
+                    this.setState({streams});
+                  }
+                })} */}
+                {/* <OTPublisher session={this.sessionHelper.session}/> {this
                   .state
                   .streams
                   .map(stream => (<OTSubscriber
                     key={stream.id}
                     session={this.sessionHelper.session}
-                    stream={stream}/>))}
+                    stream={stream}/>))} */}
+                <OTSession
+                  apiKey={`${process.env.REACT_APP_API_KEY}`}
+                  sessionId={this.state.sessionId}
+                  token={this.state.token}>
+                  <OTPublisher/>
+                  <OTStreams>
+                    <OTSubscriber/>
+                  </OTStreams>
+                </OTSession>
               </div>
             : <p>No video stream yet</p>}
 
