@@ -18,9 +18,18 @@ class VideoChat extends React.Component {
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    firebase
+      .database()
+      .ref("onlineUsers")
+      .on("child_changed", function (snapshot) {
+        var changedPost = snapshot.val();
+        console.log("DB UPDATED!", changedPost);
+      });
+  }
 
   componentDidMount() {
+
     console.log("video chat mounted", this.props);
     firebase
       .database()
