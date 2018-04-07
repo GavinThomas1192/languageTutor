@@ -1,14 +1,17 @@
-import React from 'react';
+import React from "react";
 import {
   OTSession,
   OTPublisher,
   OTStreams,
   OTSubscriber,
   createSession,
-} from 'opentok-react';
-import firebase from 'firebase';
-import { connect } from 'react-redux';
-import axios from 'axios';
+  ConnectionStatus
+} from "opentok-react";
+import firebase from "firebase";
+import { connect } from "react-redux";
+import axios from "axios";
+
+import "./VideoChat.css";
 // import {getAllActiveTeachers} from '../../Actions/VideoActions'
 
 class VideoChat extends React.Component {
@@ -16,60 +19,66 @@ class VideoChat extends React.Component {
     super(props);
     this.state = {
       streams: [],
-      requestingTeacher: '',
+      requestingTeacher: "",
       allUsers: [],
       onlineUsers: [],
-      sessionId: '',
-      token: '',
+      sessionId: "",
+      token: "",
+      audio: false,
+      video: false,
+      connected: true
     };
   }
 
   componentWillMount() {
     firebase
       .database()
-      .ref('onlineUsers')
-      .on('child_changed', (snapshot) => {
+      .ref("onlineUsers")
+      .on("child_changed", snapshot => {
         const updatedUser = snapshot.val();
-        console.log('DB UPDATED!', updatedUser);
+        console.log("DB UPDATED!", updatedUser);
         return updatedUser.uid === this.props.user.account.uid
           ? this.setState({
-            sessionId: updatedUser.chatRoomKeys.sessionId,
-            token: updatedUser.chatRoomKeys.token,
-          })
+              sessionId: updatedUser.chatRoomKeys.sessionId,
+              token: updatedUser.chatRoomKeys.token
+            })
           : undefined;
       });
   }
 
   componentDidMount() {
-    console.log('video chat mounted', this.props);
+    console.log("video chat mounted", this.props);
     firebase
       .database()
-      .ref('onlineUsers')
-      .once('value')
-      .then((snapshot) => {
+      .ref("onlineUsers")
+      .once("value")
+      .then(snapshot => {
         const allUsers = snapshot.val();
 
-        console.log('ALLUSERS FROM DATABASE', allUsers);
-        Object.values(allUsers).map(ele =>
+        console.log("ALLUSERS FROM DATABASE", allUsers);
+        Object.values(allUsers).map(
+          ele =>
             ele.isTeacher
               ? this.setState(
-                {
-                  onlineUsers: [...this.state.onlineUsers, ele],
-                },
-                () => {
-                  console.log(
-                    'FINISHED PULLING FULL USER PROFILES',
-                    this.state,
-                  );
-                },
-              )
-              : undefined,);
+                  {
+                    onlineUsers: [...this.state.onlineUsers, ele]
+                  },
+                  () => {
+                    console.log(
+                      "FINISHED PULLING FULL USER PROFILES",
+                      this.state
+                    );
+                  }
+                )
+              : undefined
+        );
       });
   }
   componentDidUpdate() {
     console.log(this.state);
   }
   componentWillUnmount() {
+    this.setState({ token: "", sessionId: "" });
     // this.sessionHelper.disconnect();
     firebase
       .database()
@@ -77,15 +86,15 @@ class VideoChat extends React.Component {
       .remove();
   }
 
-  handleTeacherHelpRequest = (ele) => {
+  handleTeacherHelpRequest = ele => {
     this.setState({ requestingTeacher: ele });
 
-    axios.get('http://localhost:3001/api/getTokens').then((data) => {
+    axios.get("http://localhost:3001/api/getTokens").then(data => {
       console.log(
-        'GOT DATA FROM OUR BACKEND',
+        "GOT DATA FROM OUR BACKEND",
         data,
         data.data.id,
-        data.data.token,
+        data.data.token
       );
       firebase
         .database()
@@ -93,7 +102,7 @@ class VideoChat extends React.Component {
         .set({
           apiKey: `${process.env.REACT_APP_API_KEY}`,
           sessionId: data.data.id,
-          token: data.data.token,
+          token: data.data.token
         })
         .then(() => {
           firebase
@@ -102,12 +111,12 @@ class VideoChat extends React.Component {
             .set({
               apiKey: `${process.env.REACT_APP_API_KEY}`,
               sessionId: data.data.id,
-              token: data.data.token,
+              token: data.data.token
             })
             .then(() => {
               this.setState({
                 sessionId: data.data.id,
-                token: data.data.token,
+                token: data.data.token
               });
             });
         });
@@ -136,9 +145,9 @@ class VideoChat extends React.Component {
           ) : (
             <ul>No Active Teachers</ul>
           )}
-          {this.state.requestingTeacher !== '' ? (
+          {this.state.requestingTeacher !== "" && this.state.token !== "" ? (
             <p>
-              Awesome! We are connecting you to{' '}
+              Awesome! We are connecting you to{" "}
               {this.state.requestingTeacher.name}
             </p>
           ) : (
@@ -147,36 +156,53 @@ class VideoChat extends React.Component {
         </div>
         <div
           style={{
-            marginLeft: '30em',
-            marginTop: '30em',
+            marginLeft: "30em",
+            marginTop: "30em"
           }}
         >
-          {this.state.token !== '' ? (
-            <div>
-              {/* LEAVE THIS HERE FOR NOW!!!!! */}
-              {/* {this.sessionHelper = createSession({
-                  apiKey: `${process.env.REACT_APP_API_KEY}`,
-                  sessionId: this.state.sessionId,
-                  token: this.state.token,
-                  onStreamsUpdated: streams => {
-                    this.setState({streams});
-                  }
-                })} */}
-              {/* <OTPublisher session={this.sessionHelper.session}/> {this
-                  .state
-                  .streams
-                  .map(stream => (<OTSubscriber
-                    key={stream.id}
-                    session={this.sessionHelper.session}
-                    stream={stream}/>))} */}
+          {this.state.token !== "" ? (
+            <div className="publisherContainer">
+              <div>Session Status: </div>
+
               <OTSession
                 apiKey={`${process.env.REACT_APP_API_KEY}`}
                 sessionId={this.state.sessionId}
                 token={this.state.token}
+                onError={this.onSessionError}
+                eventHandlers={this.sessionEventHandlers}
               >
-                <OTPublisher />
+                <button
+                  onClick={() => {
+                    this.setState({ video: !this.state.video });
+                  }}
+                >
+                  {this.state.video ? "Disable" : "Enable"} Video
+                </button>
+                <button
+                  onClick={() => {
+                    this.setState({ token: "", sessionId: "" });
+                  }}
+                >
+                  disconnect
+                </button>
+                <OTPublisher
+                  properties={{
+                    publishAudio: this.state.audio,
+                    publishVideo: this.state.video,
+                    width: 250,
+                    height: 250
+                  }}
+                  onPublish={this.state.video}
+                  onError={this.onPublishError}
+                  eventHandlers={this.publisherEventHandlers}
+                />
                 <OTStreams>
-                  <OTSubscriber />
+                  <OTSubscriber
+                    properties={{ width: 720, height: 720 }}
+                    onSubscribe={this.onSubscribe}
+                    onError={this.onSubscribeError}
+                    eventHandlers={this.subscriberEventHandlers}
+                  />
                 </OTStreams>
               </OTSession>
             </div>
