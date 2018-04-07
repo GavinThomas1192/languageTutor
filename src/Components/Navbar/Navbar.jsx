@@ -103,10 +103,7 @@ class Nav extends React.Component {
                   <img src="http://placehold.it/50x/50" alt="placeholder" />
                   <a className="btn" onClick={this.logout}>Logout</a>
                 </div>
-
               </div>
-
-
             </div>
           )}
 

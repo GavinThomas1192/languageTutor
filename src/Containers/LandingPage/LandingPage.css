@@ -1,7 +1,8 @@
 .hero {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background: url('../../Assets/Images/hero.jpg');
   background-size: cover;
   background-position: center;
@@ -12,6 +13,8 @@
 
 .hero h1 {
   text-align: left;
+  margin-right: 2em;
+  margin-left: 5em;
 }
 
 .hero .signup-modal {
