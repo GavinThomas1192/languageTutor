@@ -36,36 +36,38 @@ export default class LandingPage extends React.Component {
           </div>
         </div>
 
-        <div className="info container">
-          <h2>Learn The Igbo Language</h2>
-          <div className="online">
-            <div className="online-courses">
-              <h4>Online Courses</h4>
-              <ul>
-                <li><i className="icon-video"></i>video tutorials teaching igbo</li>
-                <li><i className="icon-statistics"></i>track your progress</li>
-                <li><i className="icon-rewards"></i>get achievments for your success</li>
-              </ul>
+        <div className="info">
+          <div className="container">
+            <h2>Learn The Igbo Language</h2>
+            <div className="online">
+              <div className="online-courses">
+                <h4>Online Courses</h4>
+                <ul>
+                  <li><i className="icon-video"></i>video tutorials teaching igbo</li>
+                  <li><i className="icon-statistics"></i>track your progress</li>
+                  <li><i className="icon-rewards"></i>get achievments for your success</li>
+                </ul>
+              </div>
+
+              <img src={MentorshipsPreview} alt="Live Mentorships" />
             </div>
 
-            <img src={MentorshipsPreview} alt="Live Mentorships" />
-          </div>
+            <div className="platform">
+              <div className="live-mentorships">
+                <h4>Live Mentorships</h4>
+                <ul>
+                  <li><i className="icon-mentorship"></i>one-on-one guidance</li>
+                  <li><i className="icon-online-chat"></i>get help with assingments</li>
+                  <li><i className="icon-language"></i>learn your native tongue</li>
+                </ul>
+              </div>
 
-          <div className="platform container">
-            <div className="live-mentorships">
-              <h4>Live Mentorships</h4>
-              <ul>
-                <li><i className="icon-mentorship"></i>one-on-one guidance</li>
-                <li><i className="icon-online-chat"></i>get help with assingments</li>
-                <li><i className="icon-language"></i>learn your native tongue</li>
-              </ul>
+              <img src={CoursePreview} alt="Online Course" />
             </div>
-
-            <img src={CoursePreview} alt="Online Course" />
           </div>
         </div>
 
-        <div className="our-mentors container">
+        <div className="our-mentors">
           <h2>Meet Our Mentors</h2>
 
           <ul>
