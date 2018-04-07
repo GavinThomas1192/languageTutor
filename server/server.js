@@ -19,13 +19,13 @@ const port = 3001;
 const app = express();
 const server = require('http').createServer(app);
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({origin: true, credentials: true}));
 
 // Test server is working (GET http://localhost:3001/api)
 app.get('/api/', (req, res) => {
-  res.json({ message: 'Hi, welcome to the server api!' });
+  res.json({message: 'Hi, welcome to the server api!'});
 });
 
 app.get('/api/getTokens', (req, res) => {
@@ -45,7 +45,9 @@ app.get('/api/getTokens', (req, res) => {
       // Generate a token.
       token = opentok.generateToken(sessionId, tokenOptions);
       console.log(token);
-      res.status(200).send({ id: sessionId, token });
+      res
+        .status(200)
+        .send({id: sessionId, token});
       console.log('HIT THE GET TOKEN ROUTE!!! SENDING...', sessionId, token);
     }
   });
