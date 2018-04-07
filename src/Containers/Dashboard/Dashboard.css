@@ -1,0 +1,26 @@
+.tabButtonContainer {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.tabListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sidebarContainer {
+  max-width: 33%;
+}
+
+.selectedContent {
+  border: 1px solid black;
+}
+
+.completeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
