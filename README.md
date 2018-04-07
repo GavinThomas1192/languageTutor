@@ -17,17 +17,20 @@
         \*\* Note: you must use REACT_APP
 
 - Firebase hosting url = https://language-tutor-a1bdd.firebaseapp.com/
+- Firebase Functions url = https://us-central1-language-tutor-a1bdd.cloudfunctions.net/api
 
 #### SETUP for server!
-  
-  * ``` cd server ```
-  * ``` npm install ```
-  * ``` npm run start ```
+
+* `cd server`
+* `npm install`
+* `npm run start`
+
 #### env setup FOR SERVER!!!
-  * ``` cd server ```
-  * ``` touch .env ```
+
+* `cd server`
+* `touch .env`
   REACT_APP_API_KEY=XXXXXX
-  
+
 #### Gavin's Notes
 
 * Firebase Database User Objects...
@@ -77,4 +80,4 @@
 
 #### Adrian's Notes
 
-  ![alt text](https://i.imgur.com/1gIn1Ji.jpg)
+![alt text](https://i.imgur.com/1gIn1Ji.jpg)
