@@ -9,6 +9,7 @@ import { handleStudentSignup } from '../../Actions/SignupActions';
 class Signup extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: '',
       username: '',
@@ -36,6 +37,7 @@ class Signup extends React.Component {
     this.setState({
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     });
+ 
   }
 
   componentDidUpdate() {
@@ -57,6 +59,7 @@ class Signup extends React.Component {
         ? this.props.handleStudentSignup(this.state, this.props.history)
         : console.log('Whoops theres errors');
   };
+
 
   handleCheckBoxToggle = () => {
     this.setState({ isTeacher: !this.state.isTeacher });
@@ -141,6 +144,7 @@ class Signup extends React.Component {
     }
 
     if (name === 'location') {
+
       event.target.value.length !== 5 && typeof event.target.value !== 'number'
         ? this.setState({
           locationError: 'Whoops thats not a zip code!',
@@ -150,87 +154,66 @@ class Signup extends React.Component {
     }
   };
 
+
   render() {
     const stagingNumberArray = [];
     for (let i = 10; i < 110; i++) {
       stagingNumberArray.push(i);
     }
-    return this.props.pathname === '/teacherSignup' ? (
-      <h1>Teacher specific signup form goes here!</h1>
-    ) : (
-      <div className="Modal">
-        <form onSubmit={this.onSubmit} className="ModalForm">
+
+    return(
+  this.props.pathname === '/teacherSignup' ? (
+    <h1>Teacher specific signup form goes here!</h1>
+  ) : (
+    <div className="Modal">
+    <form onSubmit={this.onSubmit} className="ModalForm">
+      <h2>LEARN THE IGBO LANGUAGE</h2>
+
+        <label className="form-name">Name:</label><input onChange={this.handleChange('name')} id="name" type="text" placeholder="Full Name" value={this.state.name} />
+        <label className="form-username">Username:</label><input onChange={this.handleChange('username')} id="username" type="text" placeholder="Username" />
+        <label className="form-password">Password</label><input onChange={this.handleChange('password')} id="password" type="password" placeholder="Password" />
+        <label className="form-email">Email</label><input onChange={this.handleChange('email')} id="email" type="email" placeholder="Email" />
+
+        {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
+        <input onChange={this.handleChange('location')} id="location" type="text" pattern="[0-9]*" placeholder="zipcode" />
+        <div className="align-row">
           <label>
-            I want to signup as a teacher:
-            <input
-              name="isTeacher"
-              type="checkbox"
-              checked={this.state.isTeacher}
-              onChange={this.handleCheckBoxToggle}
-            />
+            Native Language
+            <select value={this.state.nativeLanguage} onChange={this.handleChange('nativeLanguage')}>
+                 <option value={'English'}>English</option>
+                 <option value={'Igbo'}>Igbo</option>
+            </select>
           </label>
-          <input
-            onChange={this.handleChange('name')}
-            id="name"
-            type="text"
-            placeholder="Full Name"
-            value={this.state.name}
-          />
-          <input
-            onChange={this.handleChange('username')}
-            id="username"
-            type="text"
-            placeholder="Username"
-          />
-          <input
-            onChange={this.handleChange('password')}
-            id="password"
-            type="password"
-            placeholder="Password"
-          />
-          <input
-            onChange={this.handleChange('email')}
-            id="email"
-            type="email"
-            placeholder="Email"
-          />
+
           <label>
             Age
             <select value={this.state.age} onChange={this.handleChange('age')}>
-              {stagingNumberArray.map((ele, index) => (
-                <option key={index} value={ele}>
-                  {ele}
-                </option>
-              ))}
+             { stagingNumberArray.map((ele, index) => {
+                return <option key={index} value={ele}>{ele}</option>
+              })}
+
             </select>
           </label>
-          {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
+        </div>
+        <label className="check-teacher">
+          I want to signup as a teacher:
           <input
-            onChange={this.handleChange('location')}
-            id="location"
-            type="text"
-            pattern="[0-9]*"
-            placeholder="zipcode"
-          />
-          <label>
-            Native Language
-            <select
-              value={this.state.nativeLanguage}
-              onChange={this.handleChange('nativeLanguage')}
-            >
-              <option value="English">English</option>
-              <option value="Igbo">Igbo</option>
-            </select>
-          </label>
-          {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
-          <button>
-            Signup <i className="fa fa-fw fa-chevron-right" />
-          </button>
-        </form>
-        {this.state.errors ? <h4>Whoops something went wrong</h4> : undefined}
-      </div>
-    );
-  }
+            name="isTeacher"
+            type="checkbox"
+            checked={this.state.isTeacher}
+            onChange={this.handleCheckBoxToggle} />
+        </label>
+        {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
+        <button>Signup <i className="fa fa-fw fa-chevron-right"></i></button>
+    </form>
+    {this.state.errors ? <h4>Whoops something went wrong</h4> : undefined}
+
+</div>
+
+    )
+  )
+}
+
 }
 
 const mapStateToProps = state => ({
@@ -243,6 +226,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
+
 
 Signup.propTypes = {
   pathname: PropTypes.string.isRequired,
