@@ -23,16 +23,19 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .main-app {
   margin-top: 67px;
 }
 
-@media only screen and (min-width: 600px)  {
-
+@media only screen and (min-width: 600px) {
   .main-app {
     margin-top: 60px;
   }

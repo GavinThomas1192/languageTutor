@@ -128,37 +128,32 @@ class Signup extends React.Component {
       )
       : (
         <div className="Modal">
+          <h2>Create Your Account</h2>
+          <p>Sign up today to start learning your native from one of our trained Mentors.</p>
           <form onSubmit={this.onSubmit} className="ModalForm">
-            <h2>Sign Up Today!</h2>
-
             <label className="form-name">Name:</label><input
               onChange={this.handleChange('name')}
               id="name"
               type="text"
               placeholder="Full Name"
               value={this.state.name}/><br/>
-            <label className="form-username">Username:</label><input
-              onChange={this.handleChange('username')}
-              id="username"
-              type="text"
-              placeholder="Username"/><br/>
-            <label className="form-password">Password</label><input
-              onChange={this.handleChange('password')}
-              id="password"
-              type="password"
-              placeholder="Password"/><br/>
             <label className="form-email">Email</label><input
               onChange={this.handleChange('email')}
               id="email"
               type="email"
               placeholder="Email"/><br/> {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
-            <input
-              onChange={this.handleChange('location')}
-              id="location"
+            <label className="form-username">Username:</label><input
+              onChange={this.handleChange('username')}
+              id="username"
               type="text"
-              pattern="[0-9]*"
-              placeholder="zipcode"/><br/>
-            <div className="align-row">
+              placeholder="Username"/><br/>
+            <input
+              onChange={this.handleChange('password')}
+              id="password"
+              type="password"
+              placeholder="Password"/><br/>
+            <div className="formOptionRow">
+              {/* <div className="align-row"> */}
               <label>
                 Native Language
                 <select
@@ -178,6 +173,13 @@ class Signup extends React.Component {
 
                 </select>
               </label>
+              {/* </div> */}
+              <input
+                onChange={this.handleChange('location')}
+                id="location"
+                type="text"
+                pattern="[0-9]*"
+                placeholder="zipcode"/><br/>
             </div>
             <label className="check-teacher">
               I want to signup as a teacher:
@@ -188,10 +190,10 @@ class Signup extends React.Component {
                 onChange={this.handleCheckBoxToggle}/>
             </label>
             {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
-            <button>Signup
-              <i className="fa fa-fw fa-chevron-right"></i>
-            </button>
           </form>
+          <button className="signupButton">SIGN UP TODAY!
+
+          </button>
           {this.state.errors
             ? <h4>Whoops something went wrong</h4>
             : undefined}

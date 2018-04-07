@@ -84,3 +84,9 @@
 
 #### Landing Page
 ![alt text](https://i.imgur.com/eglRDZU.jpg)
+
+#### User Panel dashboard
+![alt text](https://i.imgur.com/AoidOIY.png)
+
+#### Teacher Video Chat
+![alt text](https://i.imgur.com/CZr319q.png)
