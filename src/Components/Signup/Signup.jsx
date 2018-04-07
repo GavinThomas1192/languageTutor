@@ -37,7 +37,7 @@ class Signup extends React.Component {
     this.setState({
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     });
- 
+
   }
 
   componentDidUpdate() {
