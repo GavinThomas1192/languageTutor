@@ -1,5 +1,3 @@
-
-
 /* =========================
 // CSS RESET
 // ====================== */
@@ -74,10 +72,6 @@ a:hover, a:active {
   color: #F18909;
 }
 
-img {
-	width: 100%;
-}
-
 nav {
 	position: absolute;
 	top: 0;
@@ -89,7 +83,7 @@ input {
 }
 
 input:-webkit-autofill {
-  background-color: white !important;
+	-webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
 
 button {
@@ -119,8 +113,13 @@ h2 {
 }
 
 .container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	padding: 30px 20px;
 }
+
 
 
 /* =========================
