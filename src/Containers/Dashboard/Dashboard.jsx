@@ -70,6 +70,7 @@ class Dashboard extends React.Component {
                     showOverview: true,
                     showCourses: false,
                     showFlashcards: false,
+                    showVideoChat: false,
                   })
                 }
               >
@@ -81,6 +82,7 @@ class Dashboard extends React.Component {
                     showOverview: false,
                     showCourses: true,
                     showFlashcards: false,
+                    showVideoChat: false,
                   })
                 }
               >
@@ -92,6 +94,7 @@ class Dashboard extends React.Component {
                     showOverview: false,
                     showCourses: false,
                     showFlashcards: true,
+                    showVideoChat: false,
                   })
                 }
               >
@@ -105,7 +108,12 @@ class Dashboard extends React.Component {
                   {flashcards.map((item, index) => (
                     <li
                       key={index}
-                      onClick={() => this.setState({ selectedItem: item })}
+                      onClick={() =>
+                        this.setState({
+                          selectedItem: item,
+                          showVideoChat: false,
+                        })
+                      }
                     >
                       {item.word}
                     </li>
@@ -120,7 +128,12 @@ class Dashboard extends React.Component {
                   {courses.map((item, index) => (
                     <li
                       key={index}
-                      onClick={() => this.setState({ selectedItem: item })}
+                      onClick={() =>
+                        this.setState({
+                          selectedItem: item,
+                          showVideoChat: false,
+                        })
+                      }
                     >
                       {item.title}
                     </li>
@@ -135,7 +148,12 @@ class Dashboard extends React.Component {
                   {overview.map((item, index) => (
                     <li
                       key={index}
-                      onClick={() => this.setState({ selectedItem: item })}
+                      onClick={() =>
+                        this.setState({
+                          selectedItem: item,
+                          showVideoChat: false,
+                        })
+                      }
                     >
                       {item.stat}
                     </li>

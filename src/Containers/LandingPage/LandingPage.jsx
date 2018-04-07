@@ -18,6 +18,7 @@ export default class LandingPage extends React.Component {
   handleLoginSignup = () => {
     this.setState({ showHomePageSignup: !this.state.showHomePageSignup });
   };
+
   render() {
     return (
       <div>
@@ -50,6 +51,7 @@ export default class LandingPage extends React.Component {
               </div>
 
               <img src={MentorshipsPreview} alt="Live Mentorships" />
+
             </div>
 
             <div className="platform">
@@ -63,6 +65,7 @@ export default class LandingPage extends React.Component {
               </div>
 
               <img src={CoursePreview} alt="Online Course" />
+
             </div>
           </div>
         </div>
