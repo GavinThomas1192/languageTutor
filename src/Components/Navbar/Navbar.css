@@ -11,11 +11,10 @@ nav {
 nav .btn {
   font-family: Helvetica, sans-serif;
   font-size: .8em;
-  margin-right: 1em;
   text-transform: uppercase;
   letter-spacing: .02em;
   display: block;
-  padding: 20px;
+  padding: 10px;
 }
 
 .main-nav {
@@ -29,7 +28,7 @@ nav .btn {
   font-family: Helvetica, sans-serif;
   font-size: 1em;
   font-weight: bold;
-  margin-right: 2em;
+  /* margin-right: 1em; */
 }
 
 .main-nav .links {
@@ -68,7 +67,8 @@ nav .btn {
   cursor: pointer;
 }
 
-.auth-nav .btn:hover, .auth-nav .btn:hover {
+.auth-nav .btn:hover,
+.auth-nav .btn:hover {
   color: #F18909;
 }
 
@@ -80,7 +80,7 @@ nav .btn {
   padding: 10px 0 10px 10px;
 }
 
-.hamburger .line{
+.hamburger .line {
   width: 50px;
   height: 2px;
   background-color: #ecf0f1;
@@ -91,60 +91,50 @@ nav .btn {
   transition: all 0.3s ease-in-out;
 }
 
-#hamburger-1.is-active .line:nth-child(2){
+#hamburger-1.is-active .line:nth-child(2) {
   opacity: 0;
 }
 
-#hamburger-1.is-active .line:nth-child(1){
+#hamburger-1.is-active .line:nth-child(1) {
   -webkit-transform: translateY(15px) rotate(44deg);
   -ms-transform: translateY(15px) rotate(44deg);
   -o-transform: translateY(15px) rotate(44deg);
   transform: translateY(15px) rotate(44deg);
 }
 
-#hamburger-1.is-active .line:nth-child(3){
+#hamburger-1.is-active .line:nth-child(3) {
   -webkit-transform: translateY(-15px) rotate(-44deg);
   -ms-transform: translateY(-15px) rotate(-44deg);
   -o-transform: translateY(-15px) rotate(-44deg);
   transform: translateY(-15px) rotate(-44deg);
 }
 
-
-
-@media only screen and (min-width: 600px)  {
+@media only screen and (min-width: 600px) {
   /*nav {*/
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*justify-content: space-between;*/
-    /*align-items: center;*/
-    /*height: 4em;*/
-    /*padding: 0em 1em 0em 1em;*/
-    /*width: 100vw;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
+  /*height: 4em;*/
+  /*padding: 0em 1em 0em 1em;*/
+  /*width: 100vw;
   }*/
-
   .main-nav {
     display: flex;
     /* background: pink; */
   }
-
-
   .main-nav .links {
     /* background: blue; */
     display: flex;
     justify-content: space-between;
   }
-
   nav .btn {
     display: inline-block;
   }
-
   .hamburger {
     display: none;
   }
   .main-nav .links {
     display: flex;
   }
-
-
-
 }
