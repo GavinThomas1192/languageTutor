@@ -70,7 +70,7 @@ class VideoChat extends React.Component {
     console.log(this.state);
   }
   componentWillUnmount() {
-    this.sessionHelper.disconnect();
+    // this.sessionHelper.disconnect();
     firebase
       .database()
       .ref(`onlineUsers/${this.props.user.account.uid}`)
