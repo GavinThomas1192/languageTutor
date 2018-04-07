@@ -17,7 +17,7 @@
         \*\* Note: you must use REACT_APP
 
 - Firebase hosting url = https://language-tutor-a1bdd.firebaseapp.com/
-- Firebase Functions url = https://us-central1-language-tutor-a1bdd.cloudfunctions.net/api
+- Firebase Functions url = https://us-central1-language-tutor-a1bdd.cloudfunctions.net/api/api/getTokens
 
 #### SETUP for server!
 
