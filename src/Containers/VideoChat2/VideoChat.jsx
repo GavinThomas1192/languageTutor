@@ -9,6 +9,8 @@ import {
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import axios from 'axios';
+
+import './VideoChat.css';
 // import {getAllActiveTeachers} from '../../Actions/VideoActions'
 
 class VideoChat extends React.Component {
@@ -21,6 +23,8 @@ class VideoChat extends React.Component {
       onlineUsers: [],
       sessionId: '',
       token: '',
+      audio: false,
+      video: false,
     };
   }
 
@@ -152,31 +156,41 @@ class VideoChat extends React.Component {
           }}
         >
           {this.state.token !== '' ? (
-            <div>
-              {/* LEAVE THIS HERE FOR NOW!!!!! */}
-              {/* {this.sessionHelper = createSession({
-                  apiKey: `${process.env.REACT_APP_API_KEY}`,
-                  sessionId: this.state.sessionId,
-                  token: this.state.token,
-                  onStreamsUpdated: streams => {
-                    this.setState({streams});
-                  }
-                })} */}
-              {/* <OTPublisher session={this.sessionHelper.session}/> {this
-                  .state
-                  .streams
-                  .map(stream => (<OTSubscriber
-                    key={stream.id}
-                    session={this.sessionHelper.session}
-                    stream={stream}/>))} */}
+            <div className="publisherContainer">
+              <div>Session Status: </div>
+
               <OTSession
                 apiKey={`${process.env.REACT_APP_API_KEY}`}
                 sessionId={this.state.sessionId}
                 token={this.state.token}
+                onError={this.onSessionError}
+                eventHandlers={this.sessionEventHandlers}
               >
-                <OTPublisher />
+                <button
+                  onClick={() => {
+                    this.setState({ video: !this.state.video });
+                  }}
+                >
+                  {this.state.video ? 'Disable' : 'Enable'} Video
+                </button>
+                <OTPublisher
+                  properties={{
+                    publishAudio: this.state.audio,
+                    publishVideo: this.state.video,
+                    width: 250,
+                    height: 250,
+                  }}
+                  onPublish={this.state.video}
+                  onError={this.onPublishError}
+                  eventHandlers={this.publisherEventHandlers}
+                />
                 <OTStreams>
-                  <OTSubscriber />
+                  <OTSubscriber
+                    properties={{ width: 720, height: 720 }}
+                    onSubscribe={this.onSubscribe}
+                    onError={this.onSubscribeError}
+                    eventHandlers={this.subscriberEventHandlers}
+                  />
                 </OTStreams>
               </OTSession>
             </div>
