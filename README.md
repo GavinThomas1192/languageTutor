@@ -78,6 +78,9 @@
       TimeZone \
       }
 
-#### Adrian's Notes
-
+### Adrian's Notes
+#### User Panel Mockup
 ![alt text](https://i.imgur.com/1gIn1Ji.jpg)
+
+#### Landing Page
+![alt text](https://i.imgur.com/eglRDZU.jpg)
