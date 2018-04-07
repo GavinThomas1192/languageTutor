@@ -18,6 +18,7 @@ export default class LandingPage extends React.Component {
   handleLoginSignup = () => {
     this.setState({ showHomePageSignup: !this.state.showHomePageSignup });
   };
+
   render() {
     return (
       <div>
@@ -42,9 +43,15 @@ export default class LandingPage extends React.Component {
             <div className="online-courses">
               <h4>Online Courses</h4>
               <ul>
-                <li><i className="icon-video"></i>video tutorials teaching igbo</li>
-                <li><i className="icon-statistics"></i>track your progress</li>
-                <li><i className="icon-rewards"></i>get achievments for your success</li>
+                <li>
+                  <i className="icon-video" />video tutorials teaching igbo
+                </li>
+                <li>
+                  <i className="icon-statistics" />track your progress
+                </li>
+                <li>
+                  <i className="icon-rewards" />get achievments for your success
+                </li>
               </ul>
             </div>
 
@@ -55,9 +62,15 @@ export default class LandingPage extends React.Component {
             <div className="live-mentorships">
               <h4>Live Mentorships</h4>
               <ul>
-                <li><i className="icon-mentorship"></i>one-on-one guidance</li>
-                <li><i className="icon-online-chat"></i>get help with assingments</li>
-                <li><i className="icon-language"></i>learn your native tongue</li>
+                <li>
+                  <i className="icon-mentorship" />one-on-one guidance
+                </li>
+                <li>
+                  <i className="icon-online-chat" />get help with assingments
+                </li>
+                <li>
+                  <i className="icon-language" />learn your native tongue
+                </li>
               </ul>
             </div>
 
