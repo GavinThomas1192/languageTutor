@@ -65,7 +65,7 @@ body {
 }
 
 a:link, a:visited {
-  color: #44A789;
+  color: white;
   text-decoration: none;
 	transition: ease-in-out .3s;
 }

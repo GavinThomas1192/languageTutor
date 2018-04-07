@@ -67,15 +67,15 @@ class Nav extends React.Component {
                       Contact Us
                     </NavLink>
                   </div>
+                </div>
 
-                  <div className="auth-nav">
-                    <NavLink to="/Signup" className="btn">
-                      Sign up
-                    </NavLink>
-                    <NavLink to="/Login" className="btn">
-                      Login
-                    </NavLink>
-                  </div>
+                <div className="auth-nav">
+                  <NavLink to="/Signup" className="btn">
+                    Sign up
+                  </NavLink>
+                  <NavLink to="/Login" className="btn">
+                    Login
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -83,30 +83,25 @@ class Nav extends React.Component {
           )
           : (
             <div>
-              <div  className="main-nav">
-                <NavLink to="/">
-                  <h1>COMPANYLOGO</h1>
-                </NavLink>
-                <NavLink to="/Signup" className="btn">
-                  Find A Mentor
-                </NavLink>
-                <NavLink to="/Login" className="btn">
-                  Lessons
-                </NavLink>
+              <div  className="auth-dashboard">
+                <div className="main-nav">
+                  <NavLink to="/">
+                    <h1>COMPANYLOGO</h1>
+                  </NavLink>
+                  <NavLink to="/Signup" className="btn">
+                    Find A Mentor
+                  </NavLink>
+                  <NavLink to="/Login" className="btn">
+                    Lessons
+                  </NavLink>
+                </div>
 
                 <div className="auth-nav">
                   <NavLink to="/Profile" className="btn">
                     {this.props.user.account.username}
                   </NavLink>
-                  <img
-                    style={{
-                    maxWidth: '2em'
-                  }}
-                    src="http://placehold.it/50x/50"
-                    alt="placeholder"/>
-                    <button className="btn" onClick={this.logout}>
-                      Logout
-                    </button>
+                  <img src="http://placehold.it/50x/50" alt="placeholder" />
+                  <a className="btn" onClick={this.logout}>Logout</a>
                 </div>
 
               </div>

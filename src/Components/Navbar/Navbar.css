@@ -1,10 +1,10 @@
 nav {
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*justify-content: space-between;*/
-  /*align-items: center;*/
-  /*height: 4em;*/
-  /*padding: 0em 1em 0em 1em;*/
+  background: #402318;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 4em;
   width: 100vw;
 }
 
@@ -19,13 +19,10 @@ nav .btn {
 }
 
 .main-nav {
-  width: 100%;
+  width: 100vw;
   display: flex;
-  /*flex-direction: row;*/
   align-items: center;
-  justify-content: space-between;
-  background: red;
-  padding: 0em 1em 0em 1em;
+  justify-content: space-around;
 }
 
 .main-nav h1 {
@@ -36,20 +33,43 @@ nav .btn {
 }
 
 .main-nav .links {
-  background: pink;
   display: none;
 }
 
 .links-is-open {
-  width: 100vw;
-  background: pink;
+  background-color: #A65A18;
   position: absolute;
-  top: 68px;
+  top: 66px;
   left: 0;
+  width: 100vw;
+}
+
+.auth-dashboard {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.auth-dashboard img {
+  border-radius: 100%;
+  border: .1em solid white;
 }
 
 .auth-nav {
-  background: green;
+  display: flex;
+  align-items: center;
+}
+
+.auth-nav .btn {
+  color: white;
+  cursor: pointer;
+}
+
+.auth-nav .btn:hover, .auth-nav .btn:hover {
+  color: #F18909;
 }
 
 /* =========================
@@ -58,37 +78,35 @@ nav .btn {
 
 .hamburger {
   padding: 10px 0 10px 10px;
-  background: green;
 }
 
 .hamburger .line{
   width: 50px;
-  height: 5px;
+  height: 2px;
   background-color: #ecf0f1;
   display: block;
-  margin: 8px auto;
+  margin: 13px auto;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-
 
 #hamburger-1.is-active .line:nth-child(2){
   opacity: 0;
 }
 
 #hamburger-1.is-active .line:nth-child(1){
-  -webkit-transform: translateY(13px) rotate(45deg);
-  -ms-transform: translateY(13px) rotate(45deg);
-  -o-transform: translateY(13px) rotate(45deg);
-  transform: translateY(13px) rotate(45deg);
+  -webkit-transform: translateY(15px) rotate(44deg);
+  -ms-transform: translateY(15px) rotate(44deg);
+  -o-transform: translateY(15px) rotate(44deg);
+  transform: translateY(15px) rotate(44deg);
 }
 
 #hamburger-1.is-active .line:nth-child(3){
-  -webkit-transform: translateY(-13px) rotate(-45deg);
-  -ms-transform: translateY(-13px) rotate(-45deg);
-  -o-transform: translateY(-13px) rotate(-45deg);
-  transform: translateY(-13px) rotate(-45deg);
+  -webkit-transform: translateY(-15px) rotate(-44deg);
+  -ms-transform: translateY(-15px) rotate(-44deg);
+  -o-transform: translateY(-15px) rotate(-44deg);
+  transform: translateY(-15px) rotate(-44deg);
 }
 
 
@@ -106,12 +124,12 @@ nav .btn {
 
   .main-nav {
     display: flex;
-    background: pink;
+    /* background: pink; */
   }
 
 
   .main-nav .links {
-    background: blue;
+    /* background: blue; */
     display: flex;
     justify-content: space-between;
   }
