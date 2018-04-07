@@ -21,12 +21,13 @@
   background-color: white;
   border-radius: .3em;
   padding: 1em;
-  max-width: 40%;
+  max-width: 35%;
 }
 
 .firstSectionContainer {
   display: flex;
   flex-direction: row;
+  width: 100%;
   justify-content: space-evenly
 }
 
