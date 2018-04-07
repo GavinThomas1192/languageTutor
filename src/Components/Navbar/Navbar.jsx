@@ -43,7 +43,7 @@ class Nav extends React.Component {
               this.closeHam(e)
             }}>
               <NavLink to="/">
-                <h1>COMPANYLOGO</h1>
+                <h1>LANGUAGETUTOR</h1>
               </NavLink>
 
               <div className="optionsNav">
@@ -98,7 +98,7 @@ class Nav extends React.Component {
               <div className="auth-dashboard">
                 <div className="main-nav">
                   <NavLink to="/">
-                    <h1>COMPANYLOGO</h1>
+                    <h1>LANGUAGETUTOR</h1>
                   </NavLink>
                   <NavLink to="/Signup" className="btn">
                     Find A Mentor
