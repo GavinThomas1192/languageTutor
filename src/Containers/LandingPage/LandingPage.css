@@ -35,10 +35,20 @@
 .online {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .platform {
   flex-direction: row-reverse;
+  margin-top: 50px;
+}
+
+.online-courses {
+  margin-right: 70px;
+}
+
+.live-mentorships {
+  margin-left: 70px;
 }
 
 .info h2,
@@ -56,6 +66,11 @@
 .online,
 .platform {
   text-align: left;
+}
+
+.online img,
+.platform img {
+  width: 300px;
 }
 
 .online li,

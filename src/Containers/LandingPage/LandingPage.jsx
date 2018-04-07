@@ -50,7 +50,7 @@ export default class LandingPage extends React.Component {
                 </ul>
               </div>
 
-              <img src={MentorshipsPreview} alt="Live Mentorships" />
+              <img src={CoursePreview} alt="Live Mentorships" />
 
             </div>
 
@@ -64,7 +64,7 @@ export default class LandingPage extends React.Component {
                 </ul>
               </div>
 
-              <img src={CoursePreview} alt="Online Course" />
+              <img src={MentorshipsPreview} alt="Online Course" />
 
             </div>
           </div>
