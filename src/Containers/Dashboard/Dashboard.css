@@ -10,6 +10,7 @@
   color: #ffb800;
   font-weight: 600;
   font-size: 1.25em;
+  cursor: pointer;
 }
 
 .tabListContainer {
@@ -21,21 +22,24 @@
 
 .sidebarContainer {
   max-width: 33%;
-  height: 100vh;
+  height: 90vh;
   border: 1px solid black;
-  background: #402318
+  background: #402318;
 }
 
 ol,
 ul {
   text-align: left;
+  max-height: 60%;
+  overflow: scroll;
 }
 
 .tabListContainer ol li {
   height: 5em;
   margin-bottom: .4em;
   background-color: rgba(0, 0, 0, .2);
-  color: #f18909
+  color: #f18909;
+  cursor: pointer;
 }
 
 .selectedContent {
@@ -45,7 +49,8 @@ ul {
 }
 
 .selectedButton {
-  background-color: rgba(0, 0, 0, .2)
+  background-color: rgba(0, 0, 0, .2);
+  cursor: pointer;
 }
 
 .completeContainer {
@@ -72,5 +77,6 @@ ul {
   background-color: #f18909;
   width: 75%;
   padding: 1em 0em 2em 0em;
-  align-content: center
+  align-content: center;
+  cursor: pointer;
 }
