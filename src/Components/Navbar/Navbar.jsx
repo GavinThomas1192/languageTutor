@@ -97,11 +97,11 @@ class Nav extends React.Component {
           : (
             <div>
               <div className="auth-dashboard">
-                <div
-                  onClick={(e) => {
-                  this.closeHam(e)
-                }}
-                  className="logged-in-main-nav">
+              <div
+                className="main-nav"
+                onClick={(e) => {
+                this.closeHam(e)
+              }}>
                   <NavLink to="/">
                     <h1>LANGUAGETUTOR</h1>
                   </NavLink>
@@ -135,13 +135,7 @@ class Nav extends React.Component {
                   </div>
                 </div>
 
-                <div className="auth-nav">
-                  <NavLink to="/Profile" className="btn">
-                    {this.props.user.account.username}
-                  </NavLink>
-                  <img src={headShot} alt="placeholder"/>
-                  <a className="btn" onClick={this.logout}>Logout</a>
-                </div>
+
               </div>
             </div>
           )}
