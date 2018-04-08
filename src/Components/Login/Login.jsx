@@ -32,7 +32,7 @@ class Login extends React.Component {
           .props
           .handleStudentLogin(this.state, this.props.history);
       } else {
-        console.log('Whoops theres errors');
+        // console.log('Whoops theres errors');
       }
     })
   };

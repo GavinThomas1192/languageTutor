@@ -7,14 +7,14 @@ export const userCreate = user => ({type: 'USER_CREATE', payload: user});
 export const userUpdate = user => ({type: 'USER_UPDATE', payload: user});
 
 export const setFirebaseUserToRedux = user => dispatch => new Promise((resolve, reject) => {
-  console.log(user);
+  // console.log(user);
   firebase
     .database()
     .ref('users/' + user.uid)
     .once('value')
     .then((snapshot) => {
       const userProfile = snapshot.val();
-      console.log(userProfile);
+      // console.log(userProfile);
       firebase
         .database()
         .ref('onlineUsers/' + user.uid)
@@ -27,13 +27,12 @@ export const setFirebaseUserToRedux = user => dispatch => new Promise((resolve, 
 });
 
 export const handleStudentLogin = (student, router) => (dispatch) => {
-  console.log('action props', router);
+  // console.log('action props', router);
   firebase
     .auth()
     .signInWithEmailAndPassword(student.email, student.password)
     .then((signupData) => {
-      console.log('signed in from LOGIN actions', signupData);
-      // router.push('/dashboard');
+      //('signed in from LOGIN actions', signupData); router.push('/dashboard');
       setFirebaseUserToRedux(signupData);
     })
     .catch(err => console.log(err));
@@ -52,10 +51,10 @@ export const handleLogout = student => (dispatch, getState) => new Promise((reso
         .signOut()
         .then(() => {
           resolve(dispatch(userSet(null)));
-          console.log('Logged user out!');
+          //    console.log('Logged user out!');
         });
     })
 
 }, (error) => {
-  console.log('Logout error', error);
+  //console.log('Logout error', error);
 },);

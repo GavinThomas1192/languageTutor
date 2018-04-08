@@ -31,7 +31,7 @@ class AuthContainer extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
+    //console.log('componentWillReceiveProps');
     if (nextProps.user !== null) {
       this.setState({
         showModal: false
