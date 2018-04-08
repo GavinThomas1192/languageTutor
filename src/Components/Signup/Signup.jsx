@@ -84,7 +84,7 @@ class Signup extends React.Component {
         : this.setState({usernameError: '', errors: false});
     }
     if (name === 'password') {
-      !passwordReg.test(event.target.value)
+      !nameReg.test(event.target.value)
         ? this.setState({
           passwordError: 'Password be at least 8 characters, two uppercase letter, two numbers, one specia' +
               'l character',
