@@ -1,3 +1,15 @@
+#### Language tutor bridges the gap for those needing to learn unusual languages!
+#### Landing Page
+![alt text](https://i.imgur.com/eglRDZU.jpg)
+
+#### User Panel dashboard
+![alt text](https://i.imgur.com/AoidOIY.png)
+
+#### Teacher Video Chat
+![alt text](https://i.imgur.com/CZr319q.png)
+
+
+
 * To get up and running...
 
   * Git clone...
@@ -31,62 +43,3 @@
 * `touch .env`
   REACT_APP_API_KEY=XXXXXX
 
-#### Gavin's Notes
-
-* Firebase Database User Objects...
-  * We will need to keep track of certain items we wouldn't normally need to with Firebase just in case we decide to go the NODE/MONGO route.
-* Teacher user
-
-  * { UID \
-    Full Name \
-    Age \
-    Username \
-    Email \
-    Passwords == NEEDS ENCRYPT \
-    TimeZone \
-    English Proficiency \
-    Native Proficiency \
-    Student ID's? \
-    Past Teaching Sessions \
-    IsAdminApproved \
-    }
-
-  * Student User
-
-    * { UID \
-      Full Name \
-      Age \
-      Username \
-      Email \
-      Passwords == NEEDS ENCRYPT \
-      TimeZone \
-      Language To Learn \
-      NativeLanguage \
-      Past Teaching Sessions \
-      Past Flashcard Tests \
-      Overall Ranking?
-
-      }
-
-  * Admin User
-    * { UID \
-      Full Name \
-      Age \
-      Username \
-      Email \
-      Passwords == NEEDS ENCRYPT \
-      TimeZone \
-      }
-
-### Adrian's Notes
-#### User Panel Mockup
-![alt text](https://i.imgur.com/1gIn1Ji.jpg)
-
-#### Landing Page
-![alt text](https://i.imgur.com/eglRDZU.jpg)
-
-#### User Panel dashboard
-![alt text](https://i.imgur.com/AoidOIY.png)
-
-#### Teacher Video Chat
-![alt text](https://i.imgur.com/CZr319q.png)
