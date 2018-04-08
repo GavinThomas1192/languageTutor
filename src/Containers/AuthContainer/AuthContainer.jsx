@@ -49,12 +49,15 @@ class AuthContainer extends React.Component {
         <p>test</p>
         <Modal isOpen={this.state.showModal} // {/* pass isOpen bool to open modal */}
           close={this.toggleModal} // {/* pass close function to close modal */}
-          showClose // {/* pass showClose bool to show close button or not */}
+          showClose={false} // {/* pass showClose bool to show close button or not */}
           showContinue={false} // {/* pass showContinue bool to show continue button or not */}
         >
           {this.props.location.pathname === '/Login'
             ? (<Login/>)
-            : (<Signup pathname={this.props.location.pathname}/>)}
+            : (<Signup
+              title={'SIGN UP TODAY'}
+              slogan={'Don\t wait another minute. Every day you could be learning something precious!'}
+              pathname={this.props.location.pathname}/>)}
         </Modal>
       </div>
     );

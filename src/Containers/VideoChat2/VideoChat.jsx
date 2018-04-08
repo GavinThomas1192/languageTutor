@@ -77,6 +77,14 @@ class VideoChat extends React.Component {
       .database()
       .ref(`onlineUsers/${this.props.user.account.uid}`)
       .remove();
+    firebase
+      .database()
+      .ref(`users/${this.props.user.account.uid}`)
+      .onDisconnect(),
+    () => {
+      alert('USER DISCONNECTED!')
+    }
+
   }
 
   handleTeacherHelpRequest = ele => {
@@ -121,8 +129,8 @@ class VideoChat extends React.Component {
         <div>
           {this.state.onlineUsers.length > 0
             ? (
-              <div>
-                <p>Teachers online now!</p>
+              <div className="onlineTeachersContainer">
+                <h2>Teachers online now!</h2>
 
                 <ul>
                   {this
@@ -141,23 +149,19 @@ class VideoChat extends React.Component {
             )}
           {this.state.requestingTeacher !== "" && this.state.token !== ""
             ? (
-              <p>
-                Awesome! We are connecting you to{" "} {this.state.requestingTeacher.name}
-              </p>
+              <div>
+                <p>
+                  Awesome! We are connecting you to{" "} {this.state.requestingTeacher.name}
+                </p>
+                <p>TODO SPINNERRRR</p>
+              </div>
             )
             : (undefined)}
         </div>
-        <div
-          style={{
-          marginLeft: "30em",
-          marginTop: "30em"
-        }}>
+        <div >
           {this.state.token !== ""
             ? (
-              <div className="publisherContainer">
-                <div>Session Status:
-                </div>
-
+              <div className='videoContainer'>
                 <OTSession
                   apiKey={`${process.env.REACT_APP_API_KEY}`}
                   sessionId={this.state.sessionId}
@@ -171,15 +175,15 @@ class VideoChat extends React.Component {
                     });
                   }}>
                     {this.state.video
-                      ? "Disable"
-                      : "Enable"}
-                    Video
+                      ? "DISABLE "
+                      : "ENABLE "}
+                    VIDEO
                   </button>
                   <button
                     onClick={() => {
                     this.setState({token: "", sessionId: ""});
                   }}>
-                    disconnect
+                    DISCONNECT
                   </button>
                   <OTPublisher
                     properties={{
@@ -191,6 +195,7 @@ class VideoChat extends React.Component {
                     onPublish={this.state.video}
                     onError={this.onPublishError}
                     eventHandlers={this.publisherEventHandlers}/>
+
                   <OTStreams>
                     <OTSubscriber
                       properties={{
@@ -204,9 +209,7 @@ class VideoChat extends React.Component {
                 </OTSession>
               </div>
             )
-            : (
-              <p>No video stream yet</p>
-            )}
+            : undefined}
         </div>
       </div>
     );
