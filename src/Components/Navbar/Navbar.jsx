@@ -81,37 +81,63 @@ class Nav extends React.Component {
               <div
                 className="main-nav"
                 onClick={(e) => {
-                  this.closeHam(e);
-                }}
-              >
+
+                this.closeHam(e)
+              }}>
+              <div className="mobile-container">
                 <NavLink to="/">
                   <h1>LANGUAGETUTOR</h1>
                 </NavLink>
-                <div>
-                  <div
-                    className={
-                      this.state.ham ? 'hamburger is-active' : 'hamburger'
-                    }
-                    id="hamburger-1"
-                    onClick={() =>
-                      this.setState({
-                        ham: !this.state.ham,
-                      })
-                    }
-                  >
-                    <span className="line" />
-                    <span className="line" />
-                    <span className="line" />
+                <div
+                  className={this.state.ham
+                  ? "hamburger is-active"
+                  : "hamburger"}
+                  id="hamburger-1"
+                  onClick={() => this.setState({
+                  ham: !this.state.ham
+                })}>
+
+                  <span className="line"></span>
+                  <span className="line"></span>
+                  <span className="line"></span>
+                </div>
+              </div>
+
+                  <div>
+
+
+
+                    <div
+                      className={this.state.ham
+                      ? "links-is-open"
+                      : "links"}>
+                      <NavLink to="/Dashboard" className="btn">
+                        Dashboard
+                      </NavLink>
+                      <NavLink to="/studentchat" className="btn">
+                        Student Chat
+                      </NavLink>
+
+                      <div className="auth-nav hide-mobile">
+                        <NavLink to="/Profile" className="btn">
+                          {this.props.user.account.username}
+                        </NavLink>
+                        <img src={headShot} alt="placeholder"/>
+                        <a className="btn" onClick={this.logout}>Logout</a>
+                      </div>
+
+                      <div className="hide-desktop">
+                        <NavLink to="/Profile" className="btn profile-image">
+                          <img src={headShot} alt="placeholder"/>
+                          profile
+                        </NavLink>
+                        <a className="btn" onClick={this.logout}>Logout</a>
+                      </div>
+
+                    </div>
+
                   </div>
 
-                  <div className={this.state.ham ? 'links-is-open' : 'links'}>
-                    <NavLink to="/Dashboard" className="btn">
-                      Dashboard
-                    </NavLink>
-                    <NavLink to="/studentchat" className="btn">
-                      Student Chat
-                    </NavLink>
-                  </div>
                 </div>
                 <div className="auth-nav">
                   <NavLink to="/Profile" className="btn">
