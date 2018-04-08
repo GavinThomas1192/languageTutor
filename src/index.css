@@ -144,8 +144,7 @@ table {
 
 body {
 	font-family: 'Poppins', sans-serif;
-	line-height: 1.3em;
-	/* letter-spacing: .3em; */
+	letter-spacing: .7px;
 }
 
 a:link,

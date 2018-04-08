@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => (
@@ -20,45 +20,31 @@ const Footer = () => (
 
       <div className="foot-info">
         <h2>Info</h2>
-        <NavLink to="/signup" exact className="btn">
-          Find A Mentor
-        </NavLink>
-        <NavLink to="/About" className="btn">
-          Our Courses
-        </NavLink>
-        <NavLink to="/About" className="btn">
-          How it works
-        </NavLink>
-        <NavLink to="/About" className="btn">
-          About
-        </NavLink>
-        <NavLink to="/Contact" className="btn">
-          Contact
-        </NavLink>
+
+        <ul>
+          <li><NavLink to="/signup" exact>Find A Mentor</NavLink></li>
+          <li><NavLink to="/About">Our Courses</NavLink></li>
+          <li><NavLink to="/About">How it works</NavLink></li>
+          <li><NavLink to="/About">About</NavLink></li>
+          <li><NavLink to="/Contact">Contact</NavLink></li>
+        </ul>
       </div>
     </div>
 
     <div className="foot-bottom">
-      <p>Copyright &copy; {new Date().getFullYear()}
-        Language Tutor</p>
+      <ul className="foot-social">
+        <li>Twitter</li>
+        <li>Facebook</li>
+        <li>Instagram</li>
+      </ul>
 
-      <div className="legal-stuff">
-        <NavLink to="/TermAndConditions" className="btn">
-          Terms & Conditions
-        </NavLink>
-        <NavLink to="/PrivacyPolicy" className="btn">
-          Privacy Policy
-        </NavLink>
-        <NavLink to="/Support" className="btn">
-          Support
-        </NavLink>
+      <p className="copyright">Copyright &copy; {new Date().getFullYear()} Language Tutor</p>
 
-        <div className="foot-social">
-          <p>Twitter</p>
-          <p>Facebook</p>
-          <p>Instagram</p>
-        </div>
-      </div>
+      <ul className="legal-stuff">
+        <li><NavLink to="/TermAndConditions">Terms & Conditions</NavLink></li>
+        <li><NavLink to="/PrivacyPolicy">Privacy Policy</NavLink></li>
+        <li><NavLink to="/Support">Support</NavLink></li>
+      </ul>
     </div>
   </footer>
 );

@@ -123,13 +123,15 @@
   padding: 12em 0em 2em 0em;
   display: flex;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .our-mentors h5 {
-  font-size: 2em;
+  font-family: 'Poppins-Bold', sans-serif;
+  font-size: 1.3em;
   color: #ffb800;
+  text-transform: uppercase;
   padding: 1em 0em 1em 0em;
-  font-weight: 700
 }
 
 .our-mentors p {
@@ -152,18 +154,22 @@
 
 .mentorContainer1 img,
 .mentorContainer2 img {
+  border: 3px solid #f2f2f2;
   border-radius: 100%;
-  max-width: 11em;
-  width: 11em;
+  width: 120px;
+}
+
+.mentorContainer1,
+.mentorContainer2 {
+  padding: 20px 0px;
 }
 
 .mentorContainer1 div,
 .mentorContainer2 div {
-  padding: 0em 2em 0em 2em;
-  margin: 0em 2em 0em 2em;
+  padding: 0px 20px
 }
 
-/* 
+/*
 @media only screen and (max-width: 600px) {
   .hero {
     display: flex;
@@ -218,7 +224,7 @@
   .signup-modal {
     border-radius: .3em;
     padding: 1em;
-    max-width: 100%;
+    max-width: 80%;
   }
   .platform,
   .online {
@@ -239,17 +245,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-bottom: 5em;
   }
   .mentorContainer2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-bottom: 5em;
   }
   .mentorContainer1 div,
   .mentorContainer2 div {
-    padding: 2em 2em 2em 2em;
-    margin: 0em 2em 0em 2em;
+    margin-bottom: 20px;
   }
 }
