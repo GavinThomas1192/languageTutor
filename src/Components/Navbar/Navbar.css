@@ -25,12 +25,27 @@ nav .btn {
   justify-content: space-between;
 }
 
+.logged-in-main-nav {
+  margin: 0em 2em 0em 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .optionsNav {
   display: flex;
   justify-content: flex-end
 }
 
 .main-nav h1 {
+  font-family: Helvetica, sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  /* margin-right: 1em; */
+}
+
+.logged-in-main-nav h1 {
   font-family: Helvetica, sans-serif;
   font-size: 2em;
   font-weight: 900;
@@ -66,6 +81,10 @@ nav .btn {
 .auth-nav {
   display: flex;
   align-items: center;
+}
+
+.auth-nav img {
+  max-width: 4em;
 }
 
 .auth-nav .btn {
