@@ -11,6 +11,8 @@ import firebase from "firebase";
 import {connect} from "react-redux";
 import axios from "axios";
 
+import Spinner from '../../Components/Spinner/Spinner'
+
 import "./VideoChat.css";
 // import {getAllActiveTeachers} from '../../Actions/VideoActions'
 
@@ -30,7 +32,11 @@ class VideoChat extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentWillMount() {}
+
+  componentDidMount() {
+
+    //Listening when an online user account changes at all
     firebase
       .database()
       .ref("onlineUsers")
@@ -41,31 +47,61 @@ class VideoChat extends React.Component {
           ? this.setState({sessionId: updatedUser.chatRoomKeys.sessionId, token: updatedUser.chatRoomKeys.token})
           : undefined;
       });
-  }
-
-  componentDidMount() {
-    console.log("video chat mounted", this.props);
+    //Listening for when a new online user joins
     firebase
       .database()
       .ref("onlineUsers")
-      .once("value")
-      .then(snapshot => {
-        const allUsers = snapshot.val();
+      .on("child_added", snapshot => {
+        const childAdded = snapshot.val();
+        console.log("DB child ADDED!", childAdded);
+        childAdded.uid !== this.props.user.account.uid && childAdded.isTeacher
+          ? this.setState({
+            onlineUsers: [
+              ...this.state.onlineUsers,
+              childAdded
+            ]
+          })
+          : undefined
 
-        console.log("ALLUSERS FROM DATABASE", allUsers);
-        Object
-          .values(allUsers)
-          .map(ele => ele.isTeacher
-            ? this.setState({
-              onlineUsers: [
-                ...this.state.onlineUsers,
-                ele
-              ]
-            }, () => {
-              console.log("FINISHED PULLING FULL USER PROFILES", this.state);
-            })
-            : undefined);
       });
+    // Listening for online user leaving
+    firebase
+      .database()
+      .ref("onlineUsers")
+      .on("child_removed", snapshot => {
+        const childRemoved = snapshot.val();
+        console.log("DB child REMOVED!", childRemoved);
+        this.setState({
+          onlineUsers: this
+            .state
+            .onlineUsers
+            .filter(ele => ele.uid !== childRemoved.uid)
+        })
+
+      });
+    //if user closes tab remove from online users
+    window.addEventListener("beforeunload", (ev) => {
+      return firebase
+        .database()
+        .ref(`onlineUsers/${this.props.user.account.uid}`)
+        .remove();
+      firebase
+        .database()
+        .ref(`users/${this.props.user.account.uid}`)
+        .onDisconnect(),
+      () => {
+        alert('USER DISCONNECTED!')
+      }
+
+    });
+    console.log("video chat mounted", this.props);
+    // firebase   .database()   .ref("onlineUsers")   .once("value") .then(snapshot
+    // => {     const allUsers = snapshot.val(); console.log("ALLUSERS FROM
+    // DATABASE", allUsers);     Object .values(allUsers)       .map(ele =>
+    // ele.isTeacher         ? this.setState({         onlineUsers: [
+    // ...this.state.onlineUsers,             ele           ]         }, () => {
+    //       console.log("FINISHED PULLING FULL USER PROFILES", this.state);
+    // })         : undefined); });
   }
   componentDidUpdate() {
     console.log(this.state);
@@ -88,7 +124,7 @@ class VideoChat extends React.Component {
   }
 
   handleTeacherHelpRequest = ele => {
-    this.setState({requestingTeacher: ele});
+    this.setState({requestingTeacher: ele, loading: true});
     firebase
       .auth()
       .currentUser
@@ -115,7 +151,7 @@ class VideoChat extends React.Component {
                   .ref(`onlineUsers/${this.state.requestingTeacher.uid}/chatRoomKeys`)
                   .set({apiKey: `${process.env.REACT_APP_API_KEY}`, sessionId: data.data.id, token: data.data.token})
                   .then(() => {
-                    this.setState({sessionId: data.data.id, token: data.data.token});
+                    this.setState({sessionId: data.data.id, token: data.data.token, loading: false});
                   });
               });
           });
@@ -145,16 +181,17 @@ class VideoChat extends React.Component {
               </div>
             )
             : (
-              <ul>No Active Teachers</ul>
+              <h2>No Active Teachers</h2>
             )}
+          {this.state.loading
+            ? <Spinner/>
+            : undefined}
           {this.state.requestingTeacher !== "" && this.state.token !== ""
             ? (
-              <div>
-                <p>
-                  Awesome! We are connecting you to{" "} {this.state.requestingTeacher.name}
-                </p>
-                <p>TODO SPINNERRRR</p>
-              </div>
+              <h2>
+                Chatting with {this.state.requestingTeacher.name}
+              </h2>
+
             )
             : (undefined)}
         </div>
