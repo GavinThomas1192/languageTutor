@@ -1,7 +1,8 @@
 nav {
-  background: #402318;
+  /*background: #402318;*/
+  background: red;
   display: flex;
-  flex-direction: row;
+  /*flex-direction: row;*/
   /* justify-content: space-around; */
   align-items: center;
   height: 4em;
