@@ -9,44 +9,39 @@ export const handleStudentSignup = (student, history) => (dispatch) => {
     .auth()
     .createUserWithEmailAndPassword(student.email, student.password)
     .then((authData) => {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(student.email, student.password)
-        .then((signupData) => {
-          const account = {};
-          account.uid = authData.uid;
-          account.email = student
-            .email
-            .toLowerCase();
-          account.name = student.name;
-          account.username = student.username;
-          account.nativeLanguage = student.nativeLanguage;
-          account.age = student.age;
-          account.timeZone = student.timeZone;
-          account.location = student.location;
-          account.isTeacher = student.isTeacher;
 
-          //   return new Promise((resolve, reject) => {
-          // resolve(dispatch(userSet(user)));
+      const account = {};
+      account.uid = authData.uid;
+      account.email = student
+        .email
+        .toLowerCase();
+      account.name = student.name;
+      account.username = student.username;
+      account.nativeLanguage = student.nativeLanguage;
+      account.age = student.age;
+      account.timeZone = student.timeZone;
+      account.location = student.location;
+      account.isTeacher = student.isTeacher;
+
+      //   return new Promise((resolve, reject) => { resolve(dispatch(userSet(user)));
+      firebase
+        .database()
+        .ref(`users/${authData.uid}`)
+        .set({account})
+        .then(() => {
           firebase
             .database()
             .ref(`users/${authData.uid}`)
-            .set({account})
-            .then(() => {
-              firebase
-                .database()
-                .ref(`users/${authData.uid}`)
-                .once('value')
-                .then((snapshot) => {
-                  // this will either be null or populated with vehicles.
-                  const userProfile = snapshot.val();
-                  console.log('USERPROFILE IN SIGNUP ACTIONS', userProfile);
-                  dispatch(userSet(userProfile));
-                  history.push('/dashboard');
-                });
+            .once('value')
+            .then((snapshot) => {
+              // this will either be null or populated with vehicles.
+              const userProfile = snapshot.val();
+              console.log('USERPROFILE IN SIGNUP ACTIONS', userProfile);
+              dispatch(userSet(userProfile));
+              history.push('/dashboard');
             });
-          // .then(() => { });
         })
+        // .then(() => { });
         .catch(err => console.log(err));
     });
 };

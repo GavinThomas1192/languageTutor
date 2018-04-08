@@ -21,18 +21,20 @@ class Login extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.state.password === '' || this.state.email === '') {
-      this.setState({errors: true});
-    } else if (!this.state.errors) {
-      this
-        .props
-        .handleStudentLogin(this.state, this.props.history);
-    } else {
-      console.log('Whoops theres errors');
-    }
-    //  }      ? this.setState({ errors: true })       : !this.state.errors ?
-    // this.props.handleStudentLogin(this.state, this.props.history)         :
-    // console.log('Whoops theres errors');
+    this.setState({
+      loading: true
+    }, () => {
+
+      if (this.state.password === '' || this.state.email === '') {
+        this.setState({errors: true});
+      } else if (!this.state.errors) {
+        this
+          .props
+          .handleStudentLogin(this.state, this.props.history);
+      } else {
+        console.log('Whoops theres errors');
+      }
+    })
   };
 
   handleChange = name => (event) => {

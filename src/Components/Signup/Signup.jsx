@@ -49,7 +49,7 @@ class Signup extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.state.name === '' || this.state.username === '' || this.state.password === '' || this.state.age === '' || this.state.email === '' || this.state.timeZone === '' || this.state.locaiton === '' || this.state.nativeLanguage === ''
+    this.state.name === '' || this.state.username === '' || this.state.password === '' || this.state.age === '' || this.state.email === '' || this.state.timeZone === '' || this.state.location === '' || this.state.nativeLanguage === ''
       ? this.setState({errors: true})
       : !this.state.errors
         ? this
@@ -97,11 +97,9 @@ class Signup extends React.Component {
         ? this.setState({emailError: "Whoops that's not a valid email", errors: true})
         : this.setState({emailError: '', errors: false});
     }
-    if (name === 'age') {
-      !nameReg.test(event.target.value)
-        ? this.setState({ageError: "Whoops you're too old", errors: true})
-        : this.setState({ageError: '', errors: false});
-    }
+    // if (name === 'age') {   !nameReg.test(event.target.value)     ?
+    // this.setState({ageError: "Whoops you're too old", errors: true})     :
+    // this.setState({ageError: '', errors: false}); }
     if (name === 'nativeLanguage') {
       !nameReg.test(event.target.value)
         ? this.setState({ageError: "Whoops you're too old", errors: true})
@@ -185,27 +183,18 @@ class Signup extends React.Component {
             onChange={this.handleCheckBoxToggle}/>
         </label>
         {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
-      </form>
-      <button className="signupButton">SIGN UP TODAY!
+        <button className="signupButton">SIGN UP TODAY!
 
-      </button>
-      {this.state.errors
-        ? <h4>Whoops something went wrong</h4>
-        : undefined}
+        </button>
+      </form>
+
+      ?
+      <h4>Whoops something went wrong</h4>
+      : undefined}
 
     </div>
-  }
-
-}
-
-const mapStateToProps = state => ({user: state.user});
-
-const mapDispatchToProps = dispatch => ({
-  handleStudentSignup: (student, history) => dispatch(handleStudentSignup(student, history))
+    } } const mapStateToProps = state => ({user : state.user}); const mapDispatchToProps = dispatch => ({handleStudentSignup : (student, history) => dispatch(handleStudentSignup(student, history))
 });
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
-
-Signup.propTypes = {
-  pathname: PropTypes.string.isRequired
-};
+      export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
+      Signup.propTypes = {pathname : PropTypes.string.isRequired
+}
