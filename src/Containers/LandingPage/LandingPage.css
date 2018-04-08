@@ -37,7 +37,8 @@
 ==================== */
 
 .info {
-  background-color: #402318;
+  background: linear-gradient(#402318, #f18909);
+  padding-bottom: 5em;
 }
 
 .platform,
