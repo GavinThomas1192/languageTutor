@@ -164,7 +164,8 @@ class Dashboard extends React.Component {
             {this.state.selectedItem !== ''
               ? Object
                 .entries(this.state.selectedItem)
-                .map(([key, value]) => `${key} - ${value}`,)
+                .map(([key, value]) => <p>`${key}
+                  - ${value}`</p>,)
               : undefined}
             {/* // overview.map((ele, index) => Object.entries(ele).map(([key, value]) => (
               //   <p key={index}>

@@ -98,9 +98,9 @@ class VideoChat extends React.Component {
     // .ref("onlineUsers")   .once("value") .then(snapshot => {     const allUsers =
     // snapshot.val(); console.log("ALLUSERS FROM DATABASE", allUsers);     Object
     // .values(allUsers)       .map(ele => ele.isTeacher         ? this.setState({
-    //       onlineUsers: [ ...this.state.onlineUsers,             ele           ]
-    //       }, () => {       console.log("FINISHED PULLING FULL USER PROFILES",
-    // this.state); })         : undefined); });
+    // onlineUsers: [ ...this.state.onlineUsers,             ele           ]   }, ()
+    // => {       console.log("FINISHED PULLING FULL USER PROFILES", this.state); })
+    //         : undefined); });
   }
   componentDidUpdate() {
     // console.log(this.state);
@@ -167,17 +167,20 @@ class VideoChat extends React.Component {
             ? (
               <div className="onlineTeachersContainer">
                 <h2>Teachers online now!</h2>
+                <p>Click on their name to connect!</p>
 
-                <ul>
-                  {this
-                    .state
-                    .onlineUsers
-                    .map((ele, index) => (
-                      <li key={index} onClick={() => this.handleTeacherHelpRequest(ele)}>
-                        {ele.username}-{ele.nativeLanguage}
-                      </li>
-                    ))}
-                </ul>
+                {this
+                  .state
+                  .onlineUsers
+                  .map((ele, index) => (
+                    <button
+                      className='btn'
+                      key={index}
+                      onClick={() => this.handleTeacherHelpRequest(ele)}>
+                      {ele.username}-{ele.nativeLanguage}
+                    </button>
+                  ))}
+
               </div>
             )
             : (

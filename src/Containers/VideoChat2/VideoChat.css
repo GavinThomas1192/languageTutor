@@ -18,7 +18,8 @@
   align-items: center;
 }
 
-.onlineTeachersContainer li {
+.onlineTeachersContainer li,
+p {
   color: #f18909
 }
 
@@ -27,4 +28,14 @@
   color: #ffb800;
   font-weight: 600;
   font-size: 1.25em;
+}
+
+.btn {
+  font-family: Helvetica, sans-serif;
+  font-size: .8em;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
 }
