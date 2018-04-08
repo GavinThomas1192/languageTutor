@@ -1,45 +1,46 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => (
   <footer>
     <div className="foot-top">
-      <h1>COMPANYLOGO</h1>
+      <h1>LANGUAGETUTOR</h1>
 
       <div className="foot-courses">
-        <h4>Our Courses</h4>
+        <h2>Our Courses</h2>
         <ul>
-          <li>Course 1</li>
-          <li>Course 2</li>
-          <li>Course 3</li>
-          <li>Course 4</li>
-          <li>Course 5</li>
+          <li>Introduction</li>
+          <li>Greetings</li>
+          <li>Goodbyes</li>
+          <li>Common Questions</li>
+          <li>Advance Topics</li>
         </ul>
       </div>
 
       <div className="foot-info">
-        <h4>Info</h4>
+        <h2>Info</h2>
         <NavLink to="/signup" exact className="btn">
           Find A Mentor
         </NavLink>
-        <NavLink to="/teacherSignup" className="btn">
-          Become A Mentor
+        <NavLink to="/About" className="btn">
+          Our Courses
         </NavLink>
-        <NavLink to="/Signup" className="btn">
-          Our Lessons
+        <NavLink to="/About" className="btn">
+          How it works
         </NavLink>
         <NavLink to="/About" className="btn">
           About
         </NavLink>
         <NavLink to="/Contact" className="btn">
-          Contact Us
+          Contact
         </NavLink>
       </div>
     </div>
 
     <div className="foot-bottom">
-      <p>Copyright &copy; {new Date().getFullYear()} Language Tutor</p>
+      <p>Copyright &copy; {new Date().getFullYear()}
+        Language Tutor</p>
 
       <div className="legal-stuff">
         <NavLink to="/TermAndConditions" className="btn">
