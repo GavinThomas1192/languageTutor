@@ -94,3 +94,10 @@ footer h1 {
     margin: 0;
   }
 }
+
+/*FOR SUPER SMALL SCREENS*/
+@media only screen and (max-width: 400px) {
+  .foot-top h1 {
+    font-size: 1.8em;
+  }
+}
