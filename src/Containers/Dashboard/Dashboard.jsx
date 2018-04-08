@@ -17,11 +17,12 @@ class Dashboard extends React.Component {
     };
   }
   componentDidMount() {
-    console.log('DASHBOARD MOUNTED ===> (this.props, this.state)', this.props, this.state,);
+    // console.log('DASHBOARD MOUNTED ===> (this.props, this.state)', this.props,
+    // this.state,);
 
   }
   componentDidUpdate() {
-    console.log('DASHBOARD UPDATED ===> (this.props)', this.props);
+    //console.log('DASHBOARD UPDATED ===> (this.props)', this.props);
   }
 
   handleShowVideoChat = () => {

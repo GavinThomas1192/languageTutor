@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import {userSet} from '../Actions/UserActions';
 
 export const handleStudentSignup = (student, history) => (dispatch) => {
-  console.log('INSIDE SIGNUP ACTIONS, INCOMING STUDENT FOR SINGUP', student);
+  // console.log('INSIDE SIGNUP ACTIONS, INCOMING STUDENT FOR SINGUP', student);
   // ******** The signup actions only trigger for first time users, no need to
   // check database ********
   firebase
@@ -36,7 +36,7 @@ export const handleStudentSignup = (student, history) => (dispatch) => {
             .then((snapshot) => {
               // this will either be null or populated with vehicles.
               const userProfile = snapshot.val();
-              console.log('USERPROFILE IN SIGNUP ACTIONS', userProfile);
+              //console.log('USERPROFILE IN SIGNUP ACTIONS', userProfile);
               dispatch(userSet(userProfile));
               history.push('/dashboard');
             });

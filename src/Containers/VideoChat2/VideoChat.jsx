@@ -42,7 +42,7 @@ class VideoChat extends React.Component {
       .ref("onlineUsers")
       .on("child_changed", snapshot => {
         const updatedUser = snapshot.val();
-        console.log("DB UPDATED!", updatedUser);
+        //console.log("DB UPDATED!", updatedUser);
         return updatedUser.uid === this.props.user.account.uid
           ? this.setState({sessionId: updatedUser.chatRoomKeys.sessionId, token: updatedUser.chatRoomKeys.token})
           : undefined;
@@ -53,7 +53,7 @@ class VideoChat extends React.Component {
       .ref("onlineUsers")
       .on("child_added", snapshot => {
         const childAdded = snapshot.val();
-        console.log("DB child ADDED!", childAdded);
+        //console.log("DB child ADDED!", childAdded);
         childAdded.uid !== this.props.user.account.uid && childAdded.isTeacher
           ? this.setState({
             onlineUsers: [
@@ -70,7 +70,7 @@ class VideoChat extends React.Component {
       .ref("onlineUsers")
       .on("child_removed", snapshot => {
         const childRemoved = snapshot.val();
-        console.log("DB child REMOVED!", childRemoved);
+        //console.log("DB child REMOVED!", childRemoved);
         this.setState({
           onlineUsers: this
             .state
@@ -94,17 +94,16 @@ class VideoChat extends React.Component {
       }
 
     });
-    console.log("video chat mounted", this.props);
-    // firebase   .database()   .ref("onlineUsers")   .once("value") .then(snapshot
-    // => {     const allUsers = snapshot.val(); console.log("ALLUSERS FROM
-    // DATABASE", allUsers);     Object .values(allUsers)       .map(ele =>
-    // ele.isTeacher         ? this.setState({         onlineUsers: [
-    // ...this.state.onlineUsers,             ele           ]         }, () => {
-    //       console.log("FINISHED PULLING FULL USER PROFILES", this.state);
-    // })         : undefined); });
+    // console.log("video chat mounted", this.props); firebase   .database()
+    // .ref("onlineUsers")   .once("value") .then(snapshot => {     const allUsers =
+    // snapshot.val(); console.log("ALLUSERS FROM DATABASE", allUsers);     Object
+    // .values(allUsers)       .map(ele => ele.isTeacher         ? this.setState({
+    //       onlineUsers: [ ...this.state.onlineUsers,             ele           ]
+    //       }, () => {       console.log("FINISHED PULLING FULL USER PROFILES",
+    // this.state); })         : undefined); });
   }
   componentDidUpdate() {
-    console.log(this.state);
+    // console.log(this.state);
   }
   componentWillUnmount() {
     this.setState({token: "", sessionId: ""});
@@ -140,7 +139,8 @@ class VideoChat extends React.Component {
           }
         })
           .then(data => {
-            console.log("GOT DATA FROM OUR BACKEND", data, data.data.id, data.data.token);
+            // console.log("GOT DATA FROM OUR BACKEND", data, data.data.id,
+            // data.data.token);
             firebase
               .database()
               .ref(`users/${this.props.user.account.uid}/chatRoomKeys`)

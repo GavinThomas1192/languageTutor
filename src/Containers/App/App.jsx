@@ -35,7 +35,8 @@ const PageNotFound = () => (
       color: 'red',
       fontSize: '5em'
     }}
-      data-text="Page Not Found"className="glitch" >
+      data-text="Page Not Found"
+      className="glitch">
       Page Not Found
     </h1>
   </div>
@@ -43,27 +44,26 @@ const PageNotFound = () => (
 
 class App extends React.Component {
   componentDidMount() {
-    console.log('app did mount {this.prop}', this.props);
+    //console.log('app did mount {this.prop}', this.props);
     firebase
       .auth()
       .onAuthStateChanged(user => {
         // ********* If a user is logged in firebase will return the user object. THEY
         // ARE NOT LOGGED IN THOUGH *********
         if (user) {
-          console.log("onAuthStateChanged", user);
-          // ********* Then we call an official Firebase login function through actions
-          // *********
+          // console.log("onAuthStateChanged", user); ********* Then we call an official
+          // Firebase login function through actions *********
           this
             .props
             .setFirebaseUserToRedux(user);
         } else {
-          console.log("No user signed in");
+          //console.log("No user signed in");
         }
       });
   }
 
   componentDidUpdate() {
-    console.log("APP UPDATED (this.state, this.props)", this.state, this.props);
+    //console.log("APP UPDATED (this.state, this.props)", this.state, this.props);
   }
   render() {
     return (
