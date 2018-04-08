@@ -15,38 +15,36 @@ import Mentor6 from '../../Assets/Images/mentor-6.jpg'
 const mentors = [
   {
     name: 'Gavin',
-    desc: 'He loves to code',
+    desc: 'Mentor description goes here.',
     img: Mentor1
 
   }, {
     name: 'Adrian',
-    desc: 'He loves Design',
+    desc: 'Mentor description goes here.',
     img: Mentor2
 
   }, {
     name: 'Keith',
-    desc: 'He loves to hangout with his girlfriend',
+    desc: 'Mentor description goes here.',
     img: Mentor3
-
   }
 ]
 
 const mentors2 = [
   {
     name: 'Katy',
-    desc: 'Livelong learner and teacher',
+    desc: 'Mentor description goes here.',
     img: Mentor4
 
   }, {
     name: 'Sam',
-    desc: 'Lives in australia',
+    desc: 'Mentor description goes here.',
     img: Mentor5
 
   }, {
     name: 'Noah',
-    desc: 'Knows 10 different languages',
+    desc: 'Mentor description goes here.',
     img: Mentor6
-
   }
 ]
 export default class LandingPage extends React.Component {
@@ -129,8 +127,8 @@ export default class LandingPage extends React.Component {
                   </div>
                 </div>
               })}
-
             </div>
+
             <div className='mentorContainer2'>
 
               {mentors2.map((ele, index) => {
