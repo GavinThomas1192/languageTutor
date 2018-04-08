@@ -122,85 +122,78 @@ class Signup extends React.Component {
       stagingNumberArray.push(i);
     }
 
-    return (this.props.pathname === '/teacherSignup'
-      ? (
-        <h1>Teacher specific signup form goes here!</h1>
-      )
-      : (
-        <div className="Modal">
-          <h2>Create Your Account</h2>
-          <p>Sign up today to start learning your native from one of our trained Mentors.</p>
-          <form onSubmit={this.onSubmit} className="ModalForm">
-            <label className="form-name">Name:</label><input
-              onChange={this.handleChange('name')}
-              id="name"
-              type="text"
-              placeholder="Full Name"
-              value={this.state.name}/><br/>
-            <label className="form-email">Email</label><input
-              onChange={this.handleChange('email')}
-              id="email"
-              type="email"
-              placeholder="Email"/><br/> {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
-            <label className="form-username">Username:</label><input
-              onChange={this.handleChange('username')}
-              id="username"
-              type="text"
-              placeholder="Username"/><br/>
-            <input
-              onChange={this.handleChange('password')}
-              id="password"
-              type="password"
-              placeholder="Password"/><br/>
-            <div className="formOptionRow">
-              {/* <div className="align-row"> */}
-              <label>
-                Native Language
-                <select
-                  value={this.state.nativeLanguage}
-                  onChange={this.handleChange('nativeLanguage')}>
-                  <option value={'English'}>English</option>
-                  <option value={'Igbo'}>Igbo</option>
-                </select>
-              </label>
+    return <div className="Modal">
+      <h2>Create Your Account</h2>
+      <p>Sign up today to start learning your native from one of our trained Mentors.</p>
+      <form onSubmit={this.onSubmit} className="ModalForm">
+        <label className="form-name">Name:</label><input
+          onChange={this.handleChange('name')}
+          id="name"
+          type="text"
+          placeholder="Full Name"
+          value={this.state.name}/><br/>
+        <label className="form-email">Email</label><input
+          onChange={this.handleChange('email')}
+          id="email"
+          type="email"
+          placeholder="Email"/><br/> {/* <input onChange={this.handleChange('age')} id="age" type="age" placeholder="age" /> */}
+        <label className="form-username">Username:</label><input
+          onChange={this.handleChange('username')}
+          id="username"
+          type="text"
+          placeholder="Username"/><br/>
+        <input
+          onChange={this.handleChange('password')}
+          id="password"
+          type="password"
+          placeholder="Password"/><br/>
+        <div className="formOptionRow">
+          {/* <div className="align-row"> */}
+          <label>
+            Native Language
+            <select
+              value={this.state.nativeLanguage}
+              onChange={this.handleChange('nativeLanguage')}>
+              <option value={'English'}>English</option>
+              <option value={'Igbo'}>Igbo</option>
+            </select>
+          </label>
 
-              <label>
-                Age
-                <select value={this.state.age} onChange={this.handleChange('age')}>
-                  {stagingNumberArray.map((ele, index) => {
-                    return <option key={index} value={ele}>{ele}</option>
-                  })}
+          <label>
+            Age
+            <select value={this.state.age} onChange={this.handleChange('age')}>
+              {stagingNumberArray.map((ele, index) => {
+                return <option key={index} value={ele}>{ele}</option>
+              })}
 
-                </select>
-              </label>
-              {/* </div> */}
-              <input
-                onChange={this.handleChange('location')}
-                id="location"
-                type="text"
-                pattern="[0-9]*"
-                placeholder="zipcode"/><br/>
-            </div>
-            <label className="check-teacher">
-              I want to signup as a teacher:
-              <input
-                name="isTeacher"
-                type="checkbox"
-                checked={this.state.isTeacher}
-                onChange={this.handleCheckBoxToggle}/>
-            </label>
-            {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
-          </form>
-          <button className="signupButton">SIGN UP TODAY!
-
-          </button>
-          {this.state.errors
-            ? <h4>Whoops something went wrong</h4>
-            : undefined}
-
+            </select>
+          </label>
+          {/* </div> */}
+          <input
+            onChange={this.handleChange('location')}
+            id="location"
+            type="text"
+            pattern="[0-9]*"
+            placeholder="zipcode"/><br/>
         </div>
+        <label className="check-teacher">
+          I want to signup as a teacher:
+          <input
+            name="isTeacher"
+            type="checkbox"
+            checked={this.state.isTeacher}
+            onChange={this.handleCheckBoxToggle}/>
+        </label>
+        {/* <input onChange={this.handleChange('nativeLanguage')} id="nativeLanguage" type="text" placeholder="nativeLanguage" /> */}
+      </form>
+      <button className="signupButton">SIGN UP TODAY!
 
-      ))
+      </button>
+      {this.state.errors
+        ? <h4>Whoops something went wrong</h4>
+        : undefined}
+
+    </div>
   }
 
 }

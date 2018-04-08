@@ -53,18 +53,27 @@
   margin-top: 50px;
 }
 
-.online-courses {
+/* .online-courses {
   margin-right: 70px;
 }
 
 .live-mentorships {
   margin-left: 70px;
-}
+} */
 
 .info h2,
 .platform h2,
 .our-mentors h2 {
   font-size: 2em;
+}
+
+.info h3,
+.our-mentors h2 {
+  font-size: 3em;
+  font-weight: 700;
+  color: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .info h4 {
@@ -80,7 +89,7 @@
 
 .online img,
 .platform img {
-  width: 300px;
+  width: 20em;
 }
 
 .online li,
@@ -108,11 +117,11 @@
 }
 
 .our-mentors {
-  background-color: #a65a18
+  padding: 12em 0em 2em 0em;
 }
 
-.our-mentors h2 {
-  color: white;
+.mentorContainer img {
+  border-radius: 100%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -141,5 +150,20 @@
     border-radius: .3em;
     padding: 1em;
     max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .platform,
+  .online {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2em;
+  }
+  .platform img,
+  .online img {
+    margin: auto;
   }
 }
