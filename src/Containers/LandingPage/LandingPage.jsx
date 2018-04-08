@@ -30,21 +30,12 @@ export default class LandingPage extends React.Component {
               <h1>Learn Your Native Tongue From A Mentor</h1>
               {/* <NavLink to="Signup"><button>Sign Up Today!</button></NavLink> */}
             </div>
-            <div className="signup-modal">
-              {this.state.showHomePageSignup
-                ? <Signup/>
-                : <Login/>}
-              <button onClick={this.handleLoginSignup}>
-                {this.state.showHomePageSignup
-                  ? 'Login Instead'
-                  : 'Actually I want to signup'}
-              </button>
-            </div>
+            <div className="signup-modal"><Signup/></div>
           </div>
         </div>
 
         <div className="info">
-          <h2>Learn The Igbo Language</h2>
+          <h3>LEARN THE IGBO LANGUAGE</h3>
           <div className="online">
             <div className="online-courses">
               <h4>Online Courses</h4>
@@ -58,7 +49,7 @@ export default class LandingPage extends React.Component {
               </ul>
             </div>
 
-            <img src={MentorshipsPreview} alt="Live Mentorships"/>
+            <img src={CoursePreview} alt="Live Mentorships"/>
 
           </div>
 
@@ -75,27 +66,28 @@ export default class LandingPage extends React.Component {
               </ul>
             </div>
 
-            <img src={CoursePreview} alt="Online Course"/>
+            <img src={MentorshipsPreview} alt="Online Course"/>
 
+          </div>
+          <div className="our-mentors">
+            <h2>Meet Our Mentors</h2>
+            <div className='mentorContainer'>
+              <div>
+
+                <img src="http://placehold.it/300x300" alt="mentor"/>
+                <div className="mentor-info">
+                  <h5>Mentor Name</h5>
+                  <p>
+                    A local native who loves to teach. She’s got a passion for learning and showing
+                    that by helping others.
+                  </p>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="our-mentors">
-          <h2>Meet Our Mentors</h2>
-
-          <ul>
-            <li>
-              <img src="http://placehold.it/300x300" alt="mentor"/>
-              <div className="mentor-info">
-                <h5>Mentor Name</h5>
-                <p>
-                  A local native who loves to teach. She’s got a passion for learning and showing
-                  that by helping others.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
       </div>
     );
   }
