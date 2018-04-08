@@ -1,14 +1,18 @@
+Copyright 2018, Gavin Thomas, All rights reserved.
+
 #### Language tutor bridges the gap for those needing to learn unusual languages!
+
 #### Landing Page
+
 ![alt text](https://i.imgur.com/eglRDZU.jpg)
 
 #### User Panel dashboard
+
 ![alt text](https://i.imgur.com/AoidOIY.png)
 
 #### Teacher Video Chat
+
 ![alt text](https://i.imgur.com/CZr319q.png)
-
-
 
 * To get up and running...
 
@@ -42,4 +46,3 @@
 * `cd server`
 * `touch .env`
   REACT_APP_API_KEY=XXXXXX
-
