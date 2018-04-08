@@ -123,8 +123,8 @@ class Signup extends React.Component {
     }
 
     return <div className="Modal">
-      <h2>Create Your Account</h2>
-      <p>Sign up today to start learning your native from one of our trained Mentors.</p>
+      <h2>{this.props.title}</h2>
+      <p>{this.props.slogan}</p>
       <form onSubmit={this.onSubmit} className="ModalForm">
         <label className="form-name">Name:</label><input
           onChange={this.handleChange('name')}

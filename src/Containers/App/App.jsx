@@ -30,7 +30,12 @@ firebase.initializeApp(config);
 
 const PageNotFound = () => (
   <div className="container">
-    <h1 className="glitch" data-text="Page Not Found">
+    <h1
+      style={{
+      color: 'red',
+      fontSize: '5em'
+    }}
+      data-text="Page Not Found"className="glitch" >
       Page Not Found
     </h1>
   </div>
@@ -70,31 +75,31 @@ class App extends React.Component {
             <Navbar/>
             <div className="main-app">
 
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={() => this.props.user === null
-                ? (<LandingPage/>)
-                : (<Redirect to="/dashboard"/>)}/>{" "}
-              <Route
-                exact
-                path="/dashboard"
-                component={() => this.props.user !== null
-                ? (<Dashboard/>)
-                : (<Redirect to="/Login"/>)}/>
-              <Route exact path="/videochat" component={VideoChat}/>
-              <Route exact path="/teacherSignup" component={AuthContainer}/>
-              <Route exact path="/Signup" component={AuthContainer}/>
-              <Route exact path="/Login" component={AuthContainer}/>
-              <Route exact path="/About" component={About}/>
-              <Route exact path="/Contact" component={Contact}/>
-              <Route component={PageNotFound}/>
-            </Switch>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={() => this.props.user === null
+                  ? (<LandingPage/>)
+                  : (<Redirect to="/dashboard"/>)}/>{" "}
+                <Route
+                  exact
+                  path="/dashboard"
+                  component={() => this.props.user !== null
+                  ? (<Dashboard/>)
+                  : (<Redirect to="/Login"/>)}/>
+                <Route exact path="/videochat" component={VideoChat}/>
+                <Route exact path="/teacherSignup" component={AuthContainer}/>
+                <Route exact path="/Signup" component={AuthContainer}/>
+                <Route exact path="/Login" component={AuthContainer}/>
+                <Route exact path="/About" component={About}/>
+                <Route exact path="/Contact" component={Contact}/>
+                <Route component={PageNotFound}/>
+              </Switch>
+            </div>
             <Footer/>
           </div>
-          </div>
-          
+
         </Router>
       </div>
     );

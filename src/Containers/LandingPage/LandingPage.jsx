@@ -5,7 +5,50 @@ import './LandingPage.css';
 
 import CoursePreview from '../../Assets/Images/Learn-Preview-Right.png';
 import MentorshipsPreview from '../../Assets/Images/Learn-Preview-Left.png';
+import Mentor1 from '../../Assets/Images/mentor-1.jpg'
+import Mentor2 from '../../Assets/Images/mentor-2.jpg'
+import Mentor3 from '../../Assets/Images/mentor-3.jpg'
+import Mentor4 from '../../Assets/Images/mentor-4.jpg'
+import Mentor5 from '../../Assets/Images/mentor-5.jpg'
+import Mentor6 from '../../Assets/Images/mentor-6.jpg'
 
+const mentors = [
+  {
+    name: 'Gavin',
+    desc: 'He loves to code',
+    img: Mentor1
+
+  }, {
+    name: 'Adrian',
+    desc: 'He loves Design',
+    img: Mentor2
+
+  }, {
+    name: 'Keith',
+    desc: 'He loves to hangout with his girlfriend',
+    img: Mentor3
+
+  }
+]
+
+const mentors2 = [
+  {
+    name: 'Katy',
+    desc: 'Livelong learner and teacher',
+    img: Mentor4
+
+  }, {
+    name: 'Sam',
+    desc: 'Lives in australia',
+    img: Mentor5
+
+  }, {
+    name: 'Noah',
+    desc: 'Knows 10 different languages',
+    img: Mentor6
+
+  }
+]
 export default class LandingPage extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +73,9 @@ export default class LandingPage extends React.Component {
               <h1>Learn Your Native Tongue From A Mentor</h1>
               {/* <NavLink to="Signup"><button>Sign Up Today!</button></NavLink> */}
             </div>
-            <div className="signup-modal"><Signup/></div>
+            <div className="signup-modal"><Signup
+              title={'CREATE YOUR ACCOUNT'}
+              slogan={'Sign up today to start learning your native from one of our trained Mentors.'}/></div>
           </div>
         </div>
 
@@ -71,24 +116,44 @@ export default class LandingPage extends React.Component {
           </div>
           <div className="our-mentors">
             <h2>Meet Our Mentors</h2>
-            <div className='mentorContainer'>
-              <div>
+            <div className='mentorContainer1'>
 
-                <img src="http://placehold.it/300x300" alt="mentor"/>
-                <div className="mentor-info">
-                  <h5>Mentor Name</h5>
-                  <p>
-                    A local native who loves to teach. She’s got a passion for learning and showing
-                    that by helping others.
-                  </p>
+              {mentors.map((ele, index) => {
+                return <div>
+                  <img src={ele.img} alt="mentor"/>
+                  <div className="mentor-info">
+                    <h5>{ele.name}</h5>
+                    <p>
+                      {ele.desc}
+                    </p>
+                  </div>
                 </div>
+              })}
 
-              </div>
+            </div>
+            <div className='mentorContainer2'>
+
+              {mentors2.map((ele, index) => {
+                return <div>
+                  <img src={ele.img} alt="mentor"/>
+                  <div className="mentor-info">
+                    <h5>{ele.name}</h5>
+                    <p>
+                      {ele.desc}
+                    </p>
+                  </div>
+                </div>
+              })}
+
             </div>
           </div>
+          <div style={{
+            margin: 'auto'
+          }} className="signup-modal"><Signup
+            title={'BECOME A STUDENT'}
+            slogan={'Sign up today to start learning your native tongue through online courses and guided mentor ship!'}/></div>
         </div>
-
       </div>
-    );
+    )
   }
 }
