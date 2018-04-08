@@ -187,14 +187,18 @@ class Signup extends React.Component {
 
         </button>
       </form>
-
-      ?
-      <h4>Whoops something went wrong</h4>
-      : undefined}
+      {this.state.errors
+        ? <h4>Whoops something went wrong</h4>
+        : undefined}
 
     </div>
-    } } const mapStateToProps = state => ({user : state.user}); const mapDispatchToProps = dispatch => ({handleStudentSignup : (student, history) => dispatch(handleStudentSignup(student, history))
+  }
+}
+const mapStateToProps = state => ({user: state.user});
+const mapDispatchToProps = dispatch => ({
+  handleStudentSignup: (student, history) => dispatch(handleStudentSignup(student, history))
 });
-      export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
-      Signup.propTypes = {pathname : PropTypes.string.isRequired
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
+Signup.propTypes = {
+  pathname: PropTypes.string.isRequired
 }
