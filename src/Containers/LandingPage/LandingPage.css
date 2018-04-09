@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background: url('../../Assets/Images/hero.jpg');
+  background: url("../../Assets/Images/hero.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,7 +20,7 @@
 
 .signup-modal {
   background-color: white;
-  border-radius: .3em;
+  border-radius: 0.3em;
   padding: 1em 2em 1em 2em;
   max-width: 30%;
 }
@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-evenly
+  justify-content: space-evenly;
 }
 
 /* ====================
@@ -92,12 +92,20 @@
 
 .online img,
 .platform img {
-  width: 25em;
+  max-width: 25em;
 }
+
+/* .online img {
+  max-width: 25em;
+  max-height: 20em;
+  -ms-transform: skewX(20deg);
+  -webkit-transform: skewX(20deg);
+  transform: skewX(20deg);
+} */
 
 .online li,
 .platform li {
-  font-family: 'Poppins-Thin', sans-serif;
+  font-family: "Poppins-Thin", sans-serif;
   font-size: 1em;
   color: white;
   margin-bottom: 10px;
@@ -127,7 +135,7 @@
 }
 
 .our-mentors h5 {
-  font-family: 'Poppins-Bold', sans-serif;
+  font-family: "Poppins-Bold", sans-serif;
   font-size: 1.3em;
   color: #ffb800;
   text-transform: uppercase;
@@ -135,7 +143,7 @@
 }
 
 .our-mentors p {
-  color: #f2f2f2
+  color: #f2f2f2;
 }
 
 .mentorContainer1 {
@@ -166,7 +174,7 @@
 
 .mentorContainer1 div,
 .mentorContainer2 div {
-  padding: 0px 20px
+  padding: 0px 20px;
 }
 
 /*
@@ -205,7 +213,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background: url('../../Assets/Images/hero.jpg');
+    background: url("../../Assets/Images/hero.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -215,14 +223,14 @@
   .firstSectionContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-around
+    justify-content: space-around;
   }
   .hero h1 {
     text-align: left;
     max-width: 100%;
   }
   .signup-modal {
-    border-radius: .3em;
+    border-radius: 0.3em;
     padding: 1em;
     max-width: 80%;
   }
