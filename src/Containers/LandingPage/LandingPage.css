@@ -47,6 +47,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   padding: 2em;
+  /*text-align: left;*/
 }
 
 .platform {
@@ -54,13 +55,18 @@
   margin-top: 50px;
 }
 
-/* .online-courses {
-  margin-right: 70px;
+ .online-courses {
+  /*margin-right: 70px;*/
 }
 
-.live-mentorships {
-  margin-left: 70px;
-} */
+.live-mentorships,
+.online-courses {
+  /*margin-left: 70px;*/
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;*/
+  justify-content: center;
+}
 
 .info h2,
 .platform h2,
@@ -80,19 +86,28 @@
 .info h4 {
   color: #f18909;
   text-transform: uppercase;
-  margin: 30px 0px;
+  margin-bottom: 30px;
   font-size: 2em;
   margin-left: -1em;
 }
 
-.online,
-.platform {
-  text-align: left;
-}
-
 .online img,
 .platform img {
-  max-width: 25em;
+  max-width: 30em;
+}
+
+.platform img {
+  transform: rotateY(1.5deg);
+
+}
+.online img {
+  transform: rotateY(-1.5deg);
+}
+
+.perspective-container {
+  -webkit-perspective: 100px;
+  -moz-perspective: 100px;
+  perspective: 100px;
 }
 
 /* .online img {

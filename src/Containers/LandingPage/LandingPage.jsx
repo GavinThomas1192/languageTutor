@@ -83,6 +83,7 @@ export default class LandingPage extends React.Component {
         </div>
 
         <div className="info">
+
           <h3>LEARN THE IGBO LANGUAGE</h3>
           <div className="online">
             <div className="online-courses">
@@ -99,8 +100,9 @@ export default class LandingPage extends React.Component {
                 </li>
               </ul>
             </div>
-
-            <img src={CoursePreview} alt="Live Mentorships" />
+            <div className="perspective-container">
+              <img src={RealCoursePreview} alt="Live Mentorships" />
+            </div>
           </div>
 
           <div className="platform">
@@ -118,8 +120,9 @@ export default class LandingPage extends React.Component {
                 </li>
               </ul>
             </div>
-
-            <img src={MentorshipsPreview} alt="Online Course" />
+            <div className="perspective-container">
+              <img src={RealVideoPreview} alt="Online Course" />
+            </div>
           </div>
           <div className="our-mentors">
             <h2>Meet Our Mentors</h2>
