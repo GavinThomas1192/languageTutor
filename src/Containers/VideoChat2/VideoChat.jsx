@@ -38,15 +38,18 @@ class VideoChat extends React.Component {
 
   componentDidMount() {
     // Listening when an online user account changes at all
+    // This is begining of recursion, we are listening because we know later, at some point we will be pushing requesting user informtion into our account at the DB. And when we get that requesing using information we want to initiate the video chat by setting the state with the token and sessonid. So even though this is the first thing in this file, its the last piece to fire off the video chat.
     firebase
       .database()
       .ref('onlineUsers')
       .on('child_changed', (snapshot) => {
         const updatedUser = snapshot.val();
         console.log('DB UPDATED!', updatedUser);
+        // If our account updates we know someone pushed new token and session data onto our DB object (down below we did this)
         if (updatedUser.uid === this.props.user.account.uid) {
           firebase
             .database()
+            // We need the requesting user info to be able to point back to them completing our recursion circle.
             .ref(`users/${updatedUser.chatRoomKeys.requestingUser}`)
             .once('value')
             .then((snapShot2) => {
@@ -61,7 +64,7 @@ class VideoChat extends React.Component {
             });
         }
       });
-    // Listening for when a new online user joins
+    // Listening for when a new online user joins so we can update the 'online user list' for real time data
     firebase
       .database()
       .ref('onlineUsers')
@@ -74,7 +77,7 @@ class VideoChat extends React.Component {
           })
           : undefined;
       });
-    // Listening for online user leaving
+    // Listening for online user leaving so we can update the 'online user list' for real time data
     firebase
       .database()
       .ref('onlineUsers')
@@ -85,7 +88,7 @@ class VideoChat extends React.Component {
           onlineUsers: this.state.onlineUsers.filter(ele => ele.uid !== childRemoved.uid,),
         });
       });
-    // if user closes tab remove from online users
+    // if user closes tab remove from online users so we can update the 'online user list' for real time data
     window.addEventListener('beforeunload', (ev) => {
       return firebase
         .database()
@@ -104,6 +107,7 @@ class VideoChat extends React.Component {
     console.log(this.state);
   }
   componentWillUnmount() {
+    // remove token info to disconnect THIS IS HACKY AND I DONT THINK A GOOD WAY
     this.setState({ token: '', sessionId: '' });
     // this.sessionHelper.disconnect();
     firebase
@@ -120,7 +124,10 @@ class VideoChat extends React.Component {
   }
 
   handleTeacherHelpRequest = (ele) => {
+    // when a user clicks an online teacher to connect with...
     this.setState({ requestingTeacher: ele, loading: true });
+
+    // Grab the userIDToken from firebase WHICH IS DIFFERENT FROM THE UID. This userIdToken is how firebase can auto log you in. We need this token to send off to the backend, to validate the request on our express server. We don't want anyone in the world pinging our backend and racking up data. So if this token is invalid it will return a not authorized from our backend.
     firebase
       .auth()
       .currentUser.getIdToken()
@@ -139,6 +146,7 @@ class VideoChat extends React.Component {
           .then((data) => {
             // console.log("GOT DATA FROM OUR BACKEND", data, data.data.id,
             // data.data.token);
+            // Set our chatroom token and keys to OUR OWN DATABASE OBJECT MODEL
             firebase
               .database()
               .ref(`users/${this.props.user.account.uid}/chatRoomKeys`)
@@ -148,6 +156,7 @@ class VideoChat extends React.Component {
                 token: data.data.token,
                 requestingUser: this.state.requestingTeacher,
               })
+              // Set the chatroom token and keys to THE REQUESTING USER (we just clicked them from the list)
               .then(() => {
                 firebase
                   .database()
@@ -160,6 +169,7 @@ class VideoChat extends React.Component {
                     token: data.data.token,
                     requestingUser: this.props.user.account.uid,
                   })
+                  // Then store the token and session in state for good measure!
                   .then(() => {
                     this.setState({
                       sessionId: data.data.id,
@@ -172,6 +182,7 @@ class VideoChat extends React.Component {
       });
   };
 
+  // This is where the recursion hits heavy
   handlePendingTeacherVideoRequest = () => {
     this.setState({ allowPendingVideoRequest: true }, () =>
       this.handleTeacherHelpRequest(this.state.requestingTeacher),);
