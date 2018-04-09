@@ -159,11 +159,6 @@ a:active {
 	color: #F18909;
 }
 
-nav {
-	position: absolute;
-	top: 0;
-}
-
 input {
 	outline: none;
 	border: none;
