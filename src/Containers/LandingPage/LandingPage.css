@@ -47,6 +47,8 @@
   flex-direction: row;
   justify-content: space-evenly;
   padding: 2em;
+  text-align: left;
+
 }
 
 .platform {
@@ -87,12 +89,22 @@
 
 .online,
 .platform {
-  text-align: left;
 }
 
 .online img,
 .platform img {
-  max-width: 25em;
+  max-width: 30em;
+  transform: rotateY(1.5deg);
+}
+
+.online img {
+  transform: rotateY(-1.5deg);
+}
+
+.perspective-container {
+  -webkit-perspective: 100px;
+  -moz-perspective: 100px;
+  perspective: 100px;
 }
 
 /* .online img {
