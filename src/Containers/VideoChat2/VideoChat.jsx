@@ -184,14 +184,6 @@ class VideoChat extends React.Component {
           {this.state.onlineUsers.length > 0 ? (
             <div className="onlineTeachersContainer">
               <h2>Teachers online now!</h2>
-              {this.state.videoChatPendingRequest ? (
-                <button onClick={this.handlePendingTeacherVideoRequest}>
-                  Accept
-                </button>
-              ) : (
-                undefined
-              )}
-              <p>Click on their name to connect!</p>
               {this.state.onlineUsers.map((ele, index) => (
                 <button
                   className="btn"
@@ -204,6 +196,16 @@ class VideoChat extends React.Component {
             </div>
           ) : (
             <h2>No Active Teachers</h2>
+          )}
+          {this.state.videoChatPendingRequest ? (
+            <div>
+              <p>{this.state.requestingTeacher.name} wants to chat!</p>
+              <button onClick={this.handlePendingTeacherVideoRequest}>
+                Accept
+              </button>
+            </div>
+          ) : (
+            undefined
           )}
           {this.state.loading ? <Spinner /> : undefined}
           {/* {this.state.requestingTeacher !== '' &&
