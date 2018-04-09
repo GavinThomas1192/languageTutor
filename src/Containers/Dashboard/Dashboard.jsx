@@ -125,7 +125,7 @@ class Dashboard extends React.Component {
                       <li
                         key={index}
                         onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
-                        {index + 1}: {item.word}
+                        <strong className="strong">{index + 1}.</strong> {item.word}
                       </li>
                     ))}
                   </ol>
@@ -139,7 +139,7 @@ class Dashboard extends React.Component {
                       <li
                         key={index}
                         onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
-                        {index + 1}: {item.title}
+                        <strong className="strong">{index + 1}.</strong> {item.title}
                       </li>
                     ))}
                   </ol>
@@ -153,7 +153,7 @@ class Dashboard extends React.Component {
                       <li
                         key={index}
                         onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
-                        {index + 1}: {item.stat}
+                        <strong className="strong">{index + 1}.</strong> {item.stat}
                       </li>
                     ))}
                   </ol>
