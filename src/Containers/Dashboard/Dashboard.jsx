@@ -67,6 +67,15 @@ class Dashboard extends React.Component {
       }, {
         title: 'course 7',
         video: 'Animals'
+      }, {
+        title: 'course 8',
+        video: 'Sports'
+      }, {
+        title: 'course 9',
+        video: 'Food'
+      }, {
+        title: 'course 10',
+        video: 'Animals'
       }
     ];
     const overview = [
@@ -150,9 +159,12 @@ class Dashboard extends React.Component {
                   </ol>
                 )
                 : (undefined)}
-              <div className='needHelpContainer'>
+
+            </div>
+            <div className='needHelpContainer'>
+              <img src={helpMentor} alt="online mentor"/>
+              <div>
                 <h2>NEED HELP?</h2>
-                <img src={helpMentor} alt="online mentor"/>
                 <button onClick={this.handleShowVideoChat}>
                   LILLY CAN HELP YOU!
                 </button>
@@ -166,7 +178,7 @@ class Dashboard extends React.Component {
                 .entries(this.state.selectedItem)
                 .map(([key, value]) => <p>`${key}
                   - ${value}`</p>,)
-              : undefined}
+              : <p>{'Click on the user dashboard to get started!'}</p>}
             {/* // overview.map((ele, index) => Object.entries(ele).map(([key, value]) => (
               //   <p key={index}>
               //     `${key}
