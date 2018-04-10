@@ -11,6 +11,7 @@ nav {
   align-items: center;
   height: 4em;
   width: 100vw;
+  z-index: 10;
 }
 
 nav .btn {
@@ -62,17 +63,37 @@ nav .btn {
   font-weight: 900;
 }
 
-.main-nav .links {
+/*.main-nav .links {
   display: none;
 }
 
 .links-is-open {
   background-color: #A65A18;
   position: absolute;
-  top: 66px;
+  top: 64px;
   left: 0;
   width: 100vw;
+}*/
+
+
+.main-nav .links {
+  background-color: #A65A18;
+  position: absolute;
+  top: -200px;
+  left: 0;
+  width: 100vw;
+  transition: all 0.3s linear;
 }
+
+.links-is-open {
+  background-color: #A65A18;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100vw;
+  transition: all 0.3s linear;
+}
+
 
 .auth-dashboard {
   width: 100vw;
