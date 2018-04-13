@@ -165,7 +165,10 @@ nav .btn {
   transform: translateY(-15px) rotate(-44deg);
 }
 
+
+/*DESKTOP SIZE*/
 @media only screen and (min-width: 600px) {
+
   .hide-desktop {
     display: none;
   }
@@ -175,14 +178,16 @@ nav .btn {
   }
 
   .main-nav {
-    /*display: flex;*/
     padding: 0 20px;
   }
 
   .main-nav .links {
+    background: transparent;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: static;
+    width: 100%;
   }
 
   nav .btn {
