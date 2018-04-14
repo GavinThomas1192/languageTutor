@@ -26,7 +26,7 @@ class VideoChat extends React.Component {
       onlineUsers: [],
       sessionId: '',
       token: '',
-      audio: false,
+      audio: true,
       video: false,
       connected: true,
       videoChatPendingRequest: false,
@@ -71,7 +71,7 @@ class VideoChat extends React.Component {
       .on('child_added', (snapshot) => {
         const childAdded = snapshot.val();
         console.log('DB child ADDED!', childAdded);
-        childAdded.uid !== this.props.user.account.uid && childAdded.isTeacher
+        childAdded.uid !== this.props.user.account.uid
           ? this.setState({
             onlineUsers: [...this.state.onlineUsers, childAdded],
           })
@@ -89,8 +89,8 @@ class VideoChat extends React.Component {
         });
       });
     // if user closes tab remove from online users so we can update the 'online user list' for real time data
-    window.addEventListener('beforeunload', (ev) => {
-      return firebase
+    window.addEventListener('beforeunload', () => {
+      firebase
         .database()
         .ref(`onlineUsers/${this.props.user.account.uid}`)
         .remove();
@@ -99,29 +99,32 @@ class VideoChat extends React.Component {
         .ref(`users/${this.props.user.account.uid}`)
         .onDisconnect(),
       () => {
-        alert('USER DISCONNECTED!');
+        firebase
+          .database()
+          .ref(`onlineUsers/${this.props.user.account.uid}`)
+          .remove();
       };
     });
   }
   componentDidUpdate() {
     console.log(this.state);
   }
-  componentWillUnmount() {
-    // remove token info to disconnect THIS IS HACKY AND I DONT THINK A GOOD WAY
-    this.setState({ token: '', sessionId: '' });
-    // this.sessionHelper.disconnect();
-    firebase
-      .database()
-      .ref(`onlineUsers/${this.props.user.account.uid}`)
-      .remove();
-    firebase
-      .database()
-      .ref(`users/${this.props.user.account.uid}`)
-      .onDisconnect(),
-    () => {
-      alert('USER DISCONNECTED!');
-    };
-  }
+  // componentWillUnmount() {
+  //   // remove token info to disconnect THIS IS HACKY AND I DONT THINK A GOOD WAY
+  //   this.setState({ token: '', sessionId: '' });
+  //   // this.sessionHelper.disconnect();
+  //   firebase
+  //     .database()
+  //     .ref(`onlineUsers/${this.props.user.account.uid}`)
+  //     .remove();
+  //   firebase
+  //     .database()
+  //     .ref(`users/${this.props.user.account.uid}`)
+  //     .onDisconnect(),
+  //   () => {
+  //     alert('USER DISCONNECTED!');
+  //   };
+  // }
 
   handleTeacherHelpRequest = (ele) => {
     // when a user clicks an online teacher to connect with...
