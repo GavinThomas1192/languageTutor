@@ -4,6 +4,8 @@ import {NavLink} from 'react-router-dom';
 import VideoChat from '../../Containers/VideoChat2/VideoChat';
 import './Dashboard.css';
 
+import Spinner from '../../Components/Spinner/Spinner'
+
 import helpMentor from '../../Assets/Images/mentor-1.jpg'
 class Dashboard extends React.Component {
   constructor(props) {
@@ -87,99 +89,102 @@ class Dashboard extends React.Component {
         stat: 'Favorite Teacher: Adrian'
       }
     ];
-    return (
-      <div>
+    return (this.props.user !== null
+      ? <div>
 
-        <div className="completeContainer">
-          <div className="sidebarContainer">
+          <div className="completeContainer">
+            <div className="sidebarContainer">
 
-            <div className="tabButtonContainer">
-              <button
-                className={this.state.showOverview
-                ? 'selectedButton'
-                : 'notSelectedButton'}
-                onClick={() => this.setState({showOverview: true, showCourses: false, showFlashcards: false, showVideoChat: false})}>
-                Overview
-              </button>
-              <button
-                className={this.state.showCourses
-                ? 'selectedButton'
-                : 'notSelectedButton'}
-                onClick={() => this.setState({showOverview: false, showCourses: true, showFlashcards: false, showVideoChat: false})}>
-                Courses
-              </button>
-              <button
-                className={this.state.showFlashcards
-                ? 'selectedButton'
-                : 'notSelectedButton'}
-                onClick={() => this.setState({showOverview: false, showCourses: false, showFlashcards: true, showVideoChat: false})}>
-                Flashcards
-              </button>
-            </div>
-
-            <div className="tabListContainer">
-              {this.state.showFlashcards
-                ? (
-                  <ol>
-                    {flashcards.map((item, index) => (
-                      <li
-                        key={index}
-                        onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
-                        <strong className="strong">{index + 1}.</strong> {item.word}
-                      </li>
-                    ))}
-                  </ol>
-                )
-                : (undefined)}
-
-              {this.state.showCourses
-                ? (
-                  <ol>
-                    {courses.map((item, index) => (
-                      <li
-                        key={index}
-                        onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
-                        <strong className="strong">{index + 1}.</strong> {item.title}
-                      </li>
-                    ))}
-                  </ol>
-                )
-                : (undefined)}
-
-              {this.state.showOverview
-                ? (
-                  <ol>
-                    {overview.map((item, index) => (
-                      <li
-                        key={index}
-                        onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
-                        <strong className="strong">{index + 1}.</strong> {item.stat}
-                      </li>
-                    ))}
-                  </ol>
-                )
-                : (undefined)}
-
-            </div>
-            <div className='needHelpContainer'>
-              <img src={helpMentor} alt="online mentor"/>
-              <div>
-                <h2>NEED HELP?</h2>
-                <button onClick={this.handleShowVideoChat}>
-                  LILLY CAN HELP YOU!
+              <div className="tabButtonContainer">
+                <button
+                  className={this.state.showOverview
+                  ? 'selectedButton'
+                  : 'notSelectedButton'}
+                  onClick={() => this.setState({showOverview: true, showCourses: false, showFlashcards: false, showVideoChat: false})}>
+                  Overview
+                </button>
+                <button
+                  className={this.state.showCourses
+                  ? 'selectedButton'
+                  : 'notSelectedButton'}
+                  onClick={() => this.setState({showOverview: false, showCourses: true, showFlashcards: false, showVideoChat: false})}>
+                  Courses
+                </button>
+                <button
+                  className={this.state.showFlashcards
+                  ? 'selectedButton'
+                  : 'notSelectedButton'}
+                  onClick={() => this.setState({showOverview: false, showCourses: false, showFlashcards: true, showVideoChat: false})}>
+                  Flashcards
                 </button>
               </div>
-            </div>
-          </div>
-          <div className="selectedContent">
 
-            {this.state.selectedItem !== ''
-              ? Object
-                .entries(this.state.selectedItem)
-                .map(([key, value]) => <p>`${key}
-                  - ${value}`</p>,)
-              : <p>{'Click on the user dashboard to get started!'}</p>}
-            {/* // overview.map((ele, index) => Object.entries(ele).map(([key, value]) => (
+              <div className="tabListContainer">
+                {this.state.showFlashcards
+                  ? (
+                    <ol>
+                      {flashcards.map((item, index) => (
+                        <li
+                          key={index}
+                          onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
+                          <strong className="strong">{index + 1}.</strong>
+                          {item.word}
+                        </li>
+                      ))}
+                    </ol>
+                  )
+                  : (undefined)}
+
+                {this.state.showCourses
+                  ? (
+                    <ol>
+                      {courses.map((item, index) => (
+                        <li
+                          key={index}
+                          onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
+                          <strong className="strong">{index + 1}.</strong>
+                          {item.title}
+                        </li>
+                      ))}
+                    </ol>
+                  )
+                  : (undefined)}
+
+                {this.state.showOverview
+                  ? (
+                    <ol>
+                      {overview.map((item, index) => (
+                        <li
+                          key={index}
+                          onClick={() => this.setState({selectedItem: item, showVideoChat: false})}>
+                          <strong className="strong">{index + 1}.</strong>
+                          {item.stat}
+                        </li>
+                      ))}
+                    </ol>
+                  )
+                  : (undefined)}
+
+              </div>
+              <div className='needHelpContainer'>
+                <img src={helpMentor} alt="online mentor"/>
+                <div>
+                  <h2>NEED HELP?</h2>
+                  <button onClick={this.handleShowVideoChat}>
+                    LILLY CAN HELP YOU!
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="selectedContent">
+
+              {this.state.selectedItem !== ''
+                ? Object
+                  .entries(this.state.selectedItem)
+                  .map(([key, value]) => <p>`${key}
+                    - ${value}`</p>,)
+                : <p>{'Click on the user dashboard to get started!'}</p>}
+              {/* // overview.map((ele, index) => Object.entries(ele).map(([key, value]) => (
               //   <p key={index}>
               //     `${key}
               //     - ${value}`
@@ -187,13 +192,13 @@ class Dashboard extends React.Component {
               // ))
               // ) */}
 
-            {this.state.showVideoChat
-              ? <VideoChat/>
-              : undefined}
+              {this.state.showVideoChat
+                ? <VideoChat/>
+                : undefined}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      : <Spinner/>);
   }
 }
 const mapStateToProps = state => ({user: state.user});

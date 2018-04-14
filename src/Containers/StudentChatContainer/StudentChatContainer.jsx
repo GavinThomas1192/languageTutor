@@ -1,6 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import VideoChat from "../../Containers/VideoChat2/VideoChat";
+import TextChat from '../../Components/TextChat/TextChat'
 
 import "./StudentChatContainer.css";
 
@@ -13,16 +14,15 @@ class StudentChatContainer extends React.Component {
   render() {
     return (
       <div className="studentChatContainer">
-        <VideoChat />
+        <VideoChat/>
+        <TextChat/>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = state => ({user: state.user});
 
 const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  StudentChatContainer
-);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentChatContainer);
