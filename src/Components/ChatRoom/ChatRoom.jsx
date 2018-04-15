@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import './ChatRoom.css';
 
+import ChatRoomMessage from '../ChatRoomMessage/ChatRoomMessage';
+
 class ChatRoom extends React.Component{
 
   constructor(){
@@ -12,6 +14,16 @@ class ChatRoom extends React.Component{
       chatroomMessages: [],
       userMessage: ''
     }
+  }
+
+  componentDidMount(){
+    this.setMessages();
+  }
+
+  setMessages(){
+    firebase.database().ref('chatroom').once('value').then((snapshot) => {
+      this.setState({chatroomMessages: snapshot.val()})
+    })
   }
 
   handleInputChange = (e) => {
@@ -37,13 +49,20 @@ class ChatRoom extends React.Component{
 
     firebase.database().ref().update(updates);
     this.setState({userMessage: ''})
+    this.setMessages();
   }
 
+
+
   render(){
-    // console.log(this.props.user, 'propsuser')
+    console.log(this.state.chatroomMessages);
     return (
       <div className="chatroom-container">
-        <div className="chatroom-messages"></div>
+        <ul className="chatroom-messages">
+          {Object.keys(this.state.chatroomMessages).map(messageId => {
+            return <ChatRoomMessage key={messageId} message={this.state.chatroomMessages[messageId]}/>
+          })}
+        </ul>
         <form action="" className="chatroom-form" onSubmit={this.handleInputSubmit}>
           <input type="text" value={this.state.userMessage} onChange={this.handleInputChange}/>
           <button>Submit</button>
