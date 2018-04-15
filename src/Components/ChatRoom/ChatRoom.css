@@ -1,0 +1,32 @@
+.chatroom-container {
+  width: 600px;
+  height: 600px;
+  background: pink;
+  /*display: flex;
+  flex-direction: column;*/
+}
+
+.chatroom-messages {
+  width: 500px;
+  height: 500px;
+  background: teal;
+}
+
+.chatroom-form {
+  display: flex;
+  /*flex-direction: column;*/
+  width: 500px;
+  /*height: 1000px;*/
+  background: red;
+}
+
+.chatroom-form input {
+  width: 100%;
+  font-size: 18px;
+  padding: 0 8px;
+}
+
+.chatroom-form button {
+  padding: 4px 16px;
+  /*background: yellow;*/
+}

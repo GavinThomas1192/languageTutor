@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import {connect} from 'react-redux'
 
 import Spinner from '../../Components/Spinner/Spinner'
+import ChatRoom from '../ChatRoom/ChatRoom';
 
 import './TestChat.css'
 class TextChat extends React.Component {
@@ -90,6 +91,7 @@ class TextChat extends React.Component {
     return (
       <div className="TextChatContainer">
         <h3>Online students for CHATTTT</h3>
+        <ChatRoom />
         {this
           .props
           .onlineUsers
