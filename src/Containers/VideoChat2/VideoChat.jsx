@@ -45,27 +45,29 @@ class VideoChat extends React.Component {
     // get that requesing using information we want to initiate the video chat by
     // setting the state with the token and sessonid. So even though this is the
     // first thing in this file, its the last piece to fire off the video chat.
-    firebase
-      .database()
-      .ref('onlineUsers')
-      .on('child_changed', (snapshot) => {
-        const updatedUser = snapshot.val();
-        console.log('DB UPDATED!', updatedUser);
-        // If our account updates we know someone pushed new token and session data onto
-        // our DB object (down below we did this)
-        if (updatedUser.uid === this.props.user.account.uid) {
-          firebase.database()
-          // We need the requesting user info to be able to point back to them completing
-          // our recursion circle.
-            .ref(`users/${updatedUser.chatRoomKeys.requestingUser}`)
-            .once('value')
-            .then((snapShot2) => {
-              const requestingUserProfile = snapShot2.val();
-              console.log(requestingUserProfile);
-              this.setState({sessionId: updatedUser.chatRoomKeys.sessionId, token: updatedUser.chatRoomKeys.token, requestingTeacher: requestingUserProfile.account, videoChatPendingRequest: true});
-            });
-        }
-      });
+    this.state.requestingTeacher !== ''
+      ? firebase
+        .database()
+        .ref('onlineUsers')
+        .on('child_changed', (snapshot) => {
+          const updatedUser = snapshot.val();
+          console.log('DB UPDATED!', updatedUser);
+          // If our account updates we know someone pushed new token and session data onto
+          // our DB object (down below we did this)
+          if (updatedUser.uid === this.props.user.account.uid) {
+            firebase.database()
+            // We need the requesting user info to be able to point back to them completing
+            // our recursion circle.
+              .ref(`users/${updatedUser.chatRoomKeys.requestingUser}`)
+              .once('value')
+              .then((snapShot2) => {
+                const requestingUserProfile = snapShot2.val();
+                console.log(requestingUserProfile);
+                this.setState({sessionId: updatedUser.chatRoomKeys.sessionId, token: updatedUser.chatRoomKeys.token, requestingTeacher: requestingUserProfile.account, videoChatPendingRequest: true});
+              });
+          }
+        })
+      : undefined
     // Listening for when a new online user joins so we can update the 'online user
     // list' for real time data
     firebase
@@ -86,7 +88,7 @@ class VideoChat extends React.Component {
               .setOnlineUsersToStore(this.state.onlineUsers)
           })
           : undefined;
-      });
+      })
     // Listening for online user leaving so we can update the 'online user list' for
     // real time data
     firebase
@@ -106,7 +108,8 @@ class VideoChat extends React.Component {
             .setOnlineUsersToStore(this.state.onlineUsers)
 
         });
-      });
+      })
+
     // if user closes tab remove from online users so we can update the 'online user
     // list' for real time data
     window.addEventListener('beforeunload', () => {
@@ -133,8 +136,8 @@ class VideoChat extends React.Component {
   // AND I DONT THINK A GOOD WAY   this.setState({ token: '', sessionId: '' }); //
   // this.sessionHelper.disconnect();   firebase     .database()
   // .ref(`onlineUsers/${this.props.user.account.uid}`)     .remove();   firebase
-  // .database()     .ref(`users/${this.props.user.account.uid}`) .onDisconnect(),
-  //   () => {     alert('USER DISCONNECTED!');   }; }
+  // .database()     .ref(`users/${this.props.user.account.uid}`)
+  // .onDisconnect(),   () => {     alert('USER DISCONNECTED!');   }; }
 
   handleTeacherHelpRequest = (ele) => {
     // when a user clicks an online teacher to connect with...
