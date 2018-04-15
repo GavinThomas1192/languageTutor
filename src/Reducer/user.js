@@ -1,12 +1,17 @@
-export default (state = null, action) => {
-  const { type, payload } = action;
+export default(state = null, action) => {
+  const {type, payload} = action;
   switch (type) {
+
     case 'USER_SET':
       return payload;
     case 'USER_CREATE':
-      return [payload, ...state];
+      return [
+        payload, ...state
+      ];
     case 'USER_UPDATE':
-      return state.map(item => (item.id === payload.id ? payload : item));
+      return state.map(item => (item.id === payload.id
+        ? payload
+        : item));
     case 'USER_DELETE':
       return state.filter(item => item.id !== payload.id);
     default:
