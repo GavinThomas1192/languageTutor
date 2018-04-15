@@ -9,7 +9,6 @@ class ChatRoom extends React.Component{
 
   constructor(){
     super();
-
     this.state = {
       chatroomMessages: [],
       userMessage: ''
@@ -55,12 +54,15 @@ class ChatRoom extends React.Component{
 
 
   render(){
-    console.log(this.state.chatroomMessages);
+    // console.log(this.state.chatroomMessages);
     return (
       <div className="chatroom-container">
         <ul className="chatroom-messages">
           {Object.keys(this.state.chatroomMessages).map(messageId => {
-            return <ChatRoomMessage key={messageId} message={this.state.chatroomMessages[messageId]}/>
+            return <ChatRoomMessage
+                      key={messageId}
+                      message={this.state.chatroomMessages[messageId]}
+                      uid={this.props.user.account.uid} />
           })}
         </ul>
         <form action="" className="chatroom-form" onSubmit={this.handleInputSubmit}>

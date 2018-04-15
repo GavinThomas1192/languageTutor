@@ -1,0 +1,52 @@
+.chatroom-message-container {
+  /*background: red;*/
+  margin: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatroom-author {
+  /*display: inline-block;*/
+  /*display: inline;*/
+  font-size: 11px;
+  color: #333;
+  padding: 0 4px;
+  /*background: black;*/
+  /*background: #f1f1f1;*/
+}
+
+.chatroom-author span {
+  background: #f1f1f1;
+  padding: 2px 4px;
+
+  display: inline-block;
+}
+
+.chatroom-body {
+  /*background: green;*/
+  color: white;
+  margin: 0 5px;
+  display: flex;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.f-end {
+  justify-content: flex-end;
+}
+
+.chatroom-body span {
+  /*background: blue;*/
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 12px;
+}
+
+.user-message {
+  background: #0072c6;
+  padding: 10px;
+}
+
+.chat-message {
+  background: #5BC236;
+}
