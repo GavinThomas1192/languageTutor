@@ -55,31 +55,27 @@ class ChatRoom extends React.Component{
 
   handleInputSubmit = (e) => {
     e.preventDefault();
-    const messageData = {
-      uid: this.props.user.account.uid,
-      author: this.props.user.account.username,
-      body: this.state.userMessage,
-      timestamp: Date.now()
+    if(this.state.userMessage.length >= 1){
+      const messageData = {
+        uid: this.props.user.account.uid,
+        author: this.props.user.account.username,
+        body: this.state.userMessage,
+        timestamp: Date.now()
+      }
+      const newMessageKey = firebase.database().ref('chatroom').push().key
+      let updates = {};
+      updates[`/chatroom/${newMessageKey}`] = messageData;
+      updates[`/users/${this.props.user.account.uid}/chatroom/${newMessageKey}`] = messageData;
+
+      firebase.database().ref().update(updates);
+      this.setState({userMessage: ''})
+      this.setMessages();
     }
-    const newMessageKey = firebase.database().ref('chatroom').push().key
-    // console.log(newMessageKey, 'key');
-    // console.log(messageData, 'messageData');
-
-    let updates = {};
-
-    updates[`/chatroom/${newMessageKey}`] = messageData;
-    updates[`/users/${this.props.user.account.uid}/chatroom/${newMessageKey}`] = messageData;
-
-    firebase.database().ref().update(updates);
-    this.setState({userMessage: ''})
-    this.setMessages();
   }
 
 
 
   render(){
-    // console.log(this.state.chatroomMessages);
-    // console.log(this.scrollChatroom && this.scrollChatroom.scrollHeight, 'scrollChatroom');
     return (
       <div className="chatroom-container">
         <ul className="chatroom-messages" ref={(input)=>this.scrollChatroom = input}>
