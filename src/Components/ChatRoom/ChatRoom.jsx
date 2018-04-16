@@ -10,19 +10,43 @@ class ChatRoom extends React.Component{
   constructor(){
     super();
     this.state = {
-      chatroomMessages: [],
+      chatroomMessages: {},
       userMessage: ''
     }
   }
 
   componentDidMount(){
+    //set chatroom messages to state on load
     this.setMessages();
+
+
+    //add event listener to that adds new message to state when new message is added to db
+    firebase.database().ref('chatroom').on('child_added', (snapshot) => {
+      const newMessage = snapshot.val();
+      if(this.state.chatroomMessages.length <= 0){
+        console.log('no messages in didmount');
+        //nothing happening intentionally - does not work for .length >= 1
+      } else {
+        let chatroomMessages = {...this.state.chatroomMessages, newMessage}
+        console.log(chatroomMessages, 'ha');
+        this.setState({chatroomMessages}, ()=>{
+          this.scrollBottom();
+        })
+      }
+    })
   }
 
   setMessages(){
     firebase.database().ref('chatroom').once('value').then((snapshot) => {
-      this.setState({chatroomMessages: snapshot.val()})
+      this.setState({chatroomMessages: snapshot.val()}, () =>{
+        this.scrollBottom();
+      })
     })
+  }
+
+  scrollBottom(){
+    //Auto scroll to the bottom when a message is added
+    this.scrollChatroom ? this.scrollChatroom.scrollTop = this.scrollChatroom.scrollHeight : undefined;
   }
 
   handleInputChange = (e) => {
@@ -55,9 +79,10 @@ class ChatRoom extends React.Component{
 
   render(){
     // console.log(this.state.chatroomMessages);
+    // console.log(this.scrollChatroom && this.scrollChatroom.scrollHeight, 'scrollChatroom');
     return (
       <div className="chatroom-container">
-        <ul className="chatroom-messages">
+        <ul className="chatroom-messages" ref={(input)=>this.scrollChatroom = input}>
           {Object.keys(this.state.chatroomMessages).map(messageId => {
             return <ChatRoomMessage
                       key={messageId}

@@ -2,22 +2,17 @@
   width: 600px;
   height: 600px;
   background: pink;
-  /*display: flex;
-  flex-direction: column;*/
+  margin: 0 auto 10px;
 }
 
 .chatroom-messages {
-  /*width: 500px;*/
   width: 100%;
   height: 500px;
-  /*background: teal;*/
 }
 
 .chatroom-form {
   display: flex;
-  /*flex-direction: column;*/
   width: 100%;
-  /*height: 1000px;*/
   background: red;
 }
 
@@ -29,5 +24,4 @@
 
 .chatroom-form button {
   padding: 4px 16px;
-  /*background: yellow;*/
 }
