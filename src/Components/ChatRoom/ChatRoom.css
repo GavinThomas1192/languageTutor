@@ -1,8 +1,9 @@
 .chatroom-container {
   width: 600px;
-  height: 600px;
-  background: pink;
+  /*height: 600px;*/
+  background: #f1f1f1;
   margin: 0 auto 10px;
+  border-radius: 4px;
 }
 
 .chatroom-messages {
@@ -13,7 +14,7 @@
 .chatroom-form {
   display: flex;
   width: 100%;
-  background: red;
+  padding: 2px;
 }
 
 .chatroom-form input {
