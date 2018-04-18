@@ -83,7 +83,10 @@ class ChatRoom extends React.Component{
             return <ChatRoomMessage
                       key={messageId}
                       message={this.state.chatroomMessages[messageId]}
-                      uid={this.props.user.account.uid} />
+                      messageId={messageId}
+                      uid={this.props.user.account.uid}
+                      updateMessage={this.updateMessage} />
+
           })}
         </ul>
         <form action="" className="chatroom-form" onSubmit={this.handleInputSubmit}>
