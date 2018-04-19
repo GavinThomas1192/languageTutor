@@ -11,6 +11,7 @@ class ChatRoom extends React.Component{
     super();
     this.state = {
       chatroomMessages: {},
+      stageMessages: {},
       userMessage: ''
     }
   }
@@ -18,7 +19,6 @@ class ChatRoom extends React.Component{
   componentDidMount(){
     //set chatroom messages to state on load
     this.setMessages();
-
 
     //add event listener to that adds new message to state when new message is added to db
     firebase.database().ref('chatroom').on('child_added', (snapshot) => {
@@ -34,6 +34,23 @@ class ChatRoom extends React.Component{
         })
       }
     })
+
+    //add event listener to that removes message from state when message is deleted from db
+    firebase.database().ref('chatroom').on('child_removed', (snapshot) => {
+      const deletedMessageId = snapshot.key;
+      if(this.state.chatroomMessages.length <= 0){
+        console.log('no messages in didmount');
+        //nothing happening intentionally - does not work for .length >= 1
+      } else {
+        let chatroomMessages = {...this.state.chatroomMessages}
+        delete chatroomMessages[deletedMessageId]
+        this.setState({chatroomMessages})
+      }
+    })
+  }
+
+  componentDidUpdate(){
+    console.log(this.state.stageMessages, 'update component stageMessages');
   }
 
   setMessages(){
@@ -85,7 +102,9 @@ class ChatRoom extends React.Component{
                       message={this.state.chatroomMessages[messageId]}
                       messageId={messageId}
                       uid={this.props.user.account.uid}
-                      updateMessage={this.updateMessage} />
+                      updateMessage={this.updateMessage}
+                      handleDeleteMessage={this.handleDeleteMessage}
+                      />
 
           })}
         </ul>
