@@ -66,9 +66,10 @@ class ChatRoomMessage extends React.Component{
   render(){
     const {message, uid} = this.props;
     return uid === message.uid ? (
-        <li className="chatroom-message-container">
+        <li className="chatroom-message-container user-container">
 
           {this.state.editMessage ?
+
             <div className="chatroom-body f-end" >
               <div className="edit-btn" onClick={()=>this.handleDeleteMessage()}>Delete</div>
               <div className="edit-btn" onClick={()=>this.handleEditMessage()}>Cancel</div>
@@ -77,7 +78,11 @@ class ChatRoomMessage extends React.Component{
               </form>
             </div>
             :
-            <p className="chatroom-body f-end"><span className="user-message" onDoubleClick={()=>this.handleEditMessage()}>{message.body}</span></p>
+
+            <div className="chatroom-body f-end">
+              <div className="edit-options" onClick={()=>this.handleEditMessage()}>Edit / Delete</div>
+              <span className="user-message">{message.body}</span>
+            </div>
           }
 
         </li>
