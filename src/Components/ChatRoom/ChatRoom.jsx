@@ -28,7 +28,7 @@ class ChatRoom extends React.Component{
         //nothing happening intentionally - does not work for .length >= 1
       } else {
         let chatroomMessages = {...this.state.chatroomMessages, newMessage}
-        console.log(chatroomMessages, 'ha');
+        // console.log(chatroomMessages, 'ha');
         this.setState({chatroomMessages}, ()=>{
           this.scrollBottom();
         })
