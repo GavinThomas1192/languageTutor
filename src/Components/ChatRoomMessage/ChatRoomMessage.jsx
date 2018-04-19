@@ -70,11 +70,19 @@ class ChatRoomMessage extends React.Component{
 
           {this.state.editMessage ?
 
-            <div className="chatroom-body f-end" >
-              <div className="edit-btn" onClick={()=>this.handleDeleteMessage()}>Delete</div>
-              <div className="edit-btn" onClick={()=>this.handleEditMessage()}>Cancel</div>
+            <div className={this.state.editMessage ? "chatroom-body add-bkgd-color" :"chatroom-body f-end "}>
+
+
               <form onSubmit={this.updateMessage}>
                 <input type="text" defaultValue={message.body}/>
+                <div className="edit-buttons-container">
+                  <div>
+                    <div className="edit-btn" onClick={()=>this.handleEditMessage()}>Cancel</div>
+                    <div className="edit-btn" onClick={()=>this.handleEditMessage()}>Save Changes</div>
+                  </div>
+                  <div className="edit-btn edit-delete" onClick={()=>this.handleDeleteMessage()}>Delete</div>
+                </div>
+
               </form>
             </div>
             :

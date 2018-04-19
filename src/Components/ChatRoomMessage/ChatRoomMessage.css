@@ -14,6 +14,10 @@
   visibility: hidden;
   cursor: pointer;
   color: #333;
+  position: absolute;
+  left: 10px;
+  bottom: 20%;
+  padding: 4px;
 }
 .edit-options:hover {
   color: #f18909;
@@ -21,6 +25,14 @@
 .user-container:hover .edit-options{
   visibility: visible;
 }
+
+.edit-buttons-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 .chatroom-author {
   /*display: inline-block;*/
@@ -46,16 +58,18 @@
   /*background: green;*/
   color: white;
   /*color: #000;*/
-  margin: 0 5px;
+  /*margin: 0 5px;*/
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
   font-size: 14px;
   font-weight: lighter;
+  padding: 4px 8px;
+  position: relative;
 }
 
 .f-end {
-  /*justify-content: flex-end;*/
+  justify-content: flex-end;
 }
 
 .chatroom-body span {
@@ -92,6 +106,8 @@
   background: blue;
   padding: 20px;
 }*/
+
+
 .chatroom-user-popup-content {
   visibility: hidden;
   /*width: 120px;*/
@@ -139,18 +155,46 @@
   margin-bottom: 10px;
 }
 
+.chatroom-body form {
+  width: 100%;
+}
 
-.chatroom-body input {
+.add-bkgd-color {
+  background: #ffb800;
+
+}
+
+.chatroom-body form input {
   font-size: 14px;
   padding: 5.5px 10px;
+  width: 100%;
+  /*width: inherit;*/
+  /*margin: 0 10px;*/
 }
 
 .chatroom-body .edit-btn {
-  display: flex;
+  font-size: 12px;
+  display: inline-flex;
+  /*display: flex;*/
   align-items: center;
-  padding: 2px;
+  padding: 5px 10px;
   margin: 0 2px;
   color: #333;
   background: #ccc;
   cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.chatroom-body .edit-btn:hover {
+  border-color: #666;
+}
+.chatroom-body .edit-delete {
+  background: #e50000;
+  color: #fff;
+}
+
+.chatroom-body .edit-delete:hover {
+  background: #b20000;
+
 }
