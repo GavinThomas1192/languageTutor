@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import './ChatRoomMessage.css';
 var moment = require('moment-timezone');
 
@@ -53,8 +54,11 @@ class ChatRoomMessage extends React.Component{
   }
 
   handleDeleteMessage = () => {
-    console.log('deleting message');
+    let updates = {};
+    updates[`/chatroom/${this.props.messageId}`] = null;
+    updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}`] = null;
     this.setState({editMessage: !this.state.editMessage})
+    return firebase.database().ref().update(updates);
   }
 
   updateMessage = (e) => {
@@ -64,14 +68,13 @@ class ChatRoomMessage extends React.Component{
   }
 
   render(){
-    const {message, uid} = this.props;
+    const {message, messageId, uid} = this.props;
     return uid === message.uid ? (
         <li className="chatroom-message-container user-container">
 
           {this.state.editMessage ?
 
             <div className={this.state.editMessage ? "chatroom-body add-bkgd-color" :"chatroom-body f-end "}>
-
 
               <form onSubmit={this.updateMessage}>
                 <input type="text" defaultValue={message.body}/>
@@ -98,7 +101,7 @@ class ChatRoomMessage extends React.Component{
         : //
        (
         <li className="chatroom-message-container">
-          <p className="chatroom-author">
+          <div className="chatroom-author">
             <span className="chatroom-user-popup">
               {message.author}
               <div className="chatroom-user-popup-content">
@@ -112,7 +115,7 @@ class ChatRoomMessage extends React.Component{
               </div>
             </span>
             <span>{moment(message.timestamp).format('HH:mm')}</span>
-          </p>
+          </div>
           <p className="chatroom-body"><span className="chat-message">{message.body}</span></p>
         </li>
        )
