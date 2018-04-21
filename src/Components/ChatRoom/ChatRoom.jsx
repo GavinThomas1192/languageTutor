@@ -11,7 +11,6 @@ class ChatRoom extends React.Component {
     super();
     this.state = {
       chatroomMessages: {},
-      stageMessages: {},
       userMessage: ''
     }
   }
@@ -73,21 +72,20 @@ class ChatRoom extends React.Component {
           //nothing happening intentionally - does not work for .length >= 1
         } else {
           console.log('child updated!', this.state, editedMessageId, snapshot.val())
-          // let chatroomMessages = {   ...this.state.chatroomMessages }
-          Object
-            .keys(this.state.chatroomMessages)
-            .map((ele) => ele === editedMessageId
-              ? this.state.chatroomMessages[editedMessageId].body = snapshot.val().body
-              : undefined)
+          let chatroomMessages = {   ...this.state.chatroomMessages }
+          chatroomMessages[editedMessageId].body = snapshot.val().body
+          this.setState({chatroomMessages})
 
-          // this.setState({chatroomMessages})
+          // Object
+          //   .keys(this.state.chatroomMessages)
+          //   .map((ele) => ele === editedMessageId
+          //     ? this.state.chatroomMessages[editedMessageId].body = snapshot.val().body
+          //     : undefined)
+
         }
       })
   }
 
-  componentDidUpdate() {
-    console.log(this.state.stageMessages, 'update component stageMessages');
-  }
 
   setMessages() {
     firebase
@@ -152,10 +150,7 @@ class ChatRoom extends React.Component {
                 key={messageId}
                 message={this.state.chatroomMessages[messageId]}
                 messageId={messageId}
-                uid={this.props.user.account.uid}
-                updateMessage={this.updateMessage}
-                handleDeleteMessage={this.handleDeleteMessage}/>
-
+                uid={this.props.user.account.uid}/>
             })}
         </ul>
         <form action="" className="chatroom-form" onSubmit={this.handleInputSubmit}>

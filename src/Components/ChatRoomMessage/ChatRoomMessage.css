@@ -32,6 +32,9 @@
   justify-content: space-between;
 }
 
+.edit-buttons-container > div{
+  display: flex;
+}
 
 
 .chatroom-author {
