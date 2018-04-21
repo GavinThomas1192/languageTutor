@@ -84,13 +84,21 @@
 
 }
 
+.user-message-container {
+  margin-left: 100px;
+
+}
+
 .user-message {
   /*background: #402318;*/
   padding: 10px;
-  margin-left: 100px;
   background: #f18909;
 }
 
+.edited-message {
+  font-size: 11px;
+  color: #888;
+}
 .chat-message {
   /*background: #c05f39;*/
   background: #d8d8d8;

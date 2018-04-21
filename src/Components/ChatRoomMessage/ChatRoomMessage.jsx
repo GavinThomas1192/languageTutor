@@ -63,7 +63,9 @@ class ChatRoomMessage extends React.Component {
     if(this.state.editedMessage.length >= 1){
       let updates = {};
       updates[`/chatroom/${this.props.messageId}/body`] = this.state.editedMessage;
+      updates[`/chatroom/${this.props.messageId}/edited`] = true;
       updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}/body`] = this.state.editedMessage;
+      updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}/edited`] = true;
       return firebase.database().ref().update(updates);
     }
 
@@ -103,9 +105,19 @@ class ChatRoomMessage extends React.Component {
                 </form>
               </div>
             : <div className="chatroom-body f-end">
-              <div className="edit-options" onClick={() => this.handleEditMessage()}>Edit / Delete</div>
-              <span className="user-message">{message.body}</span>
-            </div>
+                <div className="edit-options" onClick={() => this.handleEditMessage()}>
+                  Edit / Delete
+                </div>
+
+                <div className="user-message-container">
+                  <span className="edited-message">{message.edited ? '(edited)' : undefined}</span>
+
+                  <span className="user-message">
+                    {message.body}
+                  </span>
+                </div>
+
+              </div>
 }
 
         </li>
@@ -127,6 +139,7 @@ class ChatRoomMessage extends React.Component {
               </div>
             </span>
             <span>{moment(message.timestamp).format('HH:mm')}</span>
+            <span className="edited-message">{message.edited ? '(edited)' : undefined}</span>
           </div>
           <p className="chatroom-body">
             <span className="chat-message">{message.body}</span>

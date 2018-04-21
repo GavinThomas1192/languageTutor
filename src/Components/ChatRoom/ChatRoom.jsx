@@ -67,6 +67,7 @@ class ChatRoom extends React.Component {
       .ref('chatroom')
       .on('child_changed', (snapshot) => {
         const editedMessageId = snapshot.key;
+        console.log(editedMessageId, 'editmessage id');
         if (this.state.chatroomMessages.length <= 0) {
           console.log('no messages in didmount');
           //nothing happening intentionally - does not work for .length >= 1
@@ -97,6 +98,7 @@ class ChatRoom extends React.Component {
           chatroomMessages: snapshot.val()
         }, () => {
           this.scrollBottom();
+          console.log(this.state.chatroomMessages, 'catroom messages');
         })
       })
   }
@@ -119,7 +121,8 @@ class ChatRoom extends React.Component {
         uid: this.props.user.account.uid,
         author: this.props.user.account.username,
         body: this.state.userMessage,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        edited: false
       }
       const newMessageKey = firebase
         .database()
