@@ -41,31 +41,32 @@ class ChatRoomMessage extends React.Component {
   }
 
   handleDeleteMessage = () => {
+    this.handleEditMessage();
+
     let updates = {};
     updates[`/chatroom/${this.props.messageId}`] = null;
     updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}`] = null;
-    this.setState({
-      editMessage: !this.state.editMessage
-    })
+
     return firebase
       .database()
       .ref()
       .update(updates);
+
   }
 
   updateMessage = (e) => {
     e.preventDefault();
     console.log('firing updateMessage', this.props.message, this.state.editedMessage);
-    this.setState({
-      editMessage: !this.state.editMessage
-    })
-    let updates = {};
-    updates[`/chatroom/${this.props.messageId}/body`] = this.state.editedMessage;
-    updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}/body`] = this.state.editedMessage;
-    return firebase
-      .database()
-      .ref()
-      .update(updates);
+    this.handleEditMessage();
+
+    //only update the database if there's value in editedMessage, othewise cancel
+    if(this.state.editedMessage.length >= 1){
+      let updates = {};
+      updates[`/chatroom/${this.props.messageId}/body`] = this.state.editedMessage;
+      updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}/body`] = this.state.editedMessage;
+      return firebase.database().ref().update(updates);
+    }
+
   }
 
   handleChange = name => (event) => {
@@ -92,7 +93,7 @@ class ChatRoomMessage extends React.Component {
                   <div className="edit-buttons-container">
                     <div>
                       <div className="edit-btn" onClick={() => this.handleEditMessage()}>Cancel</div>
-                      <div className="edit-btn" onClick={() => this.handleEditMessage()}>Save Changes</div>
+                      <input type="submit" className="edit-btn" value="Save Changes" />
                     </div>
                     <div
                       className="edit-btn edit-delete"
