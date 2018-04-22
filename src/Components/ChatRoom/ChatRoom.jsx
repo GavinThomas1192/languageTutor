@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import './ChatRoom.css';
 
 import ChatRoomMessage from '../ChatRoomMessage/ChatRoomMessage';
+import Spinner from '../Spinner/Spinner';
 
 class ChatRoom extends React.Component {
 
@@ -11,8 +12,13 @@ class ChatRoom extends React.Component {
     super();
     this.state = {
       chatroomMessages: {},
-      userMessage: ''
+      userMessage: '',
+      loading: false
     }
+  }
+
+  componentWillMount(){
+    this.setState({loading: true})
   }
 
   componentDidMount() {
@@ -38,7 +44,7 @@ class ChatRoom extends React.Component {
           }
           chatroomMessages[newKey] = newMessage;
 
-          this.setState({chatroomMessages}, () => {
+          this.setState({chatroomMessages, loading: false}, () => {
             this.scrollBottom();
           })
         }
@@ -142,7 +148,9 @@ class ChatRoom extends React.Component {
     return (
       <div className="chatroom-container">
         <ul className="chatroom-messages" ref={(input) => this.scrollChatroom = input}>
-          {Object
+          {this.state.loading
+            ? <Spinner />
+            : Object
             .keys(this.state.chatroomMessages)
             .map(messageId => {
               return <ChatRoomMessage

@@ -1,3 +1,31 @@
 .TextChatContainer {
  border: 1px solid black;
+ /*background: pink;*/
+}
+
+.chatroom-onlineusers-container {
+  /*background: lightgreen;*/
+  display: flex;
+  /*justify-content: space-around;*/
+  justify-content: center;
+}
+
+.online-users {
+  /*background: purple;*/
+  background: #ccc;
+  width: 25%;
+}
+.online-users h3 {
+  padding: 10px;
+}
+
+.online-users p {
+  /*display: inline-block;*/
+  /*cursor: pointer;*/
+  padding: 5px 10px;
+}
+
+.online-users p span{
+  cursor: pointer;
+  padding: 0 10px;
 }
