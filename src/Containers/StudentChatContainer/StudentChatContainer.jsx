@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import VideoChat from "../../Containers/VideoChat2/VideoChat";
 import TextChat from '../../Components/TextChat/TextChat'
+import ChatRoom from '../../Components/ChatRoom/ChatRoom'
 
 import "./StudentChatContainer.css";
 
@@ -15,7 +16,7 @@ class StudentChatContainer extends React.Component {
     return (
       <div className="studentChatContainer">
         <VideoChat/>
-        <TextChat/>
+        <ChatRoom/>
       </div>
     );
   }
