@@ -1,20 +1,24 @@
-import React from 'react'
-import firebase from 'firebase'
-import {connect} from 'react-redux'
+import React from 'react';
+import firebase from 'firebase';
+import {connect} from 'react-redux';
 
-import Spinner from '../../Components/Spinner/Spinner'
+import Spinner from '../Spinner/Spinner';
 import ChatRoom from '../ChatRoom/ChatRoom';
+import DirectMessenger from '../DirectMessenger/DirectMessenger';
 
 import './TestChat.css'
 class TextChat extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      message: '',
       userToDM: '',
       requestingUserToChat: '',
       loading: false,
       textChatPendingRequest: false,
-      allowPendingTextRequest: false
+      allowPendingTextRequest: false,
+      showChatroom: true, //show dm's if false
+      dmMessagesList: {}
     }
   }
 
@@ -46,6 +50,20 @@ class TextChat extends React.Component {
             .catch(err => console.log(err))
         }
       });
+
+
+      firebase
+        .database()
+        .ref('users')
+        .once('value')
+        .then((snapshot) => {
+          this.setState({
+            users: snapshot.val()
+          })
+        })
+
+
+      // firebase.database().ref('users').on('child_changed')
   }
 
   componentDidUpdate() {
@@ -53,6 +71,7 @@ class TextChat extends React.Component {
   }
 
   handleStartDM = (user) => {
+    console.log('starting dm');
     this.setState({
       userToDM: user
     }, () => {
@@ -83,6 +102,37 @@ class TextChat extends React.Component {
 
   };
 
+  sendMessage = (e) => {
+    e.preventDefault();
+    console.log('sending modal message');
+    // firebase.database().ref(`users`)
+    console.log(this.props.user.account.username, 'user sending message');
+    console.log(this.state.userToDM.username, 'requested user');
+
+    console.log(this.state.message, 'messageeee');
+
+    const messageData = {
+      uid: this.props.user.account.uid,
+      author: this.props.user.account.username,
+      body: this.state.message,
+      timestamp: Date.now(),
+      edited: false
+    }
+
+    const newMessageKey = firebase.database().ref(`/users/${this.props.user.account.uid}/dmUsers/${this.state.userToDM.uid}/`).push().key;
+
+
+    //ADD MESSAGEDATA OBJECT TO USERS DM LIST
+    let updates = {}
+    updates[`/users/${this.props.user.account.uid}/dmUsers/${this.state.userToDM.uid}/${newMessageKey}`] = messageData;
+    updates[`/onlineUsers/${this.props.user.account.uid}/dmUsers/${this.state.userToDM.uid}/${newMessageKey}`] = messageData;
+    updates[`/users/${this.state.userToDM.uid}/dmUsers/${this.props.user.account.uid}/${newMessageKey}`] = messageData;
+    updates[`/onlineUsers/${this.state.userToDM.uid}/dmUsers/${this.props.user.account.uid}/${newMessageKey}`] = messageData;
+
+    return firebase.database().ref().update(updates);
+
+  }
+
   // handlePendingUserTextChat = () => {   this.setState({
   // allowPendingTextRequest: true,     textChatPendingRequest: false   }, () =>
   // this.handleStartDM(this.state.userToDM),); };
@@ -91,39 +141,78 @@ class TextChat extends React.Component {
     return (
       <div className="TextChatContainer">
 
+      {/* 'click me' div below switches from chatroom to dm's view */}
+        <div style={{margin: '30px'}} onClick={()=>{this.setState({showChatroom: !this.state.showChatroom})}}>CLICK MEEEE</div>
+
+      {this.state.showChatroom ?
+        //{/* show chatroom */}
+
         <div className="chatroom-onlineusers-container">
 
-          <ChatRoom />
           <div className="online-users">
             <h3>Online students for CHATTTT</h3>
 
-            {this
-              .props
-              .onlineUsers
-              .map((ele, index) => {
-                return <p onClick={() => this.handleStartDM(ele)}>
-                <span>{ele.username}</span></p>
+            <ul>
+              {this.props.onlineUsers.map((ele, index) => {
+                  return (
+                    <li key={index} onClick={() => this.handleStartDM(ele)}>
+                      <p>
+                        <span>{ele.username}</span>
+                      </p>
+                    </li>
+                  )
+                })}
+            </ul>
 
-              })
-            }
           </div>
+          <ChatRoom />
+
 
         </div>
 
+        :
+        //{/* show dm's */}
+
+        <div className="chatroom-onlineusers-container">
+          <div className="online-users">
+            <h3>DIRECT MESSAGESSS</h3>
+            <ul>
+              {Object.keys(this.props.user.dmUsers).map((item, index) => {
+                console.log(this.props.user.dmUsers[item], 'item');
+
+                //getting this.state.users from setting state from firebase in componentDidMount. need to change to possible redux store.
+                return <li key={index} onClick={()=>this.setState({dmMessagesList: this.props.user.dmUsers[item]})}>{this.state.users[item].account.username}</li>
+              })}
+            </ul>
+          </div>
+
+          <DirectMessenger messages={this.state.dmMessagesList} uid={this.props.user.account.uid}/>
+        </div>
+      }
+
+
+
 
         {this.state.allowPendingTextRequest
-          ? <div>
-              <h2>You are now TEXT chatting with {this.props.user.textChatRoom.requestingUser.username}</h2>
+          ? <div style={{position: 'absolute',top: '50%', bottom: '0px', left: '50%', right: '0px', width: '300px', height: '300px', background: 'green'}}>
+              {/* <h2>You are now TEXT chatting with {this.props.user.textChatRoom.requestingUser.username}</h2> */}
               <p>--------------</p>
-              <textarea
-                style={{
-                height: '50px'
-              }}
-                onChange={this.handleChange('message')}
-                id="message"
-                type="text"
-                placeholder='howdy'
-                value={this.state.message}/>
+
+              <form onSubmit={this.sendMessage}>
+
+
+
+
+                <input
+                  style={{
+                  height: '50px'
+                }}
+                  onChange={this.handleChange('message')}
+                  id="message"
+                  type="text"
+                  placeholder='howdy'
+                  value={this.state.message}/>
+                </form>
 
             </div>
           : undefined}
