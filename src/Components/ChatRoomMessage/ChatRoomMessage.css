@@ -113,11 +113,12 @@
   /*background: red !important;*/
 }
 
-/*.extra-padding {
-  background: blue;
-  padding: 20px;
-}*/
-
+.delete-message-body {
+  background: #ccc;
+  padding: 10px;
+  color: black;
+  margin: 10px 0;
+}
 
 .chatroom-user-popup-content {
   visibility: hidden;

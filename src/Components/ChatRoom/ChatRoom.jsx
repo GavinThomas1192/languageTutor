@@ -25,19 +25,20 @@ class ChatRoom extends React.Component {
       .database()
       .ref('chatroom')
       .on('child_added', (snapshot) => {
+        // console.log('child added!');
+        const newKey = snapshot.key
         const newMessage = snapshot.val();
+
         if (this.state.chatroomMessages.length <= 0) {
           console.log('no messages in didmount');
           //nothing happening intentionally - does not work for .length >= 1
         } else {
           let chatroomMessages = {
-            ...this.state.chatroomMessages,
-            newMessage
+            ...this.state.chatroomMessages
           }
-          // console.log(chatroomMessages, 'ha');
-          this.setState({
-            chatroomMessages
-          }, () => {
+          chatroomMessages[newKey] = newMessage;
+
+          this.setState({chatroomMessages}, () => {
             this.scrollBottom();
           })
         }
@@ -54,9 +55,7 @@ class ChatRoom extends React.Component {
           console.log('no messages in didmount');
           //nothing happening intentionally - does not work for .length >= 1
         } else {
-          let chatroomMessages = {
-            ...this.state.chatroomMessages
-          }
+          let chatroomMessages = { ...this.state.chatroomMessages }
           delete chatroomMessages[deletedMessageId]
           this.setState({chatroomMessages})
         }
@@ -66,17 +65,15 @@ class ChatRoom extends React.Component {
       .database()
       .ref('chatroom')
       .on('child_changed', (snapshot) => {
+        console.log('child updated');
         const editedMessageId = snapshot.key;
-        console.log(editedMessageId, 'editmessage id');
         if (this.state.chatroomMessages.length <= 0) {
           console.log('no messages in didmount');
           //nothing happening intentionally - does not work for .length >= 1
         } else {
-          console.log('child updated!', this.state, editedMessageId, snapshot.val())
-          let chatroomMessages = {   ...this.state.chatroomMessages }
-          chatroomMessages[editedMessageId].body = snapshot.val().body
-          this.setState({chatroomMessages})
-
+          let chatroomMessages = { ...this.state.chatroomMessages }
+          chatroomMessages[editedMessageId] = snapshot.val();
+          this.setState({chatroomMessages});
           // Object
           //   .keys(this.state.chatroomMessages)
           //   .map((ele) => ele === editedMessageId
@@ -98,7 +95,6 @@ class ChatRoom extends React.Component {
           chatroomMessages: snapshot.val()
         }, () => {
           this.scrollBottom();
-          console.log(this.state.chatroomMessages, 'catroom messages');
         })
       })
   }

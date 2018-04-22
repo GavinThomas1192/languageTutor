@@ -1,7 +1,10 @@
 import React from 'react';
 import firebase from 'firebase';
 import './ChatRoomMessage.css';
+
+import Modal from '../Modal/Modal';
 var moment = require('moment-timezone');
+
 
 // const ChatRoomMessage = ({message, uid}) => {   return uid === message.uid ?
 // (     <li className="chatroom-message-container">
@@ -30,7 +33,9 @@ class ChatRoomMessage extends React.Component {
     super()
     this.state = {
       editMessage: false,
-      editedMessage: ''
+      editedMessage: '',
+      deleteModalOpen: false
+
     }
   }
 
@@ -47,10 +52,7 @@ class ChatRoomMessage extends React.Component {
     updates[`/chatroom/${this.props.messageId}`] = null;
     updates[`/users/${this.props.uid}/chatroom/${this.props.messageId}`] = null;
 
-    return firebase
-      .database()
-      .ref()
-      .update(updates);
+    return firebase.database().ref().update(updates);
 
   }
 
@@ -75,7 +77,18 @@ class ChatRoomMessage extends React.Component {
     this.setState({[name]: event.target.value});
   };
 
+  closeModal = () => {
+    console.log('closing modal');
+    this.setState({
+                   deleteModalOpen: false,
+                   editMessage: false
+                 })
+  }
+
+
   render() {
+    // onClick={() => this.handleDeleteMessage()}>Delete</div>
+
     const {message, messageId, uid} = this.props;
     return uid === message.uid
       ? (
@@ -99,7 +112,7 @@ class ChatRoomMessage extends React.Component {
                     </div>
                     <div
                       className="edit-btn edit-delete"
-                      onClick={() => this.handleDeleteMessage()}>Delete</div>
+                      onClick={() => this.setState({deleteModalOpen: !this.state.deleteModalOpen})}>Delete</div>
                   </div>
 
                 </form>
@@ -118,7 +131,21 @@ class ChatRoomMessage extends React.Component {
                 </div>
 
               </div>
-}
+            }
+
+            <Modal
+              isOpen={this.state.deleteModalOpen}
+              close={this.closeModal}
+              showCancel={true}
+              showDelete={true}
+              deleteFunc={this.handleDeleteMessage}
+              maxWidth={'500px'}>
+
+              <p>Are you sure you want to delete your message?</p>
+              <p className="delete-message-body">{message.body}</p>
+              <p>This cannot be undone.</p>
+
+            </Modal>
 
         </li>
       )
