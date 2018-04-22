@@ -19,15 +19,21 @@ class Modal extends React.Component {
   }
   render() {
     return (
-    this.props.isOpen ? 
+    this.props.isOpen ?
   <div className="modal-bg" onClick={(e) => this.bgClick(e)}>
-        <div className="modal-main">
+        <div className="modal-main" style={this.props.maxWidth ? {width:this.props.maxWidth}: undefined}>
           {this.props.children}
-         { this.props.showClose ? <button onClick={this.props.close}> Close </button> : ''}
-         { this.props.showContine ? 
-          <button onClick={()=>{this.props.close(); console.log('continue clicked')}} >Continue</button>
-          : undefined}
-         { this.props.showCancel ? <button onClick={this.props.close}>Cancel</button> : undefined}
+
+          <div className="modal-buttons-container">
+
+            { this.props.showClose ? <button onClick={this.props.close}> Close </button> : ''}
+            { this.props.showContine ?
+             <button onClick={()=>{this.props.close(); console.log('continue clicked')}} >Continue</button>
+             : undefined}
+            { this.props.showCancel ? <button onClick={this.props.close}>Cancel</button> : undefined}
+            { this.props.showDelete ? <button onClick={this.props.deleteFunc}>Delete</button> : undefined}
+          </div>
+
         </div>
       </div>
   : ''
@@ -39,15 +45,15 @@ class Modal extends React.Component {
 //  PURE COMP WITHOUT THE ABILITY TO USE ESC KEY!
 // const Modal = (props) => {
 
-  
-  
-//   return props.isOpen ? 
+
+
+//   return props.isOpen ?
 //   <div className="modal-bg" onClick={(e) => bgClick(e, props.close)}>
 //  { document.addEventListener("keydown", (e) => bgClick(e, props.close), false)}
 //         <div className="modal-main">
 //           {props.children}
 //          { props.showClose ? <button onClick={props.close}> Close </button> : ''}
-//          { props.showContine ? 
+//          { props.showContine ?
 //           <button onClick={()=>{props.close(); console.log('continue clicked')}} >Continue</button>
 //           : undefined}
 //          { props.showCancel ? <button onClick={props.close}>Cancel</button> : undefined}

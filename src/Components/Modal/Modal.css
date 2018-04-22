@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  z-index: 10;
 }
 
 .modal-main {
@@ -20,6 +21,7 @@
   /*max-width: 400px;*/
   display: flex;
   flex-direction: column;
+  z-index: 20;
 }
 
 .modal-main button {
@@ -30,4 +32,15 @@
 .modal-btn-group {
   display: flex;
   justify-content: space-around;
+}
+
+.modal-buttons-container {
+  margin: 20px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-buttons-container button {
+  margin: 0 20px;
+  padding: 5px 10px;
 }
