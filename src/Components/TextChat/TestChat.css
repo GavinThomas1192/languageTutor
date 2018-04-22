@@ -14,7 +14,14 @@
   /*background: purple;*/
   background: #ccc;
   width: 25%;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
+
+.online-users ul {
+  text-align: center;
+}
+
 .online-users h3 {
   padding: 10px;
 }
