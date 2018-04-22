@@ -90,14 +90,26 @@ class TextChat extends React.Component {
   render() {
     return (
       <div className="TextChatContainer">
-        <h3>Online students for CHATTTT</h3>
-        <ChatRoom />
-        {this
-          .props
-          .onlineUsers
-          .map((ele, index) => {
-            return <p onClick={() => this.handleStartDM(ele)}>{ele.username}</p>
-          })}
+
+        <div className="chatroom-onlineusers-container">
+
+          <ChatRoom />
+          <div className="online-users">
+            <h3>Online students for CHATTTT</h3>
+
+            {this
+              .props
+              .onlineUsers
+              .map((ele, index) => {
+                return <p onClick={() => this.handleStartDM(ele)}>
+                <span>{ele.username}</span></p>
+
+              })
+            }
+          </div>
+
+        </div>
+
 
         {this.state.allowPendingTextRequest
           ? <div>
