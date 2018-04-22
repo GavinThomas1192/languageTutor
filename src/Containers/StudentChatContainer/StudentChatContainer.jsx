@@ -16,7 +16,7 @@ class StudentChatContainer extends React.Component {
     return (
       <div className="studentChatContainer">
         <VideoChat/>
-        <ChatRoom/>
+        <TextChat/>
       </div>
     );
   }
