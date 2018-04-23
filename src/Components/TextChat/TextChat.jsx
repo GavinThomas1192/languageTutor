@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Spinner from '../Spinner/Spinner';
 import ChatRoom from '../ChatRoom/ChatRoom';
 import DirectMessenger from '../DirectMessenger/DirectMessenger';
+import Modal from '../Modal/Modal';
 
 import './TestChat.css'
 class TextChat extends React.Component {
@@ -18,7 +19,8 @@ class TextChat extends React.Component {
       textChatPendingRequest: false,
       allowPendingTextRequest: false,
       showChatroom: true, //show dm's if false
-      dmMessagesList: {}
+      dmMessagesList: {},
+      showDmModal: false
     }
   }
 
@@ -73,7 +75,8 @@ class TextChat extends React.Component {
   handleStartDM = (user) => {
     console.log('starting dm');
     this.setState({
-      userToDM: user
+      userToDM: user,
+      showDmModal: true
     }, () => {
       // chatRoomKeys
       firebase
@@ -121,6 +124,7 @@ class TextChat extends React.Component {
 
     const newMessageKey = firebase.database().ref(`/users/${this.props.user.account.uid}/dmUsers/${this.state.userToDM.uid}/`).push().key;
 
+    this.setState({showDmModal: false})
 
     //ADD MESSAGEDATA OBJECT TO USERS DM LIST
     let updates = {}
@@ -190,32 +194,26 @@ class TextChat extends React.Component {
         </div>
       }
 
+  {/* Use Modal component to popup and send message */}
+          <Modal
+            isOpen={this.state.showDmModal}
+            isDM={true}
+            close={()=>this.setState({showDmModal:false})}>
 
+            <form onSubmit={this.sendMessage}>
+              <input
+                onChange={this.handleChange('message')}
+                id="message"
+                type="text"
+                placeholder='howdy'
+                value={this.state.message}/>
 
+                <button onClick={()=>this.setState({showDmModal:false})}>Cancel</button>
+                <button type="submit">Send Message</button>
 
-        {this.state.allowPendingTextRequest
-          ? <div style={{position: 'absolute',top: '50%', bottom: '0px', left: '50%', right: '0px', width: '300px', height: '300px', background: 'green'}}>
-              {/* <h2>You are now TEXT chatting with {this.props.user.textChatRoom.requestingUser.username}</h2> */}
-              <p>--------------</p>
+            </form>
 
-              <form onSubmit={this.sendMessage}>
-
-
-
-
-                <input
-                  style={{
-                  height: '50px'
-                }}
-                  onChange={this.handleChange('message')}
-                  id="message"
-                  type="text"
-                  placeholder='howdy'
-                  value={this.state.message}/>
-                </form>
-
-            </div>
-          : undefined}
+          </Modal>
 
         {this.state.textChatPendingRequest
           ? (
@@ -236,6 +234,32 @@ class TextChat extends React.Component {
     )
   }
 }
+
+
+
+// {this.state.allowPendingTextRequest
+//   ? <div style={{position: 'absolute',top: '50%', bottom: '0px', left: '50%', right: '0px', width: '300px', height: '300px', background: 'green'}}>
+//       {/* <h2>You are now TEXT chatting with {this.props.user.textChatRoom.requestingUser.username}</h2> */}
+//       <p>--------------</p>
+//
+//       <form onSubmit={this.sendMessage}>
+//
+//
+//
+//
+//         <input
+//           style={{
+//           height: '50px'
+//         }}
+//           onChange={this.handleChange('message')}
+//           id="message"
+//           type="text"
+//           placeholder='howdy'
+//           value={this.state.message}/>
+//         </form>
+//
+//     </div>
+//   : undefined}
 
 const mapStateToProps = state => ({onlineUsers: state.onlineUsers, user: state.user});
 
