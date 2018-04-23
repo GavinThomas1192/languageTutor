@@ -89,7 +89,7 @@ class ChatRoomMessage extends React.Component {
   render() {
     // onClick={() => this.handleDeleteMessage()}>Delete</div>
 
-    const {message, messageId, uid} = this.props;
+    const {message, messageId, uid, utz} = this.props;
     return uid === message.uid
       ? (
         <li className="chatroom-message-container user-container">
@@ -165,7 +165,7 @@ class ChatRoomMessage extends React.Component {
                 </label>
               </div>
             </span>
-            <span>{moment(message.timestamp).format('HH:mm')}</span>
+            <span>{moment.tz(message.timestamp, utz).format('h:mm A')}</span>
             <span className="edited-message">{message.edited ? '(edited)' : undefined}</span>
           </div>
           <p className="chatroom-body">

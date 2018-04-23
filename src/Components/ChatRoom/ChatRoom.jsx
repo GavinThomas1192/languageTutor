@@ -157,7 +157,8 @@ class ChatRoom extends React.Component {
                 key={messageId}
                 message={this.state.chatroomMessages[messageId]}
                 messageId={messageId}
-                uid={this.props.user.account.uid}/>
+                uid={this.props.user.account.uid}
+                utz={this.props.user.account.timeZone}/>
             })}
         </ul>
         <form action="" className="chatroom-form" onSubmit={this.handleInputSubmit}>
