@@ -33,7 +33,7 @@ class TextChat extends React.Component {
         const updatedUser = snapshot.val();
         console.log('Online User Child Changed!', updatedUser);
         // If our account updates we know someone pushed new token and session data onto
-        // our DB object (down below we did this)
+        // our DB object (down below we did this) Need a green dot
         if (updatedUser.uid === this.props.user.account.uid) {
           firebase.database()
           // We need the requesting user info to be able to point back to them completing
@@ -53,19 +53,17 @@ class TextChat extends React.Component {
         }
       });
 
-
-      firebase
-        .database()
-        .ref('users')
-        .once('value')
-        .then((snapshot) => {
-          this.setState({
-            users: snapshot.val()
-          })
+    firebase
+      .database()
+      .ref('users')
+      .once('value')
+      .then((snapshot) => {
+        this.setState({
+          users: snapshot.val()
         })
+      })
 
-
-      // firebase.database().ref('users').on('child_changed')
+    // firebase.database().ref('users').on('child_changed')
   }
 
   componentDidUpdate() {
@@ -122,7 +120,11 @@ class TextChat extends React.Component {
       edited: false
     }
 
-    const newMessageKey = firebase.database().ref(`/users/${this.props.user.account.uid}/dmUsers/${this.state.userToDM.uid}/`).push().key;
+    const newMessageKey = firebase
+      .database()
+      .ref(`/users/${this.props.user.account.uid}/dmUsers/${this.state.userToDM.uid}/`)
+      .push()
+      .key;
 
     this.setState({showDmModal: false})
 
@@ -133,7 +135,10 @@ class TextChat extends React.Component {
     updates[`/users/${this.state.userToDM.uid}/dmUsers/${this.props.user.account.uid}/${newMessageKey}`] = messageData;
     updates[`/onlineUsers/${this.state.userToDM.uid}/dmUsers/${this.props.user.account.uid}/${newMessageKey}`] = messageData;
 
-    return firebase.database().ref().update(updates);
+    return firebase
+      .database()
+      .ref()
+      .update(updates);
 
   }
 
@@ -145,19 +150,24 @@ class TextChat extends React.Component {
     return (
       <div className="TextChatContainer">
 
-      {/* 'click me' div below switches from chatroom to dm's view */}
-        <div style={{margin: '30px'}} onClick={()=>{this.setState({showChatroom: !this.state.showChatroom})}}>CLICK MEEEE</div>
+        <div
+          style={{
+          margin: '30px'
+        }}
+          onClick=
+          { () => { this.setState({ showChatroom: !this.state.showChatroom }) }}>
+          Click
+        </div>
 
-      {this.state.showChatroom ?
-        //{/* show chatroom */}
-
-        <div className="chatroom-onlineusers-container">
-
-          <div className="online-users">
-            <h3>Online students for CHATTTT</h3>
-
+        {this.state.showChatroom
+          ?
+          //{/ * show chatroom * /} < div className = "chatroom-onlineusers-container" > <div className="online-users">
+            <h3>Online students for CHATTTT</h3 >
             <ul>
-              {this.props.onlineUsers.map((ele, index) => {
+              {this
+                .props
+                .onlineUsers
+                .map((ele, index) => {
                   return (
                     <li key={index} onClick={() => this.handleStartDM(ele)}>
                       <p>
@@ -167,99 +177,90 @@ class TextChat extends React.Component {
                   )
                 })}
             </ul>
-
-          </div>
-          <ChatRoom />
-
-
-        </div>
-
-        :
-        //{/* show dm's */}
-
-        <div className="chatroom-onlineusers-container">
-          <div className="online-users">
+            < /div>
+              <ChatRoom/>
+            </div>
+            : //{/* show dm's */
+          } < div className = "chatroom-onlineusers-container" > <div className="online-users">
             <h3>DIRECT MESSAGESSS</h3>
             <ul>
-              {Object.keys(this.props.user.dmUsers).map((item, index) => {
-                console.log(this.props.user.dmUsers[item], 'item');
+              {Object
+                .keys(this.props.user.dmUsers)
+                .map((item, index) => {
+                  console.log(this.props.user.dmUsers[item], 'item');
 
-                //getting this.state.users from setting state from firebase in componentDidMount. need to change to possible redux store.
-                return <li key={index} onClick={()=>this.setState({dmMessagesList: this.props.user.dmUsers[item]})}>{this.state.users[item].account.username}</li>
-              })}
+                  // getting this.state.users from setting state from firebase in
+                  // componentDidMount. need to change to possible redux store.
+                  return <li
+                    key={index}
+                    onClick={() => this.setState({dmMessagesList: this.props.user.dmUsers[item]})}>{this.state.users[item].account.username}</li>
+                })}
             </ul>
-          </div>
+          </div> < DirectMessenger
+          messages = {
+            this.state.dmMessagesList
+          }
+          uid = {
+            this.props.user.account.uid
+          } /> </div>
+        }
+        {/* Use Modal component to popup and send message */
+        } < Modal
+        isOpen = {
+          this.state.showDmModal
+        }
+        isDM = {
+          true
+        }
+        close = {
+          () => this.setState({showDmModal: false})
+        } > <form onSubmit={this.sendMessage}>
+          <input
+            onChange={this.handleChange('message')}
+            id="message"
+            type="text"
+            placeholder='howdy'
+            value={this.state.message}/>
 
-          <DirectMessenger messages={this.state.dmMessagesList} uid={this.props.user.account.uid}/>
-        </div>
-      }
+          <button onClick={() => this.setState({showDmModal: false})}>Cancel</button>
+          <button type="submit">Send Message</button>
 
-  {/* Use Modal component to popup and send message */}
-          <Modal
-            isOpen={this.state.showDmModal}
-            isDM={true}
-            close={()=>this.setState({showDmModal:false})}>
-
-            <form onSubmit={this.sendMessage}>
-              <input
-                onChange={this.handleChange('message')}
-                id="message"
-                type="text"
-                placeholder='howdy'
-                value={this.state.message}/>
-
-                <button onClick={()=>this.setState({showDmModal:false})}>Cancel</button>
-                <button type="submit">Send Message</button>
-
-            </form>
-
-          </Modal>
+        </form> < /Modal>
 
         {this.state.textChatPendingRequest
           ? (
             <div>
               <p>{this.state.requestingUserToChat.name}
-                wants to text chat!</p>
-              <button onClick={this.handlePendingUserTextChat}>
-                Accept
-              </button>
-            </div>
+                wants to text chat!</p > <button onClick={this.handlePendingUserTextChat}>
+          Accept
+        </button> < /div>
           )
           : (undefined)}
 
         {this.state.loading
-          ? <Spinner/>
-          : undefined}
-      </div>
+          ? <Spinner/ > : undefined
+      } < /div}}
     )
   }
 }
 
-
-
-// {this.state.allowPendingTextRequest
-//   ? <div style={{position: 'absolute',top: '50%', bottom: '0px', left: '50%', right: '0px', width: '300px', height: '300px', background: 'green'}}>
-//       {/* <h2>You are now TEXT chatting with {this.props.user.textChatRoom.requestingUser.username}</h2> */}
-//       <p>--------------</p>
+// {this.state.allowPendingTextRequest   ? <div style={{position:
+// 'absolute',top: '50%', bottom: '0px', left: '50%', right: '0px', width:
+// '300px', height: '300px', background: 'green'}}>       {/* <h2>You are now
+// TEXT chatting with
+// {this.props.user.textChatRoom.requestingUser.username}</h2> */}
+// <p>--------------</p>
 //
 //       <form onSubmit={this.sendMessage}>
 //
 //
 //
 //
-//         <input
-//           style={{
-//           height: '50px'
-//         }}
-//           onChange={this.handleChange('message')}
-//           id="message"
-//           type="text"
-//           placeholder='howdy'
-//           value={this.state.message}/>
-//         </form>
+//         <input           style={{           height: '50px'         }}
+// onChange={this.handleChange('message')}           id="message" type="text"
+//     placeholder='howdy' value={this.state.message}/>         </form>
 //
-//     </div>
-//   : undefined}
+//     </div>   : undefined}
 
 const mapStateToProps = state => ({onlineUsers: state.onlineUsers, user: state.user});
 
